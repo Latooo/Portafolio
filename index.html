@@ -26,7 +26,10 @@
                 <li><a href="#proyectos">Proyectos</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
-            <button id="mode-toggle" class="btn">Modo Noche</button>
+            <button id="mode-toggle" class="btn">
+                <img src="https://img.icons8.com/ios/50/000000/sun.png" alt="Modo Día" id="sun-icon" class="mode-icon">
+                <img src="https://img.icons8.com/ios/50/000000/moon.png" alt="Modo Noche" id="moon-icon" class="mode-icon">
+            </button>
         </nav>
     </header>
 
@@ -56,22 +59,31 @@
 
     <section id="objetivos">
         <h2>Objetivos</h2>
-
+    
         <div class="objectives-list">
             <div class="objectivo">
                 <img src="/Storage/img/teamwork.jpg" alt="Trabajo en equipo">
                 <p>Ser parte de un gran equipo de desarrollo que ayude a la sociedad.</p>
             </div>
-
+    
             <div class="objectivo">
                 <img src="/Storage/img/aprendizaje.jpg" alt="Aprendizaje continuo">
                 <p>Seguir aprendiendo y desarrollando habilidades técnicas y blandas.</p>
             </div>
-
+    
             <div class="objectivo">
                 <img src="/Storage/img/innovacion.jpg" alt="Innovación">
                 <p>Contribuir a soluciones innovadoras que generen un impacto positivo.</p>
             </div>
+        </div>
+    
+        <div class="floating-elements">
+            <div class="floating-circle circle-1"></div>
+            <div class="floating-square square-1"></div>
+            <div class="floating-circle circle-2"></div>
+            <div class="floating-square square-2"></div>
+            <div class="floating-circle circle-3"></div>
+            <div class="floating-square square-3"></div>
         </div>
     </section>
 
@@ -82,10 +94,22 @@
         <p><strong>Valores:</strong> Compromiso, Integridad, y Creatividad.</p>
     </section>
 
-    <section id="certificaciones">
+    <section id="certificaciones" class="certifications-section">
         <h2>Certificaciones</h2>
         <p>Listado de certificaciones obtenidas a lo largo de mi carrera.</p>
+        <div class="slider">
+            <button class="prev">&lt;</button>
+            <div class="slides">
+                <div class="slide"><img src="/Storage/img/2Logros - danielalejandrolatorreruiz-2034 _ Microsoft Learn_page-0001.jpg" alt="Certificado 1"></div>
+                <div class="slide"><img src="/Storage/img/3Logros - danielalejandrolatorreruiz-2034 _ Microsoft Learn_page-0001.jpg" alt="Certificado 2"></div>
+                <div class="slide"><img src="/Storage/img/git_page-0001.jpg" alt="Certificado 3"></div>
+                <div class="slide"><img src="/Storage/img/git_page-0002.jpg" alt="Certificado 4"></div>
+                <div class="slide"><img src="certificado5.jpg" alt="Certificado 5"></div>
+            </div>
+            <button class="next">&gt;</button>
+        </div>
     </section>
+    
 
     <section id="servicios" class="services-section">
         <h2>Servicios</h2>
@@ -143,20 +167,38 @@
         </div>
     </section>
 
-    <section id="contacto">
+    <section id="contacto" class="contact-section">
         <h2>Contacto</h2>
         <form action="/submit-form" method="post">
             <label for="name">Nombre:</label>
             <input type="text" id="name" name="name" required>
-
+    
             <label for="email">Correo Electrónico:</label>
             <input type="email" id="email" name="email" required>
-
+    
             <label for="message">Mensaje:</label>
             <textarea id="message" name="message" rows="5" required></textarea>
-
+    
             <button type="submit" class="btn">Enviar</button>
         </form>
+        <div class="contact-icons">
+            <a href="mailto:example@example.com" class="contact-icon">
+                <img src="/Storage/img/gmail.png" alt="Mail Icon">
+                <span class="tooltip">daniellatorre600@gmail.com</span>
+            </a>
+            <a href="https://www.linkedin.com/in/daniellatorre9" class="contact-icon">
+                <img src="/Storage/img/linkedin.png" alt="LinkedIn Icon">
+                <span class="tooltip">LinkedIn</span>
+            </a>
+            <a href="https://github.com/Latooo" class="contact-icon">
+                <img src="/Storage/img/github.png" alt="GitHub Icon">
+                <span class="tooltip">GitHub</span>
+            </a>
+            <a href="tel:+573155228595" class="contact-icon">
+                <img src="/Storage/img/telefono.png" alt="Phone Icon">
+                <span class="tooltip">+57 315 522 85 95</span>
+            </a>
+        </div>
     </section>
 
     <footer>

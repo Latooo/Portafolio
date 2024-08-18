@@ -1,11 +1,21 @@
 // script.js
 const modeToggle = document.getElementById('mode-toggle');
 const body = document.body;
+const sunIcon = document.getElementById('sun-icon');
+const moonIcon = document.getElementById('moon-icon');
 
 // Cambiar entre modo claro y oscuro
 modeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
-    modeToggle.textContent = body.classList.contains('dark-mode') ? 'Modo Día' : 'Modo Noche';
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+        moonIcon.style.display = 'none';
+        sunIcon.style.display = 'block';
+    } else {
+        localStorage.setItem('theme', 'light');
+        moonIcon.style.display = 'block';
+        sunIcon.style.display = 'none';
+    }
 });
 
 // Suavizar el desplazamiento al hacer clic en los enlaces del menú
@@ -31,25 +41,7 @@ function setActiveSection(id) {
     document.querySelector(id).classList.add('active');
 }
 
-// Cambiar la sección activa cuando se desplaza la página
-document.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section');
-    let currentSection = '';
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        const scrollPosition = window.scrollY + window.innerHeight / 2;
-
-        if (scrollPosition >= sectionTop && scrollPosition <= sectionTop + sectionHeight) {
-            currentSection = section.getAttribute('id');
-        }
-    });
-
-    setActiveSection(`#${currentSection}`);
-});
-
-// script.js
+// Ejecutar la función al cargar el contenido
 document.addEventListener('DOMContentLoaded', () => {
     const loader = document.getElementById('loader');
     loader.style.display = 'none'; // Oculta el loader al cargar la página
@@ -75,6 +67,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Ejecutar la función para mostrar los elementos visibles al cargar la página
     handleScroll();
+
+    // Inicialización del slider
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    const slidesContainer = document.querySelector('.slides');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        const totalSlides = slides.length;
+        if (index >= totalSlides) {
+            currentIndex = 0;
+        } else if (index < 0) {
+            currentIndex = totalSlides - 1;
+        } else {
+            currentIndex = index;
+        }
+
+        slidesContainer.style.transform = `translateX(${-currentIndex * 100}%)`;
+    }
+
+    prevBtn.addEventListener('click', () => {
+        showSlide(currentIndex - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+        showSlide(currentIndex + 1);
+    });
+
+    // Inicializar el primer slide
+    showSlide(currentIndex);
+
+    // Modo de tema inicial basado en localStorage
+    if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-mode');
+        moonIcon.style.display = 'none';
+        sunIcon.style.display = 'block';
+    } else {
+        body.classList.remove('dark-mode');
+        moonIcon.style.display = 'block';
+        sunIcon.style.display = 'none';
+    }
 });
-
-
