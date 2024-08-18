@@ -32,7 +32,7 @@
 
 /* Elementos individuales de servicios */
 .services-item {
-    background-color: #e67e22;
+    background-color: #2980b9;
     border-radius: 10px;
     padding: 20px;
     width: calc(33.333% - 40px); /* 3 columnas */
