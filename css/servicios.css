@@ -11,12 +11,23 @@
     animation: fadeIn 1s ease-in, scrollAnimation 0.5s ease-out;
 }
 
+/* Modo Claro */
+body:not(.dark-mode) .services-section {
+    color: black; /* Color del texto en modo día */
+}
+
+/* Modo Oscuro */
+body.dark-mode .services-section {
+    color: white; /* Color del texto en modo noche */
+}
+
 /* Encabezado */
 .services-section h2 {
     font-size: 2.5em;
     margin-bottom: 30px;
 }
 
+/* Párrafo dentro de la sección de servicios */
 .services-section p {
     font-size: 1.2em;
     margin-bottom: 40px;
