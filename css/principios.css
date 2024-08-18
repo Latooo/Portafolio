@@ -1,0 +1,59 @@
+/* principios.css */
+
+/* Principios (Misión, Visión y Valores) */
+.principles-section {
+    background-color: #2ecc71;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    animation: fadeIn 1s ease-in, scrollAnimation 0.5s ease-out;
+}
+
+.principles-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.principles-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.principles-item {
+    background-color: #27ae60;
+    border-radius: 10px;
+    padding: 20px;
+    width: calc(33.333% - 40px); /* 3 columnas */
+    min-width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    cursor: pointer;
+    animation: float 6s ease-in-out infinite;
+}
+
+.principles-item:hover {
+    transform: scale(1.05);
+}
+
+.principles-item h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.principles-item p {
+    font-size: 1.2em;
+}
+
+/* Media Queries para la sección de Principios */
+@media (max-width: 768px) {
+    .principles-list {
+        flex-direction: column;
+    }
+
+    .principles-item {
+        width: 100%; /* Aumenta el ancho de los items en dispositivos móviles */
+        min-width: 100%;
+    }
+}

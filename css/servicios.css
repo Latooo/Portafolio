@@ -1,0 +1,100 @@
+/* servicios.css */
+
+/* Servicios */
+.services-section {
+    background-color: #f39c12;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1s ease-in, scrollAnimation 0.5s ease-out;
+}
+
+/* Encabezado */
+.services-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.services-section p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+}
+
+/* Lista de servicios */
+.services-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Elementos individuales de servicios */
+.services-item {
+    background-color: #e67e22;
+    border-radius: 10px;
+    padding: 20px;
+    width: calc(33.333% - 40px); /* 3 columnas */
+    min-width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.services-item:hover {
+    transform: scale(1.05);
+}
+
+/* Logotipo */
+.services-item img {
+    width: 48px; /* Tamaño del logo */
+    height: 48px;
+    margin-bottom: 10px;
+}
+
+/* Título del servicio */
+.services-item h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+/* Descripción del servicio */
+.service-description {
+    display: none;
+    font-size: 1.2em;
+    color: #2c3e50;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    width: calc(100% - 40px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Mostrar descripción al pasar el ratón */
+.services-item:hover .service-description {
+    display: block;
+}
+
+/* Media Queries para la sección de Servicios */
+@media (max-width: 768px) {
+    .services-list {
+        flex-direction: column;
+    }
+
+    .services-item {
+        width: 100%; /* Aumenta el ancho de los items en dispositivos móviles */
+        min-width: 100%;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
