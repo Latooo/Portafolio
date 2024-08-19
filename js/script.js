@@ -163,3 +163,26 @@ popups.forEach(popup => {
         popup.classList.remove('active');
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.read-more').forEach(function (readMoreLink) {
+        readMoreLink.addEventListener('click', function () {
+            const item = this.closest('.principles-item');
+            item.classList.toggle('expanded');
+            this.textContent = item.classList.contains('expanded') ? 'Leer menos' : 'Leer más';
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.principles-item p').forEach(item => {
+        item.addEventListener('click', function() {
+            const parent = this.closest('.principles-item');
+            if (parent.classList.contains('expanded')) {
+                parent.classList.remove('expanded');
+            } else {
+                parent.classList.add('expanded');
+            }
+        });
+    });
+});

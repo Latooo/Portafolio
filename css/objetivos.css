@@ -177,3 +177,34 @@ body.dark-mode .objectivo {
 body.dark-mode .objectivo p {
     color: #000; /* Texto negro dentro de los cuadrados en modo noche */
 }
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+    #objetivos {
+        padding: 40px 10px; /* Ajusta el padding para móviles */
+    }
+
+    #objetivos h2 {
+        font-size: 1.8em; /* Ajusta el tamaño del encabezado para móviles */
+        margin-bottom: 20px; /* Ajusta el margen para móviles */
+    }
+
+    .objectivo {
+        width: 90%; /* Ajusta el ancho de los objetivos para móviles */
+        max-width: 300px; /* Limita el ancho máximo */
+        margin: 10px auto; /* Ajusta el margen para móviles */
+    }
+
+    .objectivo img {
+        height: 150px; /* Ajusta la altura de las imágenes para móviles */
+    }
+
+    .objectivo p {
+        font-size: 1em; /* Ajusta el tamaño del texto para móviles */
+        padding: 8px; /* Ajusta el padding para móviles */
+    }
+
+    #objetivos .floating-elements {
+        display: none; /* Oculta los elementos flotantes en móviles */
+    }
+}

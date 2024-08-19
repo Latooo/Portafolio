@@ -85,14 +85,16 @@ body.night .principles-item {
     50% { box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); }
 }
 
-/* Media Queries para la sección de Principios */
-@media (max-width: 768px) {
+/* Media Queries para iPhone 14 Pro Max */
+@media only screen and (min-device-width: 430px) and (max-device-width: 430px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
     .principles-list {
         flex-direction: column;
+        align-items: center; /* Centrar los elementos horizontalmente */
     }
 
     .principles-item {
-        width: 100%; /* Aumenta el ancho de los items en dispositivos móviles */
-        min-width: 100%;
+        width: 90%; /* Ajusta al 90% del contenedor en iPhone 14 Pro Max */
+        max-width: none; /* Sin límite máximo en móviles */
+        margin: 10px 0; /* Espacio vertical entre los módulos */
     }
 }

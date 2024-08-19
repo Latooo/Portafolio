@@ -66,6 +66,7 @@
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
     animation: float 6s ease-in-out infinite, shadowPulse 2s ease-in-out infinite;
+    margin: 0 auto; /* Centra horizontalmente en pantallas más grandes */
 }
 
 .project:hover {
@@ -165,14 +166,33 @@ body.dark-mode .image-popup-close {
     color: #000;
 }
 
-/* Media Queries para la sección de Proyectos */
-@media (max-width: 768px) {
+/* Media Queries para dispositivos móviles */
+@media only screen and (max-device-width: 430px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+    .projects-section {
+        padding: 40px 10px; /* Reducir padding para pantallas pequeñas */
+    }
+
+    .projects-container {
+        flex-direction: column;
+        align-items: center; /* Centrar los elementos en la pantalla */
+    }
+
     .project {
-        width: 100%; /* Aumenta el ancho de los items en dispositivos móviles */
-        min-width: 100%;
+        width: 90%; /* Ajustar el ancho de los items en dispositivos móviles */
+        max-width: 350px; /* Limitar el ancho máximo para no ocupar toda la pantalla */
+        margin: 10px 0; /* Espacio superior e inferior */
+        padding: 15px; /* Reducir el padding */
+    }
+
+    .project h3 {
+        font-size: 1.5em;
+    }
+
+    .project p {
+        font-size: 1em;
     }
 
     .project-images img {
-        max-height: 150px;
+        max-height: 150px; /* Ajustar la altura máxima de las imágenes */
     }
 }
