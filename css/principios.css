@@ -2,16 +2,32 @@
 
 /* Principios (Misión, Visión y Valores) */
 .principles-section {
-    background-color: #2ecc71;
-    color: white;
+    background-color: #2ecc71; /* Fondo de la sección */
     padding: 60px 20px;
     text-align: center;
     animation: fadeIn 1s ease-in, scrollAnimation 0.5s ease-out;
+    position: relative;
+    overflow: hidden;
 }
 
-.principles-section h2 {
-    font-size: 2.5em;
-    margin-bottom: 30px;
+/* Estilos para el texto en modo día */
+body.day .principles-section {
+    color: black; /* Texto negro en modo día */
+}
+
+body.day .principles-item {
+    background-color: #27ae60; /* Fondo verde en modo día */
+    color: white; /* Texto blanco en los items en modo día */
+}
+
+/* Estilos para el texto en modo noche */
+body.night .principles-section {
+    color: white; /* Texto blanco en modo noche */
+}
+
+body.night .principles-item {
+    background-color: #1a4731; /* Fondo verde oscuro en modo noche */
+    color: white; /* Texto blanco en los items en modo noche */
 }
 
 .principles-list {
@@ -22,19 +38,21 @@
 }
 
 .principles-item {
-    background-color: #27ae60;
     border-radius: 10px;
     padding: 20px;
     width: calc(33.333% - 40px); /* 3 columnas */
     min-width: 250px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
-    animation: float 6s ease-in-out infinite;
+    animation: float 6s ease-in-out infinite, shadowPulse 2s infinite;
+    position: relative;
+    z-index: 1;
 }
 
 .principles-item:hover {
     transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
 .principles-item h3 {
@@ -44,6 +62,27 @@
 
 .principles-item p {
     font-size: 1.2em;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scrollAnimation {
+    0% { transform: translateY(10px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes shadowPulse {
+    0%, 100% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
+    50% { box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); }
 }
 
 /* Media Queries para la sección de Principios */
