@@ -53,6 +53,7 @@ body.dark-mode .services-section {
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    margin: 0 auto; /* Centra horizontalmente */
 }
 
 .services-item:hover {
@@ -92,20 +93,51 @@ body.dark-mode .services-section {
     display: block;
 }
 
-/* Media Queries para la sección de Servicios */
-@media (max-width: 768px) {
-    .services-list {
-        flex-direction: column;
-    }
-
-    .services-item {
-        width: 100%; /* Aumenta el ancho de los items en dispositivos móviles */
-        min-width: 100%;
-    }
-}
-
 /* Animaciones */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+/* Media Queries para dispositivos móviles */
+@media only screen and (max-device-width: 430px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+    /* Ajustar el padding para pantallas pequeñas */
+    .services-section {
+        padding: 40px 10px;
+    }
+
+    /* Ajustar el tamaño del encabezado */
+    .services-section h2 {
+        font-size: 2em;
+    }
+
+    /* Ajustar el tamaño del párrafo */
+    .services-section p {
+        font-size: 1em;
+    }
+
+    /* Ajustar la lista de servicios */
+    .services-list {
+        flex-direction: column;
+        align-items: center; /* Centra los elementos en la pantalla */
+    }
+
+    /* Ajustar los elementos individuales de servicios */
+    .services-item {
+        width: 90%; /* Ajustar el ancho a 90% para pantallas pequeñas */
+        max-width: 350px; /* Limitar el ancho máximo para no ocupar toda la pantalla */
+        margin: 10px 0; /* Espacio superior e inferior */
+        padding: 15px; /* Reducir el padding */
+    }
+
+    /* Ajustar el tamaño del título del servicio */
+    .services-item h3 {
+        font-size: 1.5em;
+    }
+
+    /* Ajustar el tamaño de la descripción del servicio */
+    .service-description {
+        font-size: 1em;
+        width: calc(100% - 20px); /* Reducir el ancho */
+    }
 }

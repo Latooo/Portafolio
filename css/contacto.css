@@ -121,3 +121,46 @@ img {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+
+/* Media Queries para dispositivos móviles */
+@media only screen and (max-device-width: 430px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+    .contact-section {
+        padding: 40px 10px; /* Reducir padding para pantallas pequeñas */
+    }
+
+    .contact-section h2 {
+        font-size: 2em; /* Reducir el tamaño del título en pantallas pequeñas */
+    }
+
+    .contact-section form {
+        max-width: 100%; /* Ajustar el ancho del formulario */
+        padding: 0 10px; /* Añadir padding para que el formulario no toque los bordes */
+    }
+
+    .contact-section label {
+        font-size: 1em; /* Reducir el tamaño de fuente de las etiquetas */
+    }
+
+    .contact-section input[type="text"],
+    .contact-section input[type="email"],
+    .contact-section textarea {
+        padding: 8px; /* Reducir padding en campos de texto */
+        margin-bottom: 15px; /* Reducir margen inferior */
+    }
+
+    .contact-section button[type="submit"] {
+        padding: 10px 20px; /* Reducir padding del botón */
+        font-size: 1em; /* Reducir tamaño del texto del botón */
+    }
+
+    .contact-icons {
+        flex-direction: column; /* Alinear iconos verticalmente */
+        gap: 15px; /* Reducir el espacio entre iconos */
+        margin-top: 20px; /* Reducir el margen superior */
+    }
+
+    .contact-icon img {
+        width: 30px; /* Reducir tamaño de los iconos */
+        height: 30px;
+    }
+}

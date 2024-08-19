@@ -2,8 +2,9 @@
 
 /* Presentación */
 .section-container {
-    padding: 100px 20px;
+    padding: 60px 10px; /* Ajusta el padding para dispositivos móviles */
     display: flex;
+    flex-direction: column; /* Cambia a columna para mejor adaptación en móviles */
     align-items: center;
     justify-content: center;
     position: relative;
@@ -12,35 +13,35 @@
 
 /* Contenedor de la imagen */
 .photo-frame {
-    width: 300px; /* Ajusta el tamaño del círculo */
-    height: 300px; /* Ajusta el tamaño del círculo */
+    width: 200px; /* Ajusta el tamaño del círculo para móviles */
+    height: 200px; /* Ajusta el tamaño del círculo para móviles */
     border-radius: 50%; /* Mantiene la forma circular */
     overflow: hidden;
     border: 5px solid #2980b9;
-    margin-right: 30px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px; /* Cambia margen para alineación vertical en móviles */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Ajusta sombra para móviles */
     position: relative; /* Necesario para ajustar la imagen dentro del marco */
 }
 
 .photo-frame img {
     width: 100%;
-    height: 110%;
+    height: 100%;
     object-fit: cover; /* Asegura que la imagen cubra todo el contenedor sin deformarse */
     object-position: center; /* Ajusta la posición de la imagen dentro del círculo */
-    animation: float 6s ease-in-out infinite;
 }
 
+/* Estilo para la presentación de texto */
 .presentation-text {
-    max-width: 600px;
+    text-align: center; /* Alinea el texto al centro en móviles */
 }
 
 .presentation-text h1 {
-    font-size: 2.5em;
+    font-size: 1.8em; /* Ajusta el tamaño del título para móviles */
     margin: 0;
 }
 
 .presentation-text p {
-    font-size: 1.2em;
+    font-size: 1em; /* Ajusta el tamaño del texto para móviles */
 }
 
 /* Elementos flotantes */
@@ -103,7 +104,7 @@
     width: 90px;
     height: 90px;
     bottom: 25%;
-    left: 45%;
+    left: 35%;
     animation-delay: 4s;
 }
 
@@ -113,4 +114,34 @@
     top: 10%;
     right: 30%;
     animation-delay: 5s;
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+    .section-container {
+        padding: 40px 10px; /* Ajusta el padding para móviles */
+    }
+
+    .photo-frame {
+        width: 150px; /* Ajusta el tamaño del círculo para dispositivos más pequeños */
+        height: 150px; /* Ajusta el tamaño del círculo para dispositivos más pequeños */
+        margin-bottom: 15px; /* Ajusta margen para alineación vertical en móviles */
+    }
+
+    .photo-frame img {
+        animation: none; /* Elimina la animación en dispositivos móviles */
+    }
+
+    .presentation-text h1 {
+        font-size: 1.5em; /* Ajusta el tamaño del título para dispositivos móviles */
+    }
+
+    .presentation-text p {
+        font-size: 0.9em; /* Ajusta el tamaño del texto para dispositivos móviles */
+    }
+
+    .circle-1, .square-1, .circle-2, .square-2, .circle-3, .square-3 {
+        width: 40px; /* Ajusta el tamaño para móviles */
+        height: 40px; /* Ajusta el tamaño para móviles */
+    }
 }
