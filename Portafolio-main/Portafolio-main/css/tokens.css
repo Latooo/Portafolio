@@ -1,0 +1,121 @@
+/* ==========================================================================
+   tokens.css — Design tokens (colores, tipografía, espaciado, sombras)
+   Punto único de verdad. Cambiar un valor aquí lo cambia en todo el sitio.
+   ========================================================================== */
+
+:root {
+    /* --- Marca ------------------------------------------------------------ */
+    --brand-500: #2f81f7;
+    --brand-600: #1f6feb;
+    --brand-700: #1858c4;
+    --brand-300: #7cb2ff;
+    --brand-soft: rgba(47, 129, 247, 0.12);
+
+    --accent-500: #f0b429;
+    --accent-soft: rgba(240, 180, 41, 0.14);
+
+    /* --- Superficies (tema claro) ----------------------------------------- */
+    --bg: #f6f8fc;
+    --bg-alt: #eef2f9;
+    --surface: #ffffff;
+    --surface-2: #f2f5fa;
+    --border: #dde4ef;
+    --border-strong: #c3cede;
+
+    /* --- Texto ------------------------------------------------------------ */
+    --text: #111a29;
+    --text-muted: #5a6779;
+    --text-faint: #8593a6;
+    --text-on-brand: #ffffff;
+
+    /* --- Semánticos ------------------------------------------------------- */
+    --success: #1f9254;
+    --success-soft: rgba(31, 146, 84, 0.12);
+
+    /* --- Capas del fondo -------------------------------------------------- */
+    /* Retícula de puntos que cubre toda la página */
+    --dot: rgba(17, 26, 41, 0.08);
+    /* Retícula de líneas, solo en el hero */
+    --grid: rgba(17, 26, 41, 0.07);
+    /* Manchas de color que dan profundidad */
+    --glow-1: rgba(47, 129, 247, 0.16);
+    --glow-2: rgba(240, 180, 41, 0.05);
+    --glow-3: rgba(47, 129, 247, 0.10);
+
+    /* --- Tipografía ------------------------------------------------------- */
+    --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+
+    --fs-xs: 0.78rem;
+    --fs-sm: 0.875rem;
+    --fs-base: 1rem;
+    --fs-lg: 1.125rem;
+    --fs-xl: 1.375rem;
+    --fs-2xl: 1.75rem;
+    --fs-3xl: clamp(1.9rem, 1.3rem + 2.4vw, 2.75rem);
+    --fs-hero: clamp(2.2rem, 1.2rem + 4.2vw, 3.9rem);
+
+    /* --- Espaciado -------------------------------------------------------- */
+    --sp-1: 0.25rem;
+    --sp-2: 0.5rem;
+    --sp-3: 0.75rem;
+    --sp-4: 1rem;
+    --sp-5: 1.5rem;
+    --sp-6: 2rem;
+    --sp-7: 3rem;
+    --sp-8: 4rem;
+    --sp-9: 6rem;
+
+    /* --- Geometría -------------------------------------------------------- */
+    --radius-sm: 6px;
+    --radius: 12px;
+    --radius-lg: 18px;
+    --radius-full: 999px;
+
+    --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+    --shadow: 0 4px 16px rgba(16, 24, 40, 0.08);
+    --shadow-lg: 0 18px 44px rgba(16, 24, 40, 0.14);
+
+    --container: 1120px;
+    --nav-h: 66px;
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --t-fast: 160ms var(--ease);
+    --t: 280ms var(--ease);
+}
+
+/* --- Tema oscuro ---------------------------------------------------------- */
+:root[data-theme="dark"] {
+    --brand-500: #58a6ff;
+    --brand-600: #388bfd;
+    --brand-700: #2f7ae5;
+    --brand-soft: rgba(88, 166, 255, 0.16);
+
+    --accent-500: #f5c451;
+    --accent-soft: rgba(245, 196, 81, 0.16);
+
+    --bg: #0d1117;
+    --bg-alt: #0a0e14;
+    --surface: #161b22;
+    --surface-2: #1c232c;
+    --border: #262d38;
+    --border-strong: #38414f;
+
+    --text: #e8edf4;
+    --text-muted: #9aa8bb;
+    --text-faint: #6e7d91;
+    --text-on-brand: #06101f;
+
+    --success: #3fb950;
+    --success-soft: rgba(63, 185, 80, 0.16);
+
+    --dot: rgba(232, 237, 244, 0.06);
+    --grid: rgba(232, 237, 244, 0.05);
+    --glow-1: rgba(88, 166, 255, 0.18);
+    --glow-2: rgba(245, 196, 81, 0.07);
+    --glow-3: rgba(88, 166, 255, 0.12);
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 18px 44px rgba(0, 0, 0, 0.6);
+}

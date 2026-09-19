@@ -1,0 +1,143 @@
+/* servicios.css */
+
+/* Servicios */
+.services-section {
+    background-color: #f39c12;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1s ease-in, scrollAnimation 0.5s ease-out;
+}
+
+/* Modo Claro */
+body:not(.dark-mode) .services-section {
+    color: black; /* Color del texto en modo día */
+}
+
+/* Modo Oscuro */
+body.dark-mode .services-section {
+    color: white; /* Color del texto en modo noche */
+}
+
+/* Encabezado */
+.services-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+/* Párrafo dentro de la sección de servicios */
+.services-section p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+}
+
+/* Lista de servicios */
+.services-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Elementos individuales de servicios */
+.services-item {
+    background-color: #2980b9;
+    border-radius: 10px;
+    padding: 20px;
+    width: calc(33.333% - 40px); /* 3 columnas */
+    min-width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto; /* Centra horizontalmente */
+}
+
+.services-item:hover {
+    transform: scale(1.05);
+}
+
+/* Logotipo */
+.services-item img {
+    width: 48px; /* Tamaño del logo */
+    height: 48px;
+    margin-bottom: 10px;
+}
+
+/* Título del servicio */
+.services-item h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+/* Descripción del servicio */
+.service-description {
+    display: none;
+    font-size: 1.2em;
+    color: #2c3e50;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    width: calc(100% - 40px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Mostrar descripción al pasar el ratón */
+.services-item:hover .service-description {
+    display: block;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Media Queries para dispositivos móviles */
+@media only screen and (max-device-width: 430px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+    /* Ajustar el padding para pantallas pequeñas */
+    .services-section {
+        padding: 40px 10px;
+    }
+
+    /* Ajustar el tamaño del encabezado */
+    .services-section h2 {
+        font-size: 2em;
+    }
+
+    /* Ajustar el tamaño del párrafo */
+    .services-section p {
+        font-size: 1em;
+    }
+
+    /* Ajustar la lista de servicios */
+    .services-list {
+        flex-direction: column;
+        align-items: center; /* Centra los elementos en la pantalla */
+    }
+
+    /* Ajustar los elementos individuales de servicios */
+    .services-item {
+        width: 90%; /* Ajustar el ancho a 90% para pantallas pequeñas */
+        max-width: 350px; /* Limitar el ancho máximo para no ocupar toda la pantalla */
+        margin: 10px 0; /* Espacio superior e inferior */
+        padding: 15px; /* Reducir el padding */
+    }
+
+    /* Ajustar el tamaño del título del servicio */
+    .services-item h3 {
+        font-size: 1.5em;
+    }
+
+    /* Ajustar el tamaño de la descripción del servicio */
+    .service-description {
+        font-size: 1em;
+        width: calc(100% - 20px); /* Reducir el ancho */
+    }
+}

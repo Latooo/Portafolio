@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-labelledby="avatarTitle">
+    <title id="avatarTitle">Avatar ilustrado de Daniel Latorre con gorra</title>
+
+    <defs>
+        <!-- Fondo azul de la marca -->
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#3b8dff"/>
+            <stop offset="55%" stop-color="#1f6feb"/>
+            <stop offset="100%" stop-color="#143d85"/>
+        </linearGradient>
+
+        <!-- Copa de la gorra: más clara arriba, más oscura en los laterales -->
+        <linearGradient id="capGrad" x1="0.3" y1="0" x2="0.7" y2="1">
+            <stop offset="0%" stop-color="#2b3a52"/>
+            <stop offset="100%" stop-color="#1a2435"/>
+        </linearGradient>
+
+        <linearGradient id="skinGrad" x1="0.2" y1="0" x2="0.9" y2="1">
+            <stop offset="0%" stop-color="#e0ad84"/>
+            <stop offset="100%" stop-color="#cf9769"/>
+        </linearGradient>
+
+        <!-- Retícula de puntos del fondo -->
+        <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+            <circle cx="3" cy="3" r="1.6" fill="#ffffff" opacity="0.22"/>
+        </pattern>
+
+        <!-- Recorta todo lo que sobresalga del lienzo (hombros, fondo) -->
+        <clipPath id="frame">
+            <rect x="0" y="0" width="400" height="400" rx="26"/>
+        </clipPath>
+    </defs>
+
+    <g clip-path="url(#frame)">
+
+        <!-- ============ FONDO ============ -->
+        <rect width="400" height="400" fill="url(#bg)"/>
+        <rect width="400" height="400" fill="url(#dots)"/>
+
+        <!-- Halo detrás de la cabeza para separarla del fondo -->
+        <circle cx="200" cy="186" r="142" fill="#ffffff" opacity="0.09"/>
+        <circle cx="200" cy="186" r="142" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.18"/>
+
+        <!-- Guiños al oficio, muy tenues -->
+        <text x="46" y="92" font-family="monospace" font-size="26" fill="#ffffff" opacity="0.2">&lt;/&gt;</text>
+        <text x="312" y="330" font-family="monospace" font-size="22" fill="#ffffff" opacity="0.16">{ }</text>
+        <text x="330" y="112" font-family="monospace" font-size="19" fill="#ffffff" opacity="0.14">;</text>
+
+        <!-- ============ CUELLO ============ -->
+        <path d="M178,236 L222,236 L222,292 Q200,303 178,292 Z" fill="#c68e63"/>
+        <!-- Sombra que proyecta la barbilla -->
+        <path d="M178,236 L222,236 L222,252 Q200,266 178,252 Z" fill="#b57f56"/>
+
+        <!-- ============ HOMBROS / CAMISETA ============ -->
+        <path d="M46,400 C50,330 100,294 156,282 L244,282 C300,294 350,330 354,400 Z" fill="#1c212a"/>
+        <!-- Cuello redondo de la camiseta -->
+        <path d="M158,283 Q200,314 242,283 Q200,299 158,283 Z" fill="#2b323e"/>
+        <!-- Franja diagonal blanca, como la de su camiseta -->
+        <path d="M118,400 L186,318 L204,332 L136,400 Z" fill="#f2f4f7" opacity="0.92"/>
+        <!-- Pliegue sutil del hombro derecho -->
+        <path d="M286,400 C284,362 272,330 252,308" stroke="#2b323e" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+        <!-- ============ CABEZA ============ -->
+        <path d="M131,168 C131,118 159,94 200,94 C241,94 269,118 269,168 C269,214 249,262 200,262 C151,262 131,214 131,168 Z"
+              fill="url(#skinGrad)"/>
+
+        <!-- Pelo oscuro asomando bajo la gorra, pegado al contorno de la cabeza -->
+        <path d="M132,146 C127,166 128,188 135,204 C138,188 139,166 141,148 Z" fill="#1e1713"/>
+        <path d="M268,146 C273,166 272,188 265,204 C262,188 261,166 259,148 Z" fill="#1e1713"/>
+        <!-- Patillas cortas, delante de la oreja -->
+        <path d="M136,204 C137,213 138,219 139,223 C142,218 142,210 142,204 Z" fill="#1e1713"/>
+        <path d="M264,204 C263,213 262,219 261,223 C258,218 258,210 258,204 Z" fill="#1e1713"/>
+
+        <!-- Orejas -->
+        <ellipse cx="131" cy="196" rx="10" ry="17" fill="#d69f77"/>
+        <ellipse cx="269" cy="196" rx="10" ry="17" fill="#d69f77"/>
+        <path d="M131,190 C128,194 128,200 131,204" stroke="#b57f56" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M269,190 C272,194 272,200 269,204" stroke="#b57f56" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+        <!-- ============ GORRA ============ -->
+        <!-- Copa -->
+        <path d="M126,142 C126,100 156,80 200,80 C244,80 274,100 274,142 Z" fill="url(#capGrad)"/>
+        <!-- Costuras de los paneles -->
+        <path d="M200,82 C200,104 200,122 200,142" stroke="#0f1622" stroke-width="2" opacity="0.5" fill="none"/>
+        <path d="M200,83 C173,94 154,114 148,142" stroke="#0f1622" stroke-width="2" opacity="0.4" fill="none"/>
+        <path d="M200,83 C227,94 246,114 252,142" stroke="#0f1622" stroke-width="2" opacity="0.4" fill="none"/>
+        <!-- Botón superior -->
+        <circle cx="200" cy="81" r="5.5" fill="#1a2435"/>
+        <!-- Cinta frontal -->
+        <path d="M125,136 Q200,153 275,136 L275,148 Q200,165 125,148 Z" fill="#16202f"/>
+        <!-- Visera -->
+        <path d="M119,144 Q200,164 281,144 Q200,206 119,144 Z" fill="#111a27"/>
+        <path d="M119,144 Q200,164 281,144" stroke="#2b3a52" stroke-width="2.5" fill="none"/>
+        <!-- Bordado en la gorra -->
+        <text x="200" y="124" font-family="monospace" font-size="21" font-weight="bold"
+              fill="#58a6ff" text-anchor="middle">&lt;/&gt;</text>
+
+        <!-- ============ CARA ============ -->
+        <!-- Sombra que proyecta la visera sobre la frente -->
+        <path d="M137,172 Q200,200 263,172 Q200,190 137,172 Z" fill="#b57f56" opacity="0.45"/>
+
+        <!-- Cejas pobladas -->
+        <path d="M158,193 Q175,183 192,190" stroke="#1e1713" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <path d="M242,193 Q225,183 208,190" stroke="#1e1713" stroke-width="7" fill="none" stroke-linecap="round"/>
+
+        <!-- Ojos -->
+        <ellipse cx="175" cy="207" rx="9.5" ry="7" fill="#fbf7f3"/>
+        <ellipse cx="225" cy="207" rx="9.5" ry="7" fill="#fbf7f3"/>
+        <circle cx="176" cy="207" r="5.4" fill="#2b1f18"/>
+        <circle cx="226" cy="207" r="5.4" fill="#2b1f18"/>
+        <circle cx="178" cy="205" r="1.9" fill="#ffffff"/>
+        <circle cx="228" cy="205" r="1.9" fill="#ffffff"/>
+
+        <!-- Nariz -->
+        <path d="M198,213 C196,223 193,229 191,232 C195,236 203,236 207,233"
+              stroke="#b57f56" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+        <!-- Bigote y barba incipientes, apenas insinuados -->
+        <path d="M183,243 Q200,239 217,243 Q200,246 183,243 Z" fill="#1e1713" opacity="0.2"/>
+        <path d="M181,254 Q200,272 219,254 Q200,264 181,254 Z" fill="#1e1713" opacity="0.1"/>
+
+        <!-- Sonrisa leve -->
+        <path d="M185,249 Q200,259 215,249" stroke="#9c5b52" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+        <!-- Pómulos -->
+        <ellipse cx="156" cy="224" rx="11" ry="7" fill="#c98a63" opacity="0.3"/>
+        <ellipse cx="244" cy="224" rx="11" ry="7" fill="#c98a63" opacity="0.3"/>
+    </g>
+</svg>
