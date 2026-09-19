@@ -1,0 +1,17 @@
+# Respaldo local del CSS antiguo: se conserva en tu equipo, no en el repositorio.
+_backup-css/
+
+# Fuente original del avatar (1.9 MB). En el sitio se usan avatar.webp y
+# avatar.jpg, que pesan 30 y 55 KB. Guarda el original aparte si lo necesitas.
+Storage/img/Daniel/avatar.png
+
+# Archivos temporales de las capturas de revisión
+_preview-*.html
+_tmp-*.html
+
+# Sistema operativo y editores
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
