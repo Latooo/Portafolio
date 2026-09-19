@@ -1,0 +1,541 @@
+/* ==========================================================================
+   components.css — Piezas reutilizables: nav, botones, chips, tarjetas,
+   timeline, slider y modal.
+   ========================================================================== */
+
+/* --- Barra de navegación --------------------------------------------------*/
+.nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 1000;
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--t), background-color var(--t), box-shadow var(--t);
+}
+
+.nav.is-scrolled {
+    border-bottom-color: var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+.nav__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-5);
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: var(--sp-5);
+}
+
+.nav__brand {
+    font-weight: 800;
+    font-size: var(--fs-lg);
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-right: auto;
+    white-space: nowrap;
+}
+
+.nav__brand span {
+    color: var(--brand-600);
+}
+
+.nav__links {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-1);
+}
+
+.nav__link {
+    position: relative;
+    display: block;
+    padding: var(--sp-2) var(--sp-3);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--text-muted);
+    border-radius: var(--radius-sm);
+    transition: color var(--t-fast), background-color var(--t-fast);
+}
+
+.nav__link:hover {
+    color: var(--text);
+    background: var(--surface-2);
+}
+
+/* Marcado por el scroll-spy en script.js */
+.nav__link.is-active {
+    color: var(--brand-600);
+    background: var(--brand-soft);
+}
+
+.nav__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+}
+
+/* --- Botones ---------------------------------------------------------------*/
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-2);
+    padding: 0.7rem 1.35rem;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    line-height: 1;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform var(--t-fast), background-color var(--t-fast),
+                border-color var(--t-fast), color var(--t-fast), box-shadow var(--t-fast);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn--primary {
+    background: var(--brand-600);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn--primary:hover {
+    background: var(--brand-700);
+    color: #fff;
+    box-shadow: var(--shadow);
+}
+
+.btn--ghost {
+    background: var(--surface);
+    color: var(--text);
+    border-color: var(--border-strong);
+}
+
+.btn--ghost:hover {
+    background: var(--surface-2);
+    color: var(--text);
+    border-color: var(--brand-500);
+}
+
+/* Botón cuadrado de icono (tema, idioma, menú) */
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all var(--t-fast);
+}
+
+.btn-icon:hover {
+    color: var(--brand-600);
+    border-color: var(--brand-500);
+    background: var(--brand-soft);
+}
+
+.btn-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Conmutador de idioma: muestra el idioma al que se cambiaría */
+.lang-toggle {
+    width: auto;
+    padding-inline: var(--sp-3);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+/* El icono de sol y el de luna se alternan según el tema activo */
+.icon-sun { display: none; }
+.icon-moon { display: block; }
+:root[data-theme="dark"] .icon-sun { display: block; }
+:root[data-theme="dark"] .icon-moon { display: none; }
+
+/* --- Menú móvil ------------------------------------------------------------*/
+.nav__burger {
+    display: none;
+}
+
+@media (max-width: 880px) {
+    .nav__burger {
+        display: inline-flex;
+    }
+
+    .nav__links {
+        position: fixed;
+        inset: var(--nav-h) 0 auto 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: var(--sp-3);
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-lg);
+        /* Oculto por defecto; script.js alterna el atributo data-open */
+        display: none;
+    }
+
+    .nav__links[data-open="true"] {
+        display: flex;
+    }
+
+    .nav__link {
+        padding: var(--sp-3) var(--sp-4);
+        font-size: var(--fs-base);
+    }
+}
+
+/* --- Chips de tecnología ---------------------------------------------------*/
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: 0.35rem 0.75rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 500;
+    color: var(--text-muted);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+}
+
+.chip--accent {
+    color: var(--brand-600);
+    background: var(--brand-soft);
+    border-color: color-mix(in srgb, var(--brand-500) 35%, transparent);
+}
+
+.chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+}
+
+/* --- Tarjeta genérica ------------------------------------------------------*/
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--sp-5);
+    transition: transform var(--t), border-color var(--t), box-shadow var(--t);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow);
+}
+
+.card__title {
+    font-size: var(--fs-lg);
+    margin-bottom: var(--sp-2);
+}
+
+.card__text {
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+}
+
+/* --- Línea de tiempo (experiencia) ----------------------------------------*/
+.timeline {
+    position: relative;
+    display: grid;
+    gap: var(--sp-5);
+    padding-left: var(--sp-6);
+}
+
+/* Riel vertical que conecta los puntos */
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    left: 7px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--brand-500), var(--border));
+}
+
+.timeline__item {
+    position: relative;
+}
+
+.timeline__item::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: calc(var(--sp-6) * -1);
+    width: 16px;
+    height: 16px;
+    background: var(--bg);
+    border: 3px solid var(--brand-500);
+    border-radius: 50%;
+}
+
+.section--alt .timeline__item::before {
+    background: var(--bg-alt);
+}
+
+.timeline__period {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--brand-600);
+}
+
+.timeline__role {
+    font-size: var(--fs-xl);
+    margin-block: var(--sp-1) var(--sp-1);
+}
+
+.timeline__company {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: var(--sp-3);
+}
+
+.timeline__points {
+    display: grid;
+    gap: var(--sp-2);
+    margin-bottom: var(--sp-4);
+}
+
+.timeline__points li {
+    position: relative;
+    padding-left: var(--sp-5);
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+}
+
+.timeline__points li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--brand-500);
+}
+
+/* Contexto del producto sobre el que se trabaja */
+.timeline__context {
+    padding: var(--sp-3) var(--sp-4);
+    margin-bottom: var(--sp-4);
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+    background: var(--surface-2);
+    border-left: 3px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+}
+
+.timeline__context strong {
+    color: var(--text);
+}
+
+/* Bloque destacado con los logros medibles del puesto */
+.timeline__wins {
+    padding: var(--sp-4) var(--sp-5);
+    margin-bottom: var(--sp-4);
+    background: var(--brand-soft);
+    border: 1px solid color-mix(in srgb, var(--brand-500) 28%, transparent);
+    border-radius: var(--radius);
+}
+
+.timeline__wins-title {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand-600);
+    margin-bottom: var(--sp-3);
+}
+
+.timeline__wins ul {
+    display: grid;
+    gap: var(--sp-3);
+}
+
+.timeline__wins li {
+    position: relative;
+    padding-left: var(--sp-5);
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+}
+
+.timeline__wins li::before {
+    content: "✦";
+    position: absolute;
+    left: 0;
+    color: var(--brand-600);
+}
+
+/* Las cifras del logro son lo que debe saltar a la vista */
+.timeline__wins strong {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.timeline__clients {
+    margin-bottom: var(--sp-4);
+    font-size: var(--fs-xs);
+    color: var(--text-faint);
+}
+
+/* --- Slider de certificaciones ---------------------------------------------*/
+.slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+}
+
+.slider__viewport {
+    flex: 1;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+}
+
+.slider__track {
+    display: flex;
+    transition: transform 460ms var(--ease);
+}
+
+.slider__slide {
+    flex: 0 0 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-3);
+    padding: var(--sp-5);
+}
+
+.slider__slide img {
+    max-height: 420px;
+    width: auto;
+    object-fit: contain;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    cursor: zoom-in;
+}
+
+.slider__caption {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.slider__btn {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all var(--t-fast);
+}
+
+.slider__btn:hover {
+    background: var(--brand-600);
+    color: #fff;
+    border-color: var(--brand-600);
+}
+
+.slider__dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--sp-2);
+    margin-top: var(--sp-4);
+}
+
+.slider__dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    background: var(--border-strong);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all var(--t-fast);
+}
+
+.slider__dot[aria-selected="true"] {
+    width: 26px;
+    border-radius: var(--radius-full);
+    background: var(--brand-600);
+}
+
+/* --- Modal de imagen (lightbox) -------------------------------------------*/
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: grid;
+    place-items: center;
+    padding: var(--sp-5);
+    background: rgba(5, 9, 16, 0.88);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--t), visibility var(--t);
+}
+
+.lightbox[data-open="true"] {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox__img {
+    max-width: min(1100px, 94vw);
+    max-height: 88vh;
+    width: auto;
+    object-fit: contain;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+}
+
+.lightbox__close {
+    position: absolute;
+    top: var(--sp-5);
+    right: var(--sp-5);
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color var(--t-fast);
+}
+
+.lightbox__close:hover {
+    background: rgba(255, 255, 255, 0.26);
+}

@@ -1,0 +1,524 @@
+/* ==========================================================================
+   sections.css — Layout específico de cada sección de la página
+   ========================================================================== */
+
+/* --- Hero ------------------------------------------------------------------*/
+.hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 100svh;
+    padding-block: calc(var(--nav-h) + var(--sp-7)) var(--sp-8);
+    overflow: hidden;
+}
+
+/*
+ * Retícula tipo plano técnico, solo detrás del hero. La máscara elíptica la
+ * desvanece por los bordes para que no parezca un cuadriculado de cuaderno.
+ */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(to right, var(--grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 62px 62px;
+    -webkit-mask-image: radial-gradient(ellipse 78% 62% at 50% 34%, #000 15%, transparent 72%);
+            mask-image: radial-gradient(ellipse 78% 62% at 50% 34%, #000 15%, transparent 72%);
+}
+
+/* Resplandor decorativo detrás del avatar */
+.hero::after {
+    content: "";
+    position: absolute;
+    top: -22%;
+    right: -12%;
+    width: 640px;
+    height: 640px;
+    background: radial-gradient(circle, var(--brand-soft), transparent 68%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.hero__grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    align-items: center;
+    gap: var(--sp-8);
+}
+
+.hero__status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: 0.35rem 0.85rem;
+    margin-bottom: var(--sp-5);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--success);
+    background: var(--success-soft);
+    border: 1px solid color-mix(in srgb, var(--success) 30%, transparent);
+    border-radius: var(--radius-full);
+}
+
+.hero__status::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.82); }
+}
+
+.hero__title {
+    font-size: var(--fs-hero);
+    margin-bottom: var(--sp-4);
+}
+
+.hero__title em {
+    font-style: normal;
+    color: var(--brand-600);
+}
+
+.hero__role {
+    font-family: var(--font-mono);
+    font-size: var(--fs-lg);
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: var(--sp-5);
+}
+
+/* Cursor parpadeante del efecto de tecleo */
+.hero__cursor {
+    display: inline-block;
+    color: var(--brand-500);
+    animation: blink 1.05s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.hero__desc {
+    font-size: var(--fs-lg);
+    color: var(--text-muted);
+    max-width: 56ch;
+    margin-bottom: var(--sp-6);
+}
+
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-6);
+}
+
+.hero__socials {
+    display: flex;
+    gap: var(--sp-3);
+}
+
+.hero__photo {
+    position: relative;
+    justify-self: center;
+    width: min(320px, 100%);
+    aspect-ratio: 1;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+}
+
+/* <picture> no debe crear caja propia: la que manda es .hero__photo */
+.hero__photo picture {
+    display: contents;
+}
+
+.hero__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (max-width: 880px) {
+    .hero__grid {
+        grid-template-columns: 1fr;
+        gap: var(--sp-6);
+    }
+
+    .hero__photo {
+        grid-row: 1;
+        width: min(220px, 60%);
+    }
+}
+
+/* --- Métricas del hero -----------------------------------------------------*/
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--sp-4);
+    padding-block: var(--sp-6);
+    border-top: 1px solid var(--border);
+}
+
+.metric__value {
+    font-size: var(--fs-2xl);
+    font-weight: 800;
+    color: var(--brand-600);
+    line-height: 1.1;
+}
+
+.metric__label {
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+}
+
+/* --- Sobre mí --------------------------------------------------------------*/
+.about__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--sp-7);
+    align-items: start;
+}
+
+.about__body p {
+    color: var(--text-muted);
+    margin-bottom: var(--sp-4);
+}
+
+.about__body strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.about__facts {
+    display: grid;
+    gap: var(--sp-3);
+}
+
+.fact {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--sp-4);
+    padding: var(--sp-3) var(--sp-4);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.fact__key {
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+}
+
+.fact__val {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    text-align: right;
+}
+
+@media (max-width: 880px) {
+    .about__grid {
+        grid-template-columns: 1fr;
+        gap: var(--sp-5);
+    }
+}
+
+/* --- Stack técnico ---------------------------------------------------------*/
+.stack__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    gap: var(--sp-4);
+}
+
+.stack__head {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-4);
+}
+
+.stack__icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    color: var(--brand-600);
+    background: var(--brand-soft);
+    border-radius: var(--radius);
+}
+
+.stack__icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.stack__level {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-faint);
+}
+
+/* --- Proyectos -------------------------------------------------------------*/
+.projects__grid {
+    display: grid;
+    gap: var(--sp-6);
+}
+
+.project {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-6);
+    align-items: center;
+    padding: var(--sp-6);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    transition: border-color var(--t), box-shadow var(--t);
+}
+
+.project:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow);
+}
+
+/* Alterna el lado de la galería en proyectos pares */
+.project:nth-child(even) .project__media {
+    order: 2;
+}
+
+.project__media {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-2);
+}
+
+/* Si el proyecto trae una sola imagen, que ocupe todo el ancho */
+.project__media:has(img:only-child) {
+    grid-template-columns: 1fr;
+}
+
+.project__media img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    cursor: zoom-in;
+    transition: transform var(--t), border-color var(--t);
+}
+
+.project__media img:hover {
+    transform: scale(1.03);
+    border-color: var(--brand-500);
+}
+
+.project__label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand-600);
+}
+
+.project__title {
+    font-size: var(--fs-2xl);
+    margin-block: var(--sp-2) var(--sp-3);
+}
+
+.project__desc {
+    color: var(--text-muted);
+    margin-bottom: var(--sp-4);
+}
+
+.project__meta {
+    display: grid;
+    gap: var(--sp-2);
+    margin-bottom: var(--sp-4);
+    padding: var(--sp-3) var(--sp-4);
+    background: var(--surface-2);
+    border-left: 3px solid var(--brand-500);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-sm);
+}
+
+.project__meta dt {
+    font-weight: 700;
+    color: var(--text);
+}
+
+.project__meta dd {
+    margin: 0 0 var(--sp-2);
+    color: var(--text-muted);
+}
+
+.project__meta dd:last-child {
+    margin-bottom: 0;
+}
+
+.project__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+    margin-top: var(--sp-4);
+}
+
+@media (max-width: 880px) {
+    .project {
+        grid-template-columns: 1fr;
+        padding: var(--sp-5);
+    }
+
+    .project:nth-child(even) .project__media {
+        order: 0;
+    }
+}
+
+/* --- Contacto --------------------------------------------------------------*/
+.contact__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-7);
+    align-items: start;
+}
+
+.form {
+    display: grid;
+    gap: var(--sp-4);
+}
+
+.field {
+    display: grid;
+    gap: var(--sp-2);
+}
+
+.field label {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+}
+
+.field input,
+.field textarea {
+    padding: 0.7rem 0.9rem;
+    font-size: var(--fs-sm);
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    transition: border-color var(--t-fast), box-shadow var(--t-fast);
+    resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+    outline: none;
+    border-color: var(--brand-500);
+    box-shadow: 0 0 0 3px var(--brand-soft);
+}
+
+/* Solo marca en rojo un campo que el usuario ya tocó y dejó inválido */
+.field input:user-invalid,
+.field textarea:user-invalid {
+    border-color: #d1434b;
+}
+
+.field__error {
+    font-size: var(--fs-xs);
+    color: #d1434b;
+    min-height: 1em;
+}
+
+.form__status {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    min-height: 1.5em;
+}
+
+.form__status[data-state="ok"] { color: var(--success); }
+.form__status[data-state="error"] { color: #d1434b; }
+
+.contact__direct {
+    display: grid;
+    gap: var(--sp-3);
+}
+
+.contact__link {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    padding: var(--sp-4);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    transition: all var(--t-fast);
+}
+
+.contact__link:hover {
+    color: var(--text);
+    border-color: var(--brand-500);
+    background: var(--brand-soft);
+    transform: translateX(4px);
+}
+
+.contact__link svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: var(--brand-600);
+}
+
+.contact__link-label {
+    font-size: var(--fs-xs);
+    color: var(--text-faint);
+}
+
+.contact__link-value {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+}
+
+@media (max-width: 880px) {
+    .contact__grid {
+        grid-template-columns: 1fr;
+        gap: var(--sp-6);
+    }
+}
+
+/* --- Pie de página ---------------------------------------------------------*/
+.footer {
+    padding-block: var(--sp-6);
+    border-top: 1px solid var(--border);
+    background: color-mix(in srgb, var(--bg-alt) 78%, transparent);
+}
+
+.footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--sp-4);
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+}
+
+.footer__built {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-faint);
+}
