@@ -111,7 +111,7 @@ const TRANSLATIONS = {
 
         "exp.job2.period": "Formación",
         "exp.job2.role": "Técnico en Programación de Software",
-        "exp.job2.company": "[Institución] · Colombia",
+        "exp.job2.company": "Campuslands · Bucaramanga, Colombia",
         "exp.job2.p1": "Fundamentos de programación, estructuras de datos y programación orientada a objetos con Java y Python.",
         "exp.job2.p2": "Diseño y normalización de bases de datos relacionales, con proyecto final documentado para el Ministerio del Medio Ambiente.",
         "exp.job2.p3": "Desarrollo web con HTML, CSS y JavaScript, incluyendo consumo de APIs REST.",
@@ -137,6 +137,7 @@ const TRANSLATIONS = {
         "proj.kario.desc": "Aplicación web para una empresa dedicada a licitaciones públicas y privadas. Implementé el flujo administrativo completo, desde el inicio de sesión hasta el panel de gestión de proyectos, partiendo de la propuesta de diseño del equipo de UI/UX.",
         "proj.kario.role": "Traducción de los diseños de UI/UX a una interfaz funcional y responsiva.",
         "proj.kario.learned": "Trabajar contra una especificación de diseño ajena y mantener la fidelidad visual en distintos tamaños de pantalla.",
+        "proj.kario.private": "Código privado: proyecto desarrollado para un cliente.",
 
         "proj.db.label": "Modelado de datos",
         "proj.db.title": "Base de datos — Parques Naturales",
@@ -284,7 +285,7 @@ const TRANSLATIONS = {
 
         "exp.job2.period": "Education",
         "exp.job2.role": "Software Programming Technician",
-        "exp.job2.company": "[Institution] · Colombia",
+        "exp.job2.company": "Campuslands · Bucaramanga, Colombia",
         "exp.job2.p1": "Programming fundamentals, data structures and object-oriented programming with Java and Python.",
         "exp.job2.p2": "Relational database design and normalisation, with a documented final project for the Ministry of the Environment.",
         "exp.job2.p3": "Web development with HTML, CSS and JavaScript, including REST API consumption.",
@@ -310,6 +311,7 @@ const TRANSLATIONS = {
         "proj.kario.desc": "A web application for a company working in public and private tenders. I implemented the full administrative flow, from login through to the project management panel, working from the UI/UX team's design proposal.",
         "proj.kario.role": "Translating UI/UX designs into a functional, responsive interface.",
         "proj.kario.learned": "Working against someone else's design spec and keeping visual fidelity across screen sizes.",
+        "proj.kario.private": "Private code: built for a client.",
 
         "proj.db.label": "Data modelling",
         "proj.db.title": "Database — National Parks",

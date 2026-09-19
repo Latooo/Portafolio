@@ -379,6 +379,14 @@
     margin-top: var(--sp-4);
 }
 
+/* Nota para proyectos cuyo código no es público */
+.project__note {
+    margin-top: var(--sp-4);
+    font-size: var(--fs-xs);
+    font-style: italic;
+    color: var(--text-faint);
+}
+
 @media (max-width: 880px) {
     .project {
         grid-template-columns: 1fr;
