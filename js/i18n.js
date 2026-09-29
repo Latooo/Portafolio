@@ -28,7 +28,7 @@ const TRANSLATIONS = {
         /* --- Hero --- */
         "hero.status": "Abierto a nuevas oportunidades",
         "hero.greeting": "Hola, soy",
-        "hero.desc": "Desarrollo y mantengo Mantis, un ERP multiempresa en producción, con Java y SQL Server. Facturación, inventario, contabilidad y reportes regulatorios para clientes del sector salud y farmacéutico: código donde un error no es un botón torcido, es una factura mal emitida. Me adapto rápido a la herramienta que haga falta y estoy siempre abierto a aprender tecnologías nuevas.",
+        "hero.desc": "Desarrollo Mantis, un ERP multiempresa en producción, con Java y SQL Server. Facturación, inventario, contabilidad y reportes regulatorios para clientes del sector salud y farmacéutico: código donde un error no es un botón torcido, es una factura mal emitida. Me adapto rápido a la herramienta que haga falta y estoy siempre abierto a aprender tecnologías nuevas.",
         "hero.cta.projects": "Ver proyectos",
         "hero.cta.cv": "Descargar CV",
         "hero.photoAlt": "Avatar ilustrado de Daniel Latorre con gorra",
@@ -202,7 +202,7 @@ const TRANSLATIONS = {
         /* --- Hero --- */
         "hero.status": "Open to new opportunities",
         "hero.greeting": "Hi, I'm",
-        "hero.desc": "I build and maintain Mantis, a multi-company ERP running in production, with Java and SQL Server. Invoicing, inventory, accounting and regulatory reporting for healthcare and pharmaceutical clients: code where a bug isn't a misaligned button, it's an invoice issued wrong. I pick up whatever tool the job needs and I'm always open to learning new technologies.",
+        "hero.desc": "I build Mantis, a multi-company ERP running in production, with Java and SQL Server. Invoicing, inventory, accounting and regulatory reporting for healthcare and pharmaceutical clients: code where a bug isn't a misaligned button, it's an invoice issued wrong. I pick up whatever tool the job needs and I'm always open to learning new technologies.",
         "hero.cta.projects": "View projects",
         "hero.cta.cv": "Download CV",
         "hero.photoAlt": "Illustrated avatar of Daniel Latorre wearing a cap",
