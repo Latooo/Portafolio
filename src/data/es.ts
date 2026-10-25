@@ -14,7 +14,9 @@ export const es: Content = {
     skip: 'Saltar al contenido',
     navLabel: 'Principal',
     navAbout: 'Sobre mí',
+    navProjects: 'Proyectos',
     navExperience: 'Experiencia',
+    navCerts: 'Certificados',
     navContact: 'Contacto',
     langCode: 'EN',
     langName: 'English',
@@ -27,7 +29,7 @@ export const es: Content = {
     role: 'Desarrollador backend',
     tagline:
       'Desarrollo un ERP multiempresa en producción con Java y SQL Server: facturación, inventario y cadena comercial. También construyo sitios web para clientes. Busco un equipo remoto.',
-    ctaWrite: 'Escríbeme',
+    ctaProjects: 'Ver proyectos',
     ctaCv: 'Descargar CV',
   },
   about: {
@@ -44,6 +46,20 @@ export const es: Content = {
       { label: 'Idiomas', value: 'Español nativo, inglés B2' },
       { label: 'Disponibilidad', value: 'Abierto a roles remotos' },
     ],
+  },
+  stack: {
+    title: 'Tecnologías con las que trabajo',
+    pause: 'Pausar movimiento',
+  },
+  projects: {
+    title: 'Proyectos',
+    lead: 'Webs que construyo para clientes. Aquí van apareciendo a medida que se publican.',
+    soon: 'Próximamente',
+    soonNote: 'En construcción. El caso completo llega pronto.',
+    roleLabel: 'Mi rol',
+    stackLabel: 'Stack',
+    visitSite: 'Ver el sitio',
+    viewCode: 'Ver código',
   },
   experience: {
     title: 'Experiencia',
@@ -71,7 +87,8 @@ export const es: Content = {
         achievements: [
           {
             text: 'Reduje en <strong>3 minutos</strong> el tiempo de carga del listado de facturas, eliminando consultas <strong>N+1</strong> y ajustando índices.',
-            result: '−3 min',
+            result: '−3 min',
+            count: { value: 3, prefix: '−', suffix: ' min' },
           },
           {
             text: 'Implementé la <strong>autorretención</strong> para clientes del Régimen Simple de Tributación.',
@@ -102,5 +119,22 @@ export const es: Content = {
         ],
       },
     ],
+  },
+  certs: {
+    title: 'Certificados',
+    lead: 'Formación verificable. Pulsa un certificado para verlo ampliado.',
+    openPrefix: 'Ampliar certificado:',
+    dialogLabel: 'Certificado ampliado',
+    close: 'Cerrar',
+  },
+  contact: {
+    title: 'Contacto',
+    lead: 'Busco un equipo remoto. Si tienes un rol o un proyecto, escríbeme.',
+    emailLabel: 'Correo',
+    copy: 'Copiar correo',
+    copied: 'Correo copiado al portapapeles',
+    copyFailed: 'No se pudo copiar. Selecciona el correo y cópialo a mano.',
+    linkedin: 'LinkedIn',
+    github: 'GitHub',
   },
 };

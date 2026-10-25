@@ -11,23 +11,25 @@ export const en: Content = {
     jobTitle: 'Backend developer',
   },
   ui: {
-    skip: 'Skip to content',
+    skip: 'Skip to Content',
     navLabel: 'Main',
     navAbout: 'About',
+    navProjects: 'Projects',
     navExperience: 'Experience',
+    navCerts: 'Certificates',
     navContact: 'Contact',
     langCode: 'ES',
     langName: 'Español',
     themeToDark: 'Dark',
     themeToLight: 'Light',
     footerRights: 'All rights reserved.',
-    footerTop: 'Back to top',
+    footerTop: 'Back to Top',
   },
   hero: {
     role: 'Backend developer',
     tagline:
       'I develop a multi-company ERP in production with Java and SQL Server: invoicing, inventory and the full commercial chain. I also build websites for clients. I am looking for a remote team.',
-    ctaWrite: 'Write to me',
+    ctaProjects: 'See Projects',
     ctaCv: 'Download CV',
   },
   about: {
@@ -44,6 +46,20 @@ export const en: Content = {
       { label: 'Languages', value: 'Native Spanish, English B2' },
       { label: 'Availability', value: 'Open to remote roles' },
     ],
+  },
+  stack: {
+    title: 'Technologies I work with',
+    pause: 'Pause Motion',
+  },
+  projects: {
+    title: 'Projects',
+    lead: 'Websites I build for clients. They show up here as they are published.',
+    soon: 'Coming soon',
+    soonNote: 'Under construction. The full case study is coming soon.',
+    roleLabel: 'My role',
+    stackLabel: 'Stack',
+    visitSite: 'Visit the Site',
+    viewCode: 'See Code',
   },
   experience: {
     title: 'Experience',
@@ -71,7 +87,8 @@ export const en: Content = {
         achievements: [
           {
             text: 'Cut <strong>3 minutes</strong> off the invoice list load time by removing <strong>N+1</strong> queries and tuning indexes.',
-            result: '−3 min',
+            result: '−3 min',
+            count: { value: 3, prefix: '−', suffix: ' min' },
           },
           {
             text: 'Implemented <strong>self-withholding tax</strong> for clients under Colombia’s Simple Tax Regime.',
@@ -102,5 +119,22 @@ export const en: Content = {
         ],
       },
     ],
+  },
+  certs: {
+    title: 'Certificates',
+    lead: 'Verifiable training. Select a certificate to see it enlarged.',
+    openPrefix: 'Enlarge certificate:',
+    dialogLabel: 'Enlarged certificate',
+    close: 'Close',
+  },
+  contact: {
+    title: 'Contact',
+    lead: 'I am looking for a remote team. If you have a role or a project, write to me.',
+    emailLabel: 'Email',
+    copy: 'Copy Email',
+    copied: 'Email copied to clipboard',
+    copyFailed: 'Could not copy. Select the email and copy it by hand.',
+    linkedin: 'LinkedIn',
+    github: 'GitHub',
   },
 };
