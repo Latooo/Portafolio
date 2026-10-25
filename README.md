@@ -1,57 +1,65 @@
-# Portafolio — Daniel Latorre
+# Portafolio de Daniel Latorre
 
-Portafolio personal de un desarrollador de software enfocado en aplicaciones
-empresariales: **GeneXus**, **Java**, **SQL Server** y despliegues en **Apache Tomcat**.
+Sitio estático con [Astro](https://astro.build), sin framework de islas: todo el contenido sale en el HTML y no se envía JavaScript de aplicación (solo dos scripts en línea de pocas líneas: tema e idioma).
 
-Construido a mano con HTML, CSS y JavaScript. Sin frameworks, sin plantillas y
-sin paso de compilación: se abre el `index.html` y funciona.
+> Estado: **rediseño en curso** (rama `redesign-astro`). `main` sigue sirviendo el sitio anterior en <https://latooo.github.io/Portafolio/>.
 
-## Características
+## Requisitos
 
-- **Bilingüe ES/EN** con un diccionario propio y traducción vía atributos `data-i18n`.
-- **Tema claro y oscuro** que respeta la preferencia del sistema y se guarda entre visitas,
-  aplicado antes del primer pintado para evitar el destello blanco.
-- **Diseño responsivo** desde 320 px, con menú lateral en móvil.
-- **Accesibilidad**: navegación por teclado, enlace de salto al contenido,
-  foco visible, etiquetas ARIA y soporte de `prefers-reduced-motion`.
-- **SEO**: metadatos Open Graph para las vistas previas al compartir y datos
-  estructurados JSON-LD (`schema.org/Person`).
-- Animaciones de entrada y contadores con `IntersectionObserver`, sin listeners
-  de scroll costosos.
+Node **≥ 22.23.4** (lo exige Astro 7; ver `.nvmrc`).
+
+```bash
+npm ci          # instala dependencias
+npm run dev     # servidor de desarrollo: http://localhost:4321/Portafolio/
+npm run build   # genera dist/
+npm run preview # sirve dist/ con la misma base que producción
+```
 
 ## Estructura
 
 ```
-index.html              Documento único con todas las secciones
-css/
-  tokens.css            Variables de diseño: colores, tipografía, espaciado
-  base.css              Reset, tipografía base y utilidades
-  components.css        Nav, botones, tarjetas, timeline, slider, lightbox
-  sections.css          Layout de cada sección
-js/
-  i18n.js               Diccionario de traducciones ES/EN
-  script.js             Lógica: idioma, tema, navegación, slider, formulario
-Storage/
-  img/                  Fotografías, certificados y capturas de proyectos
-  cv/                   Currículum en PDF
+src/
+  components/    Nav, Hero, About, Experience, Footer
+  data/          Contenido y tipos: es.ts, en.ts, projects.ts, index.ts
+  layouts/       Base.astro (head, SEO, tema, JSON-LD)
+  lib/url.ts     Rutas que respetan `base` (nunca rutas absolutas a mano)
+  pages/         index.astro (redirige a /es/), [lang]/index.astro, 404.astro
+  styles/        fonts.css, tokens.css, global.css
+  assets/        Imágenes procesadas por Astro (avatar, capturas de proyectos)
+public/          cv/, favicon, og.png, robots.txt
+.github/workflows/deploy.yml   Despliegue con Actions (preparado, NO activado)
 ```
 
-## Ejecutar en local
+## Decisiones
 
-Cualquier servidor estático sirve. Por ejemplo, con Python:
+- **Base y URLs.** `site: https://latooo.github.io`, `base: /Portafolio`, `trailingSlash: 'always'`. Todo enlace o recurso pasa por `src/lib/url.ts` (`asset()` y `pagePath()`), que usa `import.meta.env.BASE_URL`.
+- **Idiomas.** Rutas reales `/es/` (por defecto) y `/en/`. La raíz redirige a `/es/` (meta refresh: GitHub Pages no permite 301). El selector conserva la sección (`#experience`) al cambiar de idioma. Cada página lleva `title`, `description`, Open Graph y Twitter traducidos, `hreflang`, `canonical`, y hay `sitemap-index.xml` con alternates.
+- **Contenido en datos.** Los textos viven en `src/data/es.ts` y `en.ts`, tipados por `Content`. Los componentes no llevan texto.
+- **Proyectos.** `src/data/projects.ts` define `status: 'live' | 'coming-soon'`. Una tarjeta "próximamente" pasa a real solo cambiando sus datos (nombre, URL, captura); no se toca el diseño. Se usará en la Fase 3b.
+- **Tema.** Claro/oscuro con script en línea antes del primer pintado (sin destello), `color-scheme` y `theme-color` por tema. Sin JavaScript se respeta el tema del sistema.
+- **Fuentes.** Autoalojadas con fontsource, solo subconjunto latino: Bricolage Grotesque (variable en peso y ancho, preload) e Instrument Sans (variable en peso).
+- **Sin teléfono.** El teléfono no aparece en ninguna parte del sitio (tampoco en JSON-LD).
 
-```bash
-python -m http.server 8000
-```
+## Contraste
 
-Después abre <http://localhost:8000>.
+Los pares de color de `src/styles/tokens.css` cumplen WCAG AA (texto normal ≥ 4.5:1):
 
-## Stack
+| Par | Razón |
+|---|---|
+| ink sobre paper | 17.9 |
+| muted-paper sobre paper | 7.1 |
+| paper sobre ink | 17.9 |
+| muted-ink sobre ink | 9.5 |
+| on-cobalt sobre cobalt | 7.3 |
+| muted-cobalt sobre cobalt | 5.9 |
+| cobalt sobre paper | 6.7 |
 
-`HTML5` · `CSS3 (Grid, Flexbox, Custom Properties)` · `JavaScript ES6+`
+El cobalto no se usa como texto sobre ink (2.7:1).
 
-## Contacto
+## Despliegue
 
-- Correo: daniellatorre600@gmail.com
-- LinkedIn: [/in/daniellatorre9](https://www.linkedin.com/in/daniellatorre9)
-- GitHub: [@Latooo](https://github.com/Latooo)
+Hoy GitHub Pages sirve la rama `main` ("Deploy from a branch"). El workflow `deploy.yml` está listo pero solo se ejecuta a mano. Para activarlo: Settings → Pages → Source: **GitHub Actions**, y descomentar el disparador `push`. No cambiar la fuente antes de que `main` contenga el sitio nuevo.
+
+## Pendiente (Fase 3b)
+
+Proyectos, Certificaciones y Contacto. Las imágenes de certificados y de los proyectos anteriores siguen en `Storage/` hasta entonces.
