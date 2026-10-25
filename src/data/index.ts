@@ -17,6 +17,11 @@ export const site = {
   email: 'daniellatorre600@gmail.com',
   github: 'https://github.com/Latooo',
   linkedin: 'https://www.linkedin.com/in/daniellatorre9',
-  cv: 'cv/Daniel-Latorre-CV.pdf',
+  /**
+   * CV descargable. Está desactivado hasta tener un CV nuevo.
+   * Para reactivarlo: guarda el PDF en public/cv/ con el nombre de `file` y pon `enabled: true`.
+   * (El tipo boolean evita que TypeScript trate la bandera como constante.)
+   */
+  cv: { enabled: false as boolean, file: 'cv/Daniel-Latorre-CV.pdf' },
   year: new Date().getFullYear(),
 } as const;

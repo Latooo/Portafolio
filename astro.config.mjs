@@ -18,8 +18,9 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      // Se excluyen el 404 y la raíz (solo redirige a /es/).
-      filter: (page) => !page.includes('/404') && page !== 'https://latooo.github.io/Portafolio/',
+      // Se excluyen el 404, la raíz y la redirección del CV antiguo (solo redirigen).
+      filter: (page) =>
+        !page.includes('/404') && !page.includes('/Storage/') && page !== 'https://latooo.github.io/Portafolio/',
       i18n: { defaultLocale: 'es', locales: { es: 'es-CO', en: 'en-US' } },
     }),
   ],

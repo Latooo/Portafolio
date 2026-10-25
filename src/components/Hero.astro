@@ -25,7 +25,13 @@ const lettered = words.map((word) => [...word].map((ch) => ({ ch, i: n++ })));
     <p class="tagline hx" style="--h: 1">{t.hero.tagline}</p>
     <div class="actions hx" style="--h: 2">
       <a class="btn" href="#projects">{t.hero.ctaProjects}</a>
-      <a class="textlink" href={asset(site.cv)} download>{t.hero.ctaCv}</a>
+      {
+        site.cv.enabled && (
+          <a class="textlink" href={asset(site.cv.file)} download>
+            {t.hero.ctaCv}
+          </a>
+        )
+      }
     </div>
   </div>
   <div class="name">
