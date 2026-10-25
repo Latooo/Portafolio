@@ -1,24 +1,23 @@
-# Despliegue a GitHub Pages con Actions. PREPARADO, NO ACTIVADO.
+# Despliegue a GitHub Pages con Actions.
 #
-# Hoy Pages sirve la rama main directamente ("Deploy from a branch"), y así debe seguir
-# hasta que el sitio nuevo esté listo. Este workflow solo se ejecuta a mano (workflow_dispatch).
-#
-# Para activarlo cuando llegue el momento:
-#   1. Repo > Settings > Pages > Build and deployment > Source: "GitHub Actions".
-#   2. Descomentar el disparador `push` de abajo (o lanzarlo manualmente desde la pestaña Actions).
-# Cambiar la fuente en el paso 1 antes de que main contenga el sitio Astro dejaría el sitio vacío.
+# Se dispara con cada push a main (y a mano desde la pestaña Actions).
+# Requisito: Settings > Pages > Build and deployment > Source = "GitHub Actions".
+# Si algo sale mal, ver el plan de rollback del repositorio (revertir el merge y
+# volver Pages a "Deploy from a branch", main, /).
 name: Deploy to GitHub Pages
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
-  # push:
-  #   branches: [main]
 
+# Permisos mínimos para configurar y publicar en Pages (y leer el repositorio para el build).
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Un solo despliegue a la vez; el que está en curso no se cancela.
 concurrency:
   group: pages
   cancel-in-progress: false

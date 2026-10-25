@@ -42,7 +42,7 @@ src/
   scripts/      motion.ts: intro, revelados y contador
   styles/       fonts.css, tokens.css, global.css, sections.css, motion.css
   assets/       Imágenes que Astro optimiza (avatar, capturas, certificados)
-public/         cv/, favicon, og.png, robots.txt
+public/         favicon, og.png, robots.txt (y cv/ cuando haya un CV nuevo)
 .github/workflows/deploy.yml   Despliegue con Actions (preparado, sin activar)
 ```
 
@@ -91,6 +91,7 @@ El diseño no cambia: la misma tarjeta muestra el estado nuevo. Si marcas `featu
 - **Certificados.** Cada imagen es un enlace enfocable; con JavaScript se abre en un `<dialog>` nativo (foco atrapado y devuelto, Escape cierra).
 - **Contacto.** Sin formulario. Correo con botón de copiar (mejora progresiva), LinkedIn y GitHub.
 - **Sin teléfono.** No aparece en ninguna parte del sitio.
+- **CV.** El botón "Descargar CV" está desactivado hasta tener un CV nuevo. Para reactivarlo: guarda el PDF en `public/cv/Daniel-Latorre-CV.pdf` y pon `cv.enabled` en `true` en `src/data/index.ts`. El enlace antiguo (`/Storage/cv/Daniel-Latorre-CV.pdf`) redirige al inicio, o al CV nuevo si está activo.
 
 ### Contraste
 
@@ -110,14 +111,10 @@ El cobalto no se usa como texto sobre ink (2.7:1).
 
 ## Despliegue
 
-Hoy GitHub Pages sirve la rama `main` directamente ("Deploy from a branch"), así que **nada de esta rama se publica por sí solo**.
+El sitio se publica con GitHub Actions: cada push a `main` ejecuta `.github/workflows/deploy.yml`, que construye con la versión de Node de `.nvmrc` y publica `dist/` en GitHub Pages. También se puede lanzar a mano desde la pestaña Actions.
 
-El workflow `.github/workflows/deploy.yml` construye con Node de `.nvmrc` y publica `dist/` con GitHub Actions, pero solo se ejecuta a mano (`workflow_dispatch`). Para pasar al sitio nuevo:
+Requisito: en el repositorio, **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
-1. Fusionar `redesign-astro` en `main`.
-2. En el repositorio: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-3. Descomentar el disparador `push` del workflow (o lanzarlo desde la pestaña Actions).
-
-Cambiar la fuente de Pages antes de que `main` contenga el sitio nuevo dejaría el sitio vacío: el orden importa.
+Si algo sale mal, el plan de vuelta atrás es: revertir el merge en `main` (`git revert -m 1 <sha-del-merge>`) y volver Pages a "Deploy from a branch" (`main`, `/ (root)`). Revertir `main` primero y cambiar la fuente de Pages después.
 
 Nota: `robots.txt` y el sitemap viven bajo `/Portafolio/`. Los buscadores solo leen `robots.txt` en la raíz del dominio, así que conviene enviar el sitemap desde Search Console.
