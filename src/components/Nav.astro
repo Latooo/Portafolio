@@ -12,19 +12,17 @@ const other = languages.find((l) => l !== lang)!;
 ---
 
 <nav class="nav" aria-label={t.ui.navLabel}>
-  <a class="brand" href="#top">{site.name}</a>
+  <a class="brand" href="#top" translate="no">{site.name}</a>
   <span class="links">
     <a href="#about">{t.ui.navAbout}</a>
+    <a href="#projects">{t.ui.navProjects}</a>
     <a href="#experience">{t.ui.navExperience}</a>
-    <a href={`mailto:${site.email}`}>{t.ui.navContact}</a>
+    <a href="#certs">{t.ui.navCerts}</a>
+    <a href="#contact">{t.ui.navContact}</a>
   </span>
   <span class="ctls">
-    <a
-      class="ctl"
-      href={pagePath(other)}
-      hreflang={other}
-      lang={other}
-      data-lang-switch>{t.ui.langCode}<span class="sr-only"> ({t.ui.langName})</span></a
+    <a class="ctl" href={pagePath(other)} hreflang={other} lang={other} data-lang-switch
+      >{t.ui.langCode}<span class="sr-only"> ({t.ui.langName})</span></a
     >
     <button class="ctl js-only" type="button" id="theme-toggle">
       <span class="to-dark">{t.ui.themeToDark}</span><span class="to-light">{t.ui.themeToLight}</span>

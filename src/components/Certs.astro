@@ -1,0 +1,96 @@
+---
+/**
+ * Certificados en cuadrícula. Cada imagen es un ENLACE enfocable a la versión grande:
+ * sin JS abre la imagen; con JS se muestra en un <dialog> nativo (foco atrapado y devuelto,
+ * Escape cierra) en lugar de navegar.
+ */
+import { Picture, getImage } from 'astro:assets';
+import SectionTitle from './SectionTitle.astro';
+import { getContent, type Lang } from '../data';
+import { certs } from '../data/certs';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang).certs;
+
+const items = await Promise.all(
+  certs.map(async (cert) => {
+    const full = await getImage({ src: cert.image, width: 1600, format: 'webp' });
+    return { cert, full: full.src };
+  }),
+);
+---
+
+<section class="field field--main" id="certs" aria-labelledby="certs-title">
+  <SectionTitle id="certs-title" text={t.title} />
+  <p class="lead">{t.lead}</p>
+
+  <ul class="cert-grid">
+    {
+      items.map(({ cert, full }) => (
+        <li>
+          <a
+            class="cert"
+            href={full}
+            data-lightbox
+            data-alt={cert.alt[lang]}
+            data-caption={cert.title[lang]}
+            aria-haspopup="dialog"
+          >
+            <span class="cert-img">
+              <Picture
+                src={cert.image}
+                alt=""
+                widths={[480, 800]}
+                sizes="(max-width: 820px) 100vw, 30vw"
+                formats={['avif', 'webp']}
+                width={cert.image.width}
+                height={cert.image.height}
+                loading="lazy"
+              />
+            </span>
+            <span class="cert-title">
+              <span class="sr-only">{t.openPrefix} </span>
+              {cert.title[lang]}
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <dialog class="lightbox" id="lightbox" aria-label={t.dialogLabel}>
+    <form method="dialog">
+      <button class="lb-close" type="submit">{t.close}</button>
+    </form>
+    <figure>
+      <img id="lightbox-img" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" />
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+  </dialog>
+</section>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('#lightbox');
+  const image = document.querySelector<HTMLImageElement>('#lightbox-img');
+  const caption = document.querySelector<HTMLElement>('#lightbox-caption');
+
+  if (dialog && image && caption && typeof dialog.showModal === 'function') {
+    document.querySelectorAll<HTMLAnchorElement>('a[data-lightbox]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        image.src = link.href;
+        image.alt = link.dataset.alt ?? '';
+        caption.textContent = link.dataset.caption ?? '';
+        dialog.showModal();
+      });
+    });
+    // Clic en el fondo cierra. El foco vuelve solo al enlace que abrió el diálogo.
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  }
+</script>

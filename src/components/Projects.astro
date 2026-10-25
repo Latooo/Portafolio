@@ -1,0 +1,71 @@
+---
+import { Picture } from 'astro:assets';
+import SectionTitle from './SectionTitle.astro';
+import ProjectCard from './ProjectCard.astro';
+import { getContent, type Lang } from '../data';
+import { projects, type LiveProject } from '../data/projects';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang).projects;
+
+const featured = projects.find((p): p is LiveProject => p.status === 'live' && Boolean(p.featured));
+const others = projects.filter((p) => p !== featured);
+---
+
+<section class="field field--cobalt" id="projects" aria-labelledby="projects-title">
+  <SectionTitle id="projects-title" text={t.title} />
+  <p class="lead">{t.lead}</p>
+
+  {
+    featured && (
+      <article class="feature" aria-labelledby="feature-name">
+        <div class="feature-text">
+          <h3 class="feature-name display" id="feature-name" translate="no">
+            {featured.name}
+          </h3>
+          <p class="feature-desc">{featured.description[lang]}</p>
+          <dl class="meta">
+            <div>
+              <dt>{t.roleLabel}</dt>
+              <dd>{featured.role[lang]}</dd>
+            </div>
+            <div>
+              <dt>{t.stackLabel}</dt>
+              <dd>{featured.stack[lang]}</dd>
+            </div>
+          </dl>
+          <div class="links">
+            <a class="btn btn--light" href={featured.url}>
+              {t.visitSite}
+            </a>
+            {featured.repo && (
+              <a class="textlink" href={featured.repo}>
+                {t.viewCode}
+              </a>
+            )}
+          </div>
+        </div>
+        <div class="shotwrap">
+          <Picture
+            src={featured.image}
+            alt={featured.imageAlt[lang]}
+            widths={[640, 960, 1440]}
+            sizes="(max-width: 820px) 100vw, 58vw"
+            formats={['avif', 'webp']}
+            width={featured.image.width}
+            height={featured.image.height}
+            loading="lazy"
+          />
+        </div>
+      </article>
+    )
+  }
+
+  <div class="more">
+    {others.map((project) => <ProjectCard project={project} lang={lang} />)}
+  </div>
+</section>

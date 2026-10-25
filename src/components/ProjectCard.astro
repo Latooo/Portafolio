@@ -1,0 +1,58 @@
+---
+/**
+ * Tarjeta de proyecto secundaria. Una sola estructura para los dos estados:
+ * pasar de "coming-soon" a "live" es solo cambiar datos en src/data/projects.ts.
+ */
+import { Picture } from 'astro:assets';
+import { getContent, type Lang } from '../data';
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+  lang: Lang;
+}
+
+const { project, lang } = Astro.props;
+const t = getContent(lang).projects;
+const live = project.status === 'live';
+---
+
+<article class:list={['card', live ? 'is-live' : 'is-soon']}>
+  <div class="media">
+    {
+      project.status === 'live' ? (
+        <Picture
+          src={project.image}
+          alt={project.imageAlt[lang]}
+          widths={[480, 800]}
+          sizes="(max-width: 820px) 100vw, 30vw"
+          formats={['avif', 'webp']}
+          width={project.image.width}
+          height={project.image.height}
+          loading="lazy"
+        />
+      ) : (
+        <p class="pending display">{t.soon}</p>
+      )
+    }
+  </div>
+  <h3 translate={project.status === 'live' ? 'no' : undefined}>
+    {project.status === 'live' ? project.name : project.type[lang]}
+  </h3>
+  {project.status === 'live' && <p class="kind">{project.type[lang]}</p>}
+  <p class="desc">{project.status === 'live' ? project.description[lang] : t.soonNote}</p>
+  {
+    project.status === 'live' && (
+      <div class="links">
+        <a class="textlink" href={project.url}>
+          {t.visitSite}
+        </a>
+        {project.repo && (
+          <a class="textlink" href={project.repo}>
+            {t.viewCode}
+          </a>
+        )}
+      </div>
+    )
+  }
+</article>

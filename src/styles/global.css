@@ -1,5 +1,7 @@
 @import './fonts.css';
 @import './tokens.css';
+@import './sections.css';
+@import './motion.css';
 
 /* ---------- Base ---------- */
 *,
@@ -57,6 +59,22 @@ h2,
 h3,
 .lead {
   text-wrap: balance;
+}
+
+/* Controles que solo funcionan con JavaScript: sin la clase `js` (puesta en <head>) no se ven. */
+html:not(.js) .js-only {
+  display: none !important;
+}
+
+/* `hidden` debe ganar siempre: varias clases (.btn, .ctl) fijan display y lo pisarían. */
+[hidden] {
+  display: none !important;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: color-mix(in srgb, var(--cobalt) 25%, transparent);
+  touch-action: manipulation;
 }
 
 img {
@@ -142,7 +160,6 @@ a {
   color: var(--on-cobalt);
   font-weight: 700;
   text-decoration: none;
-  transition: background-color 150ms ease, color 150ms ease;
 }
 
 .btn:hover {
@@ -168,7 +185,6 @@ a {
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 150ms ease, color 150ms ease;
 }
 
 .ctl:hover {
@@ -276,25 +292,33 @@ a {
 }
 
 /*
- * "Daniel Latorre" mide ≈5.17 em de ancho en Bricolage Grotesque 800 / ancho 75%.
- * 19.2cqi lo hace ocupar el 99 % del ancho útil del contenedor, sin depender del viewport.
+ * "Daniel Latorre", con cada letra en su propia caja (sin kerning), mide ≈5.27 em de ancho
+ * en Bricolage Grotesque 800 / ancho 75%. 18.7cqi lo hace ocupar el 98.5 % del ancho útil del
+ * contenedor, sin depender del viewport. Si cambia la fuente o el nombre, volver a medir.
  */
 .name h1 {
   margin: 0 0 -0.07em;
-  font-size: 19.2cqi;
+  font-size: 18.7cqi;
   line-height: 0.8;
   white-space: nowrap;
-  animation: rise 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
-@keyframes rise {
-  from {
-    transform: translateY(55%);
-  }
+.letters {
+  display: block;
+}
 
-  to {
-    transform: none;
-  }
+.letters .w {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.letters .sp {
+  display: inline-block;
+  width: 0.24em;
+}
+
+.letters .ch {
+  display: inline-block;
 }
 
 /* ---------- Sobre mí ---------- */
@@ -353,8 +377,12 @@ a {
 .lead {
   max-width: 56ch;
   margin-bottom: clamp(40px, 6vw, 80px);
-  color: var(--inv-mu);
+  color: var(--mu);
   font-size: 1.25rem;
+}
+
+.field--inverse .lead {
+  color: var(--inv-mu);
 }
 
 .job {
@@ -453,7 +481,8 @@ a {
 
 .invoice tfoot th,
 .invoice tfoot td {
-  background: var(--cobalt);
+  position: relative;
+  isolation: isolate;
   color: var(--on-cobalt);
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 2.2vw, 1.8rem);
@@ -463,6 +492,16 @@ a {
 
 .invoice tfoot td {
   font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+}
+
+/* La barra cobalto va en las celdas (un ::before en el <tr> crearía una celda anónima y ensancharía la tabla). */
+.invoice tfoot :is(th, td)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--cobalt);
+  transform-origin: left center;
 }
 
 /* ---------- Pie ---------- */
@@ -478,6 +517,9 @@ a {
 }
 
 .footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--inv-fg);
   font-weight: 600;
 }
@@ -492,6 +534,17 @@ a {
   .invoice th,
   .invoice td {
     padding: 14px 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .invoice th,
+  .invoice td {
+    padding: 12px 8px;
+  }
+
+  .invoice td:last-child {
+    font-size: 1rem;
   }
 }
 

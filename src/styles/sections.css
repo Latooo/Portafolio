@@ -1,0 +1,396 @@
+/* ---------- Campo cobalto ---------- */
+.field--cobalt {
+  background: var(--cobalt);
+  color: var(--on-cobalt);
+}
+
+.field--cobalt .lead {
+  color: var(--muted-cobalt);
+}
+
+.field--cobalt .textlink {
+  color: var(--on-cobalt);
+}
+
+.btn--light {
+  background: var(--on-cobalt);
+  color: var(--cobalt);
+}
+
+.btn--light:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ---------- Franja del stack ---------- */
+.marquee {
+  padding: clamp(28px, 4vw, 56px) var(--pad);
+  background: var(--inv-bg);
+  color: var(--inv-fg);
+}
+
+.stack-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-stretch: 75%;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.marquee-viewport,
+.marquee-btn {
+  display: none;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: clamp(24px, 3vw, 48px);
+  padding-right: clamp(24px, 3vw, 48px);
+}
+
+.m-item {
+  font-size: clamp(3rem, 9vw, 7.5rem);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.m-dot {
+  flex: none;
+  width: clamp(14px, 1.6vw, 24px);
+  height: clamp(14px, 1.6vw, 24px);
+  background: var(--cobalt);
+}
+
+.marquee-btn {
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin-top: 20px;
+  padding: 8px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--inv-fg);
+  color: var(--inv-bg);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.marquee-btn:hover {
+  background: var(--cobalt);
+  color: var(--on-cobalt);
+}
+
+.marquee-btn .i-play,
+.marquee-btn[aria-pressed='true'] .i-pause {
+  display: none;
+}
+
+.marquee-btn[aria-pressed='true'] .i-play {
+  display: block;
+}
+
+/* ---------- Proyectos ---------- */
+.feature {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(24px, 5vw, 72px);
+  align-items: center;
+}
+
+.feature-name {
+  margin: 0 0 0.15em -0.04em;
+  font-size: clamp(5rem, 17vw, 15rem);
+  line-height: 0.8;
+}
+
+.feature-desc {
+  max-width: 44ch;
+  font-size: 1.35rem;
+  line-height: 1.35;
+}
+
+.meta {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.meta dt,
+.card dt {
+  color: var(--muted-cobalt);
+  font-size: 0.95rem;
+}
+
+.meta dd,
+.card dd {
+  font-weight: 600;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 28px;
+  margin-top: 28px;
+}
+
+.links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.shotwrap {
+  margin-right: calc(var(--pad) * -1);
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: var(--ink);
+}
+
+.shotwrap picture,
+.card .media picture {
+  display: block;
+  height: 100%;
+}
+
+.shotwrap img,
+.card .media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.shotwrap img {
+  transition: transform 1200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.feature:is(:hover, :focus-within) .shotwrap img {
+  transform: scale(1.04);
+}
+
+.more {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(24px, 3vw, 40px);
+  margin-top: clamp(56px, 8vw, 110px);
+}
+
+.card .media {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  container-type: inline-size;
+  background: var(--ink);
+}
+
+.pending {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  padding: 0 clamp(14px, 2vw, 28px);
+  overflow: hidden;
+  color: var(--muted-ink);
+  font-size: 17.5cqi;
+  line-height: 0.78;
+  white-space: nowrap;
+}
+
+.card h3 {
+  margin-top: 20px;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+.card .kind {
+  margin-top: 4px;
+  color: var(--muted-cobalt);
+}
+
+.card .desc {
+  max-width: 46ch;
+  margin-top: 10px;
+  color: var(--muted-cobalt);
+}
+
+.card .links {
+  margin-top: 12px;
+}
+
+/* ---------- Certificados ---------- */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: clamp(20px, 3vw, 40px);
+}
+
+.cert {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.cert-img {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.cert-img picture {
+  display: block;
+  height: 100%;
+}
+
+.cert-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.cert-title {
+  display: block;
+  margin-top: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.cert:hover .cert-title {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.lightbox {
+  overscroll-behavior: contain;
+  max-width: min(1100px, 94vw);
+  max-height: 94vh;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  color: var(--on-cobalt);
+}
+
+.lightbox::backdrop {
+  background: color-mix(in srgb, var(--ink) 90%, transparent);
+}
+
+.lightbox figure {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  margin: 0;
+}
+
+.lightbox img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 78vh;
+  background: var(--on-cobalt);
+}
+
+.lightbox figcaption {
+  max-width: 70ch;
+  text-align: center;
+}
+
+.lb-close {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--cobalt);
+  color: var(--on-cobalt);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.lb-close:hover {
+  background: var(--on-cobalt);
+  color: var(--cobalt);
+}
+
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+/* ---------- Contacto ---------- */
+.contact-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 32px;
+}
+
+.mail {
+  font-size: clamp(1.6rem, 5vw, 4rem);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.15em;
+}
+
+.copy-status {
+  min-height: 1.6em;
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  margin-top: 32px;
+}
+
+.contact-links .textlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+}
+
+.handle {
+  color: var(--muted-cobalt);
+  font-weight: 500;
+}
+
+@media (max-width: 820px) {
+  .feature {
+    grid-template-columns: 1fr;
+  }
+
+  .more {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shotwrap img {
+    transition: none;
+  }
+
+  .feature:is(:hover, :focus-within) .shotwrap img {
+    transform: none;
+  }
+}

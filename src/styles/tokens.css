@@ -24,7 +24,7 @@
   --inv-mu: var(--muted-ink);
 
   --font-display: 'Bricolage Grotesque', 'Arial Narrow', system-ui, sans-serif;
-  --font-body: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Instrument Sans', 'Instrument Sans Fallback', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   --pad: clamp(20px, 4vw, 56px);
   --measure: 62ch;
