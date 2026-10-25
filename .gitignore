@@ -1,17 +1,18 @@
-# Respaldo local del CSS antiguo: se conserva en tu equipo, no en el repositorio.
-_backup-css/
+# build
+dist/
+.astro/
 
-# Fuente original del avatar (1.9 MB). En el sitio se usan avatar.webp y
-# avatar.jpg, que pesan 30 y 55 KB. Guarda el original aparte si lo necesitas.
-Storage/img/Daniel/avatar.png
+# dependencias
+node_modules/
 
-# Archivos temporales de las capturas de revisión
-_preview-*.html
-_tmp-*.html
+# logs y entorno
+npm-debug.log*
+.env
+.env.*
+!.env.example
 
-# Sistema operativo y editores
-Thumbs.db
-desktop.ini
+# sistema y editores
 .DS_Store
+Thumbs.db
 .vscode/
 .idea/
