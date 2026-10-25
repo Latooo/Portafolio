@@ -1,0 +1,29 @@
+---
+/**
+ * Compatibilidad con el enlace antiguo al CV (LinkedIn, correos, etc.).
+ * GitHub Pages no hace 301, así que esta ruta devuelve una página que redirige:
+ * al CV nuevo si está activado y, si no, al inicio. Pages sirve este directorio
+ * también para /Storage/cv/Daniel-Latorre-CV.pdf (sin barra final).
+ */
+import { defaultLang, site } from '../../../../data';
+import { absolute, asset, pagePath } from '../../../../lib/url';
+
+const target = site.cv.enabled ? asset(site.cv.file) : pagePath(defaultLang);
+const canonical = absolute(target, Astro.site);
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{site.name}</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href={asset('favicon.svg')} type="image/svg+xml" />
+  </head>
+  <body>
+    <p><a href={target}>{site.name}</a></p>
+  </body>
+</html>

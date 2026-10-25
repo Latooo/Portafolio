@@ -1,0 +1,558 @@
+@import './fonts.css';
+@import './tokens.css';
+@import './sections.css';
+@import './motion.css';
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+/* Evita palabras sueltas en la última línea */
+p,
+li,
+dd,
+td {
+  text-wrap: pretty;
+}
+
+h2,
+h3,
+.lead {
+  text-wrap: balance;
+}
+
+/* Controles que solo funcionan con JavaScript: sin la clase `js` (puesta en <head>) no se ven. */
+html:not(.js) .js-only {
+  display: none !important;
+}
+
+/* `hidden` debe ganar siempre: varias clases (.btn, .ctl) fijan display y lo pisarían. */
+[hidden] {
+  display: none !important;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: color-mix(in srgb, var(--cobalt) 25%, transparent);
+  touch-action: manipulation;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 75%;
+  letter-spacing: -0.02em;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Foco visible: solo contorno, sin alterar la forma del elemento */
+:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: 12px;
+  top: -64px;
+  z-index: 10;
+  padding: 10px 16px;
+  background: var(--cobalt);
+  color: var(--on-cobalt);
+  font-weight: 600;
+}
+
+.skip:focus {
+  top: 12px;
+}
+
+/* ---------- Campos de color ---------- */
+.field {
+  padding: clamp(56px, 9vw, 140px) var(--pad);
+}
+
+.field--main {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.field--inverse {
+  --row-alt: color-mix(in srgb, var(--inv-bg) 90%, var(--inv-fg));
+  background: var(--inv-bg);
+  color: var(--inv-fg);
+}
+
+.section-title {
+  margin-bottom: clamp(28px, 4vw, 56px);
+  font-size: clamp(2.8rem, 8vw, 6.5rem);
+  line-height: 0.9;
+}
+
+/* ---------- Botones y enlaces ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 26px;
+  border-radius: 999px;
+  background: var(--cobalt);
+  color: var(--on-cobalt);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.textlink {
+  font-weight: 600;
+  text-underline-offset: 0.3em;
+}
+
+.ctl {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--fg);
+  color: var(--bg);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ctl:hover {
+  background: var(--cobalt);
+  color: var(--on-cobalt);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100svh;
+  padding: 0 var(--pad);
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  padding: 20px 0;
+  font-weight: 500;
+}
+
+.nav a:not(.ctl):not(.brand) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: none;
+}
+
+.nav a:not(.ctl):not(.brand):hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+.nav .brand {
+  margin-right: auto;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav .links {
+  display: flex;
+  flex-basis: 100%;
+  order: 3;
+  gap: 4px 22px;
+}
+
+.nav .ctls {
+  display: flex;
+  order: 2;
+  gap: 8px;
+}
+
+@media (min-width: 721px) {
+  .nav {
+    gap: 8px 28px;
+  }
+
+  .nav .links {
+    flex-basis: auto;
+    order: 0;
+    gap: 8px 28px;
+  }
+
+  .nav .ctls {
+    order: 0;
+  }
+}
+
+.intro {
+  align-self: center;
+  max-width: 44ch;
+  padding: 32px 0;
+}
+
+.intro .role {
+  margin-bottom: 12px;
+  font-size: 1.6rem;
+  line-height: 1.1;
+}
+
+.intro .tagline {
+  color: var(--mu);
+  font-size: 1.2rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  margin-top: 28px;
+}
+
+.name {
+  margin: 0 calc(var(--pad) * -1);
+  padding: 0 var(--pad);
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+/*
+ * "Daniel Latorre", con cada letra en su propia caja (sin kerning), mide ≈5.27 em de ancho
+ * en Bricolage Grotesque 800 / ancho 75%. 18.7cqi lo hace ocupar el 98.5 % del ancho útil del
+ * contenedor, sin depender del viewport. Si cambia la fuente o el nombre, volver a medir.
+ */
+.name h1 {
+  margin: 0 0 -0.07em;
+  font-size: 18.7cqi;
+  line-height: 0.8;
+  white-space: nowrap;
+}
+
+.letters {
+  display: block;
+}
+
+.letters .w {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.letters .sp {
+  display: inline-block;
+  width: 0.24em;
+}
+
+.letters .ch {
+  display: inline-block;
+}
+
+/* ---------- Sobre mí ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(28px, 5vw, 80px);
+  align-items: start;
+}
+
+.avatar {
+  max-width: 420px;
+  padding: clamp(10px, 1.6vw, 18px);
+  background: var(--cobalt);
+}
+
+.avatar img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.facts {
+  display: grid;
+  gap: 18px;
+  margin-top: 32px;
+}
+
+.facts dt {
+  color: var(--mu);
+  font-size: 0.95rem;
+}
+
+.facts dd {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.about-text p {
+  max-width: var(--measure);
+  margin-bottom: 1.2em;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.about-text strong {
+  font-weight: 700;
+}
+
+/* ---------- Experiencia ---------- */
+.exp .section-title {
+  margin-bottom: 0.25em;
+  font-size: clamp(3.2rem, 11vw, 9rem);
+}
+
+.lead {
+  max-width: 56ch;
+  margin-bottom: clamp(40px, 6vw, 80px);
+  color: var(--mu);
+  font-size: 1.25rem;
+}
+
+.field--inverse .lead {
+  color: var(--inv-mu);
+}
+
+.job {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(28px, 5vw, 80px);
+  align-items: start;
+}
+
+.job + .job {
+  margin-top: clamp(56px, 8vw, 110px);
+}
+
+.job h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.job .company {
+  margin-top: 12px;
+  color: var(--inv-mu);
+  font-weight: 500;
+}
+
+.job .context {
+  margin-top: 24px;
+  font-size: 1.1rem;
+}
+
+.job h4 {
+  margin: 32px 0 12px;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.duties {
+  display: grid;
+  gap: 12px;
+  color: var(--inv-mu);
+  font-size: 1.02rem;
+}
+
+.duties li {
+  padding-left: 1.1em;
+  text-indent: -1.1em;
+}
+
+.duties li::before {
+  content: '';
+  display: inline-block;
+  width: 0.45em;
+  height: 0.45em;
+  margin-right: 0.65em;
+  background: var(--cobalt);
+}
+
+.invoice {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.invoice th,
+.invoice td {
+  padding: 16px 20px;
+  text-align: left;
+  vertical-align: baseline;
+}
+
+.invoice thead th {
+  color: var(--inv-mu);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.invoice tbody tr:nth-child(odd) {
+  background: var(--row-alt);
+}
+
+.invoice th:last-child,
+.invoice td:last-child {
+  text-align: right;
+}
+
+.invoice td:last-child {
+  padding-left: 12px;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-stretch: 100%;
+}
+
+.invoice tfoot th,
+.invoice tfoot td {
+  position: relative;
+  isolation: isolate;
+  color: var(--on-cobalt);
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.2vw, 1.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.invoice tfoot td {
+  font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+}
+
+/* La barra cobalto va en las celdas (un ::before en el <tr> crearía una celda anónima y ensancharía la tabla). */
+.invoice tfoot :is(th, td)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--cobalt);
+  transform-origin: left center;
+}
+
+/* ---------- Pie ---------- */
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding: 28px var(--pad) 40px;
+  background: var(--inv-bg);
+  color: var(--inv-mu);
+  font-size: 0.95rem;
+}
+
+.footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--inv-fg);
+  font-weight: 600;
+}
+
+/* ---------- Adaptación ---------- */
+@media (max-width: 820px) {
+  .about-grid,
+  .job {
+    grid-template-columns: 1fr;
+  }
+
+  .invoice th,
+  .invoice td {
+    padding: 14px 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .invoice th,
+  .invoice td {
+    padding: 12px 8px;
+  }
+
+  .invoice td:last-child {
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,59 @@
+---
+/**
+ * Franja con el stack. Sin movimiento (sin JS o reduced-motion) se ve como lista normal.
+ * Con movimiento, la lista pasa a ser solo para lectores de pantalla y se muestra una pista
+ * decorativa que se desplaza. Siempre hay botón de pausa (WCAG 2.2.2) además de pausa por hover/foco.
+ */
+import { getContent, type Lang } from '../data';
+import { stack } from '../data/stack';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang).stack;
+---
+
+<section class="marquee field--inverse" aria-label={t.title} data-marquee>
+  <ul class="stack-list">
+    {stack.map((item) => <li translate="no">{item}</li>)}
+  </ul>
+  <div class="marquee-viewport" aria-hidden="true">
+    <div class="marquee-track">
+      {
+        [0, 1].map(() => (
+          <div class="marquee-group">
+            {stack.map((item) => (
+              <>
+                <span class="m-item display" translate="no">{item}</span>
+                <span class="m-dot" />
+              </>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <button class="marquee-btn js-only" type="button" aria-pressed="false" data-marquee-toggle>
+    <svg class="i-pause" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"
+      ><path fill="currentColor" d="M3 2h3.5v12H3zM9.5 2H13v12H9.5z"></path></svg
+    >
+    <svg class="i-play" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"
+      ><path fill="currentColor" d="M4 2l10 6-10 6z"></path></svg
+    >
+    <span>{t.pause}</span>
+  </button>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-marquee]').forEach((section) => {
+    const button = section.querySelector<HTMLButtonElement>('[data-marquee-toggle]');
+    if (!button) return;
+    button.addEventListener('click', () => {
+      const paused = button.getAttribute('aria-pressed') !== 'true';
+      button.setAttribute('aria-pressed', String(paused));
+      section.classList.toggle('is-paused', paused);
+    });
+  });
+</script>

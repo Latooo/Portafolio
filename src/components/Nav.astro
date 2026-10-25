@@ -1,0 +1,69 @@
+---
+import { getContent, languages, site, type Lang } from '../data';
+import { pagePath } from '../lib/url';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang);
+const other = languages.find((l) => l !== lang)!;
+---
+
+<nav class="nav" aria-label={t.ui.navLabel}>
+  <a class="brand" href="#top" translate="no">{site.name}</a>
+  <span class="links">
+    <a href="#about">{t.ui.navAbout}</a>
+    <a href="#projects">{t.ui.navProjects}</a>
+    <a href="#experience">{t.ui.navExperience}</a>
+    <a href="#certs">{t.ui.navCerts}</a>
+    <a href="#contact">{t.ui.navContact}</a>
+  </span>
+  <span class="ctls">
+    <a class="ctl" href={pagePath(other)} hreflang={other} lang={other} data-lang-switch
+      >{t.ui.langCode}<span class="sr-only"> ({t.ui.langName})</span></a
+    >
+    <button class="ctl js-only" type="button" id="theme-toggle">
+      <span class="to-dark">{t.ui.themeToDark}</span><span class="to-light">{t.ui.themeToLight}</span>
+    </button>
+  </span>
+</nav>
+
+<style is:global>
+  .to-light {
+    display: none;
+  }
+  :root[data-theme='dark'] .to-dark {
+    display: none;
+  }
+  :root[data-theme='dark'] .to-light {
+    display: inline;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var d = document.documentElement;
+    var b = document.getElementById('theme-toggle');
+    if (b) {
+      b.addEventListener('click', function () {
+        var n = d.dataset.theme === 'dark' ? 'light' : 'dark';
+        d.dataset.theme = n;
+        try { localStorage.setItem('theme', n); } catch (e) {}
+        var metas = document.querySelectorAll('meta[name="theme-color"]');
+        for (var i = 0; i < metas.length; i++) {
+          metas[i].removeAttribute('media');
+          metas[i].setAttribute('content', n === 'dark' ? '#0a0c12' : '#f3f5f8');
+        }
+      });
+    }
+    /* El cambio de idioma conserva la sección en la que estás. */
+    var l = document.querySelector('[data-lang-switch]');
+    if (l) {
+      l.addEventListener('click', function () {
+        if (location.hash && l.href.indexOf('#') < 0) l.href += location.hash;
+      });
+    }
+  })();
+</script>

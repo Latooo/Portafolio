@@ -1,0 +1,58 @@
+---
+import Nav from './Nav.astro';
+import { getContent, site, type Lang } from '../data';
+import { asset } from '../lib/url';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang);
+
+/* El nombre se parte en letras solo para animarlo. Se expone UNA vez (texto sr-only)
+   y las letras decorativas van con aria-hidden. */
+const words = site.name.split(' ');
+let n = 0;
+const lettered = words.map((word) => [...word].map((ch) => ({ ch, i: n++ })));
+---
+
+<header class="hero">
+  <div class="curtain" aria-hidden="true"></div>
+  <Nav lang={lang} />
+  <div class="intro">
+    <p class="role display hx" style="--h: 0">{t.hero.role}</p>
+    <p class="tagline hx" style="--h: 1">{t.hero.tagline}</p>
+    <div class="actions hx" style="--h: 2">
+      <a class="btn" href="#projects">{t.hero.ctaProjects}</a>
+      {
+        site.cv.enabled && (
+          <a class="textlink" href={asset(site.cv.file)} download>
+            {t.hero.ctaCv}
+          </a>
+        )
+      }
+    </div>
+  </div>
+  <div class="name">
+    <h1 class="name-h display" translate="no">
+      <span class="sr-only">{site.name}</span>
+      <span class="letters" aria-hidden="true">
+        {
+          lettered.map((word, wi) => (
+            <Fragment>
+              {wi > 0 && <span class="sp" />}
+              <span class="w">
+                {word.map(({ ch, i }) => (
+                  <span class="ch" style={`--i: ${i}`}>
+                    {ch}
+                  </span>
+                ))}
+              </span>
+            </Fragment>
+          ))
+        }
+      </span>
+    </h1>
+  </div>
+</header>

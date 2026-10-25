@@ -1,0 +1,67 @@
+---
+import SectionTitle from './SectionTitle.astro';
+import { getContent, site, type Lang } from '../data';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang).contact;
+const linkedinPath = new URL(site.linkedin).pathname.replace(/\/$/, '');
+const githubUser = new URL(site.github).pathname.replace(/^\//, '');
+---
+
+<section class="field field--cobalt contact" id="contact" aria-labelledby="contact-title">
+  <SectionTitle id="contact-title" text={t.title} />
+  <p class="lead">{t.lead}</p>
+
+  <div class="contact-main">
+    <a class="mail display" href={`mailto:${site.email}`} id="contact-email" translate="no">{site.email}</a>
+    <button
+      class="btn btn--light js-only"
+      type="button"
+      data-copy={site.email}
+      data-copied={t.copied}
+      data-failed={t.copyFailed}
+      hidden
+    >
+      {t.copy}
+    </button>
+  </div>
+  <p class="copy-status" role="status" aria-live="polite" data-copy-status></p>
+
+  <ul class="contact-links">
+    <li>
+      <a class="textlink" href={site.linkedin}>{t.linkedin} <span class="handle" translate="no">{linkedinPath}</span></a>
+    </li>
+    <li>
+      <a class="textlink" href={site.github}>{t.github} <span class="handle" translate="no">@{githubUser}</span></a>
+    </li>
+  </ul>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('button[data-copy]').forEach((button) => {
+    const status = document.querySelector<HTMLElement>('[data-copy-status]');
+    button.hidden = false; // mejora progresiva: sin JS el botón no existe
+    let timer: number | undefined;
+
+    const say = (message: string) => {
+      if (!status) return;
+      status.textContent = message;
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => (status.textContent = ''), 4000);
+    };
+
+    button.addEventListener('click', async () => {
+      const text = button.dataset.copy ?? '';
+      try {
+        await navigator.clipboard.writeText(text);
+        say(button.dataset.copied ?? '');
+      } catch {
+        say(button.dataset.failed ?? '');
+      }
+    });
+  });
+</script>

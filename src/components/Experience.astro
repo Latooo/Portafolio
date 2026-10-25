@@ -1,0 +1,73 @@
+---
+import SectionTitle from './SectionTitle.astro';
+import { getContent, type Lang } from '../data';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang).experience;
+---
+
+<section class="field field--inverse exp" id="experience" aria-labelledby="experience-title">
+  <SectionTitle id="experience-title" text={t.title} />
+  <p class="lead">{t.lead}</p>
+
+  {
+    t.jobs.map((job, i) => (
+      <article class="job" aria-labelledby={`job-${i}`}>
+        <div>
+          <p class="company">{job.period}</p>
+          <h3 id={`job-${i}`}>{job.role}</h3>
+          <p class="company">{job.company}</p>
+          {job.context && <p class="context" set:html={job.context} />}
+          <h4>{t.dutiesTitle}</h4>
+          <ul class="duties">
+            {job.duties.map((d) => (
+              <li>{d}</li>
+            ))}
+          </ul>
+        </div>
+        {job.achievements && (
+          <table class="invoice" data-rv data-invoice style={`--rows: ${job.achievements.length}`}>
+            <caption class="sr-only">{t.achievementsTitle}</caption>
+            <thead>
+              <tr>
+                <th scope="col">{t.columnAchievement}</th>
+                <th scope="col">{t.columnResult}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {job.achievements.map((a, r) => (
+                <tr style={`--i: ${r}`}>
+                  <td set:html={a.text} />
+                  <td>
+                    {a.count ? (
+                      <span
+                        class="cnt"
+                        data-count-to={a.count.value}
+                        data-count-prefix={a.count.prefix ?? ''}
+                        data-count-suffix={a.count.suffix ?? ''}
+                      >
+                        {a.result}
+                      </span>
+                    ) : (
+                      a.result
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="row">{t.totalLabel}</th>
+                <td>{t.totalValue}</td>
+              </tr>
+            </tfoot>
+          </table>
+        )}
+      </article>
+    ))
+  }
+</section>

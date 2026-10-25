@@ -1,0 +1,15 @@
+---
+import { getContent, site, type Lang } from '../data';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang);
+---
+
+<footer class="footer">
+  <p>© {site.year} {site.name}. {t.ui.footerRights}</p>
+  <a href="#top">{t.ui.footerTop}</a>
+</footer>
