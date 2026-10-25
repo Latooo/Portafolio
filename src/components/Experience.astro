@@ -1,4 +1,5 @@
 ---
+import SectionTitle from './SectionTitle.astro';
 import { getContent, type Lang } from '../data';
 
 interface Props {
@@ -10,7 +11,7 @@ const t = getContent(lang).experience;
 ---
 
 <section class="field field--inverse exp" id="experience" aria-labelledby="experience-title">
-  <h2 class="section-title display" id="experience-title">{t.title}</h2>
+  <SectionTitle id="experience-title" text={t.title} />
   <p class="lead">{t.lead}</p>
 
   {
@@ -29,7 +30,7 @@ const t = getContent(lang).experience;
           </ul>
         </div>
         {job.achievements && (
-          <table class="invoice">
+          <table class="invoice" data-rv data-invoice style={`--rows: ${job.achievements.length}`}>
             <caption class="sr-only">{t.achievementsTitle}</caption>
             <thead>
               <tr>
@@ -38,10 +39,23 @@ const t = getContent(lang).experience;
               </tr>
             </thead>
             <tbody>
-              {job.achievements.map((a) => (
-                <tr>
+              {job.achievements.map((a, r) => (
+                <tr style={`--i: ${r}`}>
                   <td set:html={a.text} />
-                  <td>{a.result}</td>
+                  <td>
+                    {a.count ? (
+                      <span
+                        class="cnt"
+                        data-count-to={a.count.value}
+                        data-count-prefix={a.count.prefix ?? ''}
+                        data-count-suffix={a.count.suffix ?? ''}
+                      >
+                        {a.result}
+                      </span>
+                    ) : (
+                      a.result
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>

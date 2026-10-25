@@ -1,0 +1,239 @@
+/*
+ * Movimiento. Solo transform y opacity (CLS 0).
+ *
+ * Regla de oro: ningún estado oculto existe sin una clase que ponga JavaScript.
+ *   html.motion   JS activo y sin prefers-reduced-motion (script de <head>)
+ *   html.intro-on    primera visita de la sesión: cortina cobalto
+ *   html.first    igual que intro-on, pero no se quita (mantiene los retardos del hero)
+ *   html.rv-ready motion.ts ya decidió qué se ve; recién entonces puede haber elementos ocultos
+ * Sin JS o con reduced-motion no hay nada de esto y todo el contenido se ve de una.
+ */
+
+/* ---------- Intro: cortina ---------- */
+.curtain {
+  display: none;
+}
+
+html.intro-on .curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: block;
+  background: var(--cobalt);
+  pointer-events: none;
+  /* Se retira sola por CSS: aunque el JS fallara, nunca queda tapando la página. */
+  animation: curtain-out 450ms cubic-bezier(0.76, 0, 0.24, 1) 500ms forwards;
+}
+
+@keyframes curtain-out {
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+/* El nombre es el mismo nodo del hero: durante la intro se eleva por encima de la cortina. */
+html.intro-on .name {
+  position: relative;
+  z-index: 60;
+}
+
+/* ---------- Entrada del hero ---------- */
+html.motion .ch {
+  animation: letter-rise 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(60ms + var(--i) * 22ms);
+}
+
+html.first .ch {
+  animation-delay: calc(40ms + var(--i) * 22ms);
+}
+
+@keyframes letter-rise {
+  from {
+    transform: translateY(110%);
+  }
+}
+
+/* El párrafo principal (candidato a LCP) solo se desplaza: nunca parte de opacidad 0. */
+html.motion .hx {
+  animation: fade-up 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(80ms + var(--h) * 80ms);
+}
+
+html.motion .tagline.hx {
+  animation-name: rise-soft;
+}
+
+html.first .hx {
+  animation-delay: calc(620ms + var(--h) * 80ms);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@keyframes rise-soft {
+  from {
+    transform: translateY(16px);
+  }
+}
+
+/* ---------- Revelado de títulos ---------- */
+.rv {
+  display: block;
+  padding-block: 0.1em;
+  margin-block: -0.1em;
+  overflow: hidden;
+}
+
+.rv-in {
+  display: block;
+}
+
+html.rv-ready .rv .rv-in {
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html.rv-ready .rv:not(.is-in) .rv-in {
+  transform: translateY(112%);
+}
+
+html.rv-ready .rv.rv-instant .rv-in {
+  transition: none;
+}
+
+/* ---------- Experiencia: factura animada ---------- */
+html.rv-ready .invoice tbody tr {
+  transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1), transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i) * 70ms);
+}
+
+html.rv-ready .invoice:not(.is-in) tbody tr {
+  opacity: 0;
+  transform: translateX(-12px);
+}
+
+/* Barra "Total": se despliega desde la izquierda, celda por celda. */
+html.rv-ready .invoice tfoot :is(th, td)::before {
+  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--rows) * 70ms + 150ms);
+}
+
+html.rv-ready .invoice tfoot td::before {
+  transition-delay: calc(var(--rows) * 70ms + 450ms);
+}
+
+html.rv-ready .invoice tfoot :is(th, td) {
+  transition: opacity 400ms ease;
+  transition-delay: calc(var(--rows) * 70ms + 450ms);
+}
+
+html.rv-ready .invoice:not(.is-in) tfoot :is(th, td)::before {
+  transform: scaleX(0);
+}
+
+html.rv-ready .invoice:not(.is-in) tfoot :is(th, td) {
+  opacity: 0;
+}
+
+html.rv-ready .invoice.rv-instant tbody tr,
+html.rv-ready .invoice.rv-instant tfoot :is(th, td),
+html.rv-ready .invoice.rv-instant tfoot :is(th, td)::before {
+  transition: none;
+}
+
+/* Contador: la copia animada es decorativa; el valor real queda para lectores de pantalla. */
+.cnt-real {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+/* ---------- Franja del stack ---------- */
+html.motion .stack-list {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+html.motion .marquee-viewport {
+  display: block;
+  overflow: hidden;
+}
+
+html.motion .marquee-btn {
+  display: inline-flex;
+}
+
+html.motion .marquee-track {
+  animation: marquee 50s linear infinite;
+}
+
+html.motion .marquee-viewport:hover .marquee-track,
+html.motion .marquee.is-paused .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- Cinturón de seguridad ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .curtain {
+    display: none !important;
+  }
+
+  html.motion *,
+  html.motion *::before,
+  html.motion *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .rv .rv-in,
+  .invoice tbody tr,
+  .invoice tfoot :is(th, td)::before,
+  .invoice tfoot :is(th, td) {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Al imprimir (o guardar como PDF) siempre sale todo el contenido. */
+@media print {
+  .curtain {
+    display: none !important;
+  }
+
+  .rv .rv-in,
+  .invoice tbody tr,
+  .invoice tfoot :is(th, td)::before,
+  .invoice tfoot :is(th, td) {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .marquee-viewport,
+  .marquee-btn {
+    display: none !important;
+  }
+
+  html.motion .stack-list {
+    position: static;
+    width: auto;
+    height: auto;
+    clip-path: none;
+    white-space: normal;
+  }
+}

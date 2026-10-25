@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import heroFont from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wdth-normal.woff2?url';
+import bodyFont from '@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url';
 import { getContent, languages, defaultLang, site, type Lang } from '../data';
 import { absolute, asset, pagePath } from '../lib/url';
 
@@ -68,6 +69,7 @@ const jsonLd = {
     <link rel="apple-touch-icon" href={asset('apple-touch-icon.png')} />
 
     <link rel="preload" href={heroFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin />
 
     <script is:inline>
       /* Tema antes del primer pintado: evita el destello. También fija theme-color. */
@@ -76,6 +78,7 @@ const jsonLd = {
         try { t = localStorage.getItem('theme'); } catch (e) {}
         if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         d.dataset.theme = t;
+        d.classList.add('js'); /* los controles .js-only solo existen con JavaScript */
         var metas = document.querySelectorAll('meta[name="theme-color"]');
         for (var i = 0; i < metas.length; i++) {
           metas[i].removeAttribute('media');
@@ -83,12 +86,30 @@ const jsonLd = {
         }
       })();
     </script>
-    <noscript><style>.js-only { display: none; }</style></noscript>
+    <script is:inline>
+      /* Movimiento: solo con JS y sin prefers-reduced-motion. La intro, solo en la primera
+         visita de la sesión. Si sessionStorage falla, no hay intro. Sin esta clase no hay
+         ningún estado oculto en el CSS: todo el contenido se ve de una. */
+      (function () {
+        var d = document.documentElement;
+        try {
+          if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          d.classList.add('motion');
+          if (!sessionStorage.getItem('intro-seen')) {
+            sessionStorage.setItem('intro-seen', '1');
+            d.classList.add('intro-on', 'first');
+          }
+        } catch (e) {}
+      })();
+    </script>
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body id="top">
     <a class="skip" href="#main">{t.ui.skip}</a>
     <slot />
+    <script>
+      import '../scripts/motion';
+    </script>
   </body>
 </html>

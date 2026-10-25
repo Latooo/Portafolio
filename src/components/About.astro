@@ -1,6 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import avatar from '../assets/avatar.jpg';
+import SectionTitle from './SectionTitle.astro';
 import { getContent, type Lang } from '../data';
 
 interface Props {
@@ -12,7 +13,7 @@ const t = getContent(lang).about;
 ---
 
 <section class="field field--main" id="about" aria-labelledby="about-title">
-  <h2 class="section-title display" id="about-title">{t.title}</h2>
+  <SectionTitle id="about-title" text={t.title} />
   <div class="about-grid">
     <div>
       <figure class="avatar">
@@ -24,6 +25,7 @@ const t = getContent(lang).about;
           formats={['avif', 'webp']}
           width={640}
           height={640}
+          loading="lazy"
         />
       </figure>
       <dl class="facts">
