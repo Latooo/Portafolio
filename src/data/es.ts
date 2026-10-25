@@ -1,0 +1,106 @@
+import type { Content } from './types';
+
+export const es: Content = {
+  meta: {
+    title: 'Daniel Latorre | Desarrollador backend en Java y SQL Server',
+    description:
+      'Desarrollador backend en Colombia. ERP multiempresa en producción con Java y SQL Server, y sitios web para clientes. Disponible para roles remotos.',
+    ogAlt: 'Daniel Latorre, desarrollador backend, en letras grandes sobre fondo claro',
+    ogLocale: 'es_CO',
+    htmlLang: 'es',
+    jobTitle: 'Desarrollador backend',
+  },
+  ui: {
+    skip: 'Saltar al contenido',
+    navLabel: 'Principal',
+    navAbout: 'Sobre mí',
+    navExperience: 'Experiencia',
+    navContact: 'Contacto',
+    langCode: 'EN',
+    langName: 'English',
+    themeToDark: 'Oscuro',
+    themeToLight: 'Claro',
+    footerRights: 'Todos los derechos reservados.',
+    footerTop: 'Volver arriba',
+  },
+  hero: {
+    role: 'Desarrollador backend',
+    tagline:
+      'Desarrollo un ERP multiempresa en producción con Java y SQL Server: facturación, inventario y cadena comercial. También construyo sitios web para clientes. Busco un equipo remoto.',
+    ctaWrite: 'Escríbeme',
+    ctaCv: 'Descargar CV',
+  },
+  about: {
+    title: 'Sobre mí',
+    avatarAlt: 'Avatar ilustrado de Daniel Latorre con gorra, frente a su puesto de trabajo',
+    paragraphs: [
+      'Soy desarrollador en <strong>SOMIC Soluciones</strong>, donde trabajo sobre <strong>Mantis</strong>, un ERP multiempresa en producción. Cubro la cadena comercial completa (cotización, remisión, factura, notas crédito y débito), además de inventario, contratos, listas de precios, comisiones, contabilización y reportes regulatorios. Mi base técnica es <strong>Java</strong> y <strong>SQL Server</strong>, sobre <strong>Apache Tomcat</strong>.',
+      'Buena parte de mi trabajo es <strong>diagnóstico</strong>: rastrear una excepción desde el log del servidor hasta la consulta o la regla de negocio que la origina, y dejarla resuelta sin romper lo que ya funciona. En un ERP eso pesa más que en cualquier otro sitio, porque el error no es cosmético: es una factura mal emitida o un inventario descuadrado. También he atacado <strong>rendimiento</strong> (bajé 3 minutos la carga del listado de facturas eliminando consultas N+1 y ajustando índices), <strong>concurrencia</strong> y <strong>seguridad</strong>.',
+      'Algo que no esperaba aprender en este trabajo es el <strong>dominio funcional</strong>: normativa tributaria colombiana, reportes regulatorios del sector salud, cartera y contabilización. Entender el negocio es lo que permite decidir si un dato raro es un bug o una regla legítima. Por eso me importa más entender el flujo de los datos y saber dónde mirar que la herramienta de turno: me adapto rápido y ahora avanzo hacia <strong>Spring Boot</strong> y <strong>React</strong>. Fuera del ERP también construyo sitios web para clientes.',
+    ],
+    facts: [
+      { label: 'Ubicación', value: 'Colombia, remoto o híbrido' },
+      { label: 'Enfoque', value: 'Backend y datos' },
+      { label: 'Idiomas', value: 'Español nativo, inglés B2' },
+      { label: 'Disponibilidad', value: 'Abierto a roles remotos' },
+    ],
+  },
+  experience: {
+    title: 'Experiencia',
+    lead: 'Dónde he trabajado y qué problemas resolví, no solo qué tecnologías toqué.',
+    dutiesTitle: 'Responsabilidades',
+    achievementsTitle: 'Aportes destacados',
+    columnAchievement: 'Aporte',
+    columnResult: 'Resultado',
+    totalLabel: 'Total',
+    totalValue: 'Disponible para roles remotos',
+    jobs: [
+      {
+        period: 'Abril 2025 – Actualidad',
+        role: 'Desarrollador de software, ERP Mantis',
+        company: 'SOMIC Soluciones, Colombia',
+        context:
+          'Mantis es un <strong>ERP multiempresa</strong> con facturación, inventario y cadena comercial, sobre Java y SQL Server. Trabajo de punta a punta sobre el producto, desde la regla de negocio hasta la consulta y el despliegue.',
+        duties: [
+          'Cadena comercial completa: cotización, remisión, factura y notas crédito y débito.',
+          'Módulos de inventario, contratos y listas de precios, comisiones, contabilización y reportes regulatorios.',
+          'Diagnóstico y resolución de errores en producción: análisis de logs de Tomcat, trazado de excepciones y corrección sobre la regla de negocio o la consulta que las origina.',
+          'Corrección de problemas de concurrencia y seguridad, y saneamiento de datos contables directamente en SQL.',
+          'Soporte directo a clientes de los sectores salud, farmacéutico y comercial.',
+        ],
+        achievements: [
+          {
+            text: 'Reduje en <strong>3 minutos</strong> el tiempo de carga del listado de facturas, eliminando consultas <strong>N+1</strong> y ajustando índices.',
+            result: '−3 min',
+          },
+          {
+            text: 'Implementé la <strong>autorretención</strong> para clientes del Régimen Simple de Tributación.',
+            result: 'Tributario',
+          },
+          {
+            text: 'Construí el reporte <strong>SISMED/SISDIS</strong> para cumplir la Circular 021 de 2026.',
+            result: 'Regulatorio',
+          },
+          {
+            text: 'Añadí controles de negocio en remisiones: validación de venta bajo costo, bloqueo por cupo y mora con flujo de aprobación de solicitudes, y bonificados.',
+            result: 'Comercial',
+          },
+          {
+            text: 'Migré los formatos de impresión desde versiones antiguas del producto.',
+            result: 'Impresión',
+          },
+        ],
+      },
+      {
+        period: 'Formación',
+        role: 'Técnico en Programación de Software',
+        company: 'Campuslands, Bucaramanga, Colombia',
+        duties: [
+          'Fundamentos de programación, estructuras de datos y programación orientada a objetos con Java y Python.',
+          'Diseño y normalización de bases de datos relacionales, con proyecto final documentado para el Ministerio del Medio Ambiente.',
+          'Desarrollo web con HTML, CSS y JavaScript, incluyendo consumo de APIs REST.',
+        ],
+      },
+    ],
+  },
+};
