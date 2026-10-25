@@ -9,7 +9,6 @@
     <meta name="author" content="Daniel Latorre">
     <link rel="canonical" href="https://latooo.github.io/Portafolio/">
 
-    <!-- Open Graph: controla la vista previa al compartir el enlace en LinkedIn o WhatsApp -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Daniel Latorre — Desarrollador de Software">
     <meta property="og:description" content="Aplicaciones empresariales con Java y SQL Server. Despliegues en Tomcat y diagnóstico de errores en producción.">
@@ -21,21 +20,15 @@
     <meta name="theme-color" content="#2f81f7">
     <link rel="icon" href="Storage/img/iconos/github.png" type="image/png">
 
-    <!-- Tipografías -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Hojas de estilo. El orden importa: tokens define las variables que usan las demás. -->
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/sections.css">
 
-    <!--
-      Aplica el tema guardado ANTES de pintar la página.
-      Si esto estuviera al final, se vería un destello blanco al entrar en modo oscuro.
-    -->
     <script>
         (function () {
             try {
@@ -48,7 +41,6 @@
         })();
     </script>
 
-    <!-- Datos estructurados para buscadores -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -124,7 +116,6 @@
                         <span data-i18n="hero.greeting">Hola, soy</span> <em>Daniel Latorre</em>
                     </h1>
 
-                    <!-- El texto lo escribe script.js con efecto de tecleo -->
                     <p class="hero__role">
                         <span id="typed-role"></span><span class="hero__cursor">_</span>
                     </p>
@@ -164,11 +155,6 @@
                 </div>
 
                 <div class="hero__photo">
-                    <!--
-                      WebP para los navegadores que lo soportan (30 KB) y JPEG
-                      como respaldo (55 KB). La imagen se muestra a 320 px, pero
-                      se sirve a 640 para que se vea nítida en pantallas Retina.
-                    -->
                     <picture>
                         <source srcset="Storage/img/Daniel/avatar.webp" type="image/webp">
                         <img src="Storage/img/Daniel/avatar.jpg"
@@ -184,7 +170,6 @@
         <div class="container">
             <div class="metrics reveal">
                 <div class="metric">
-                    <!-- data-count lo anima script.js de 0 hasta el valor final -->
                     <p class="metric__value"><span data-count="4">4</span>+</p>
                     <p class="metric__label" data-i18n="metric.clients.label">Clientes en producción con soporte directo</p>
                 </div>
@@ -425,12 +410,6 @@
                             </ul>
                         </div>
 
-                        <!--
-                          Nombres de clientes. Si tu contrato con SOMIC tiene cláusula de
-                          confidencialidad sobre la cartera de clientes, borra este párrafo:
-                          el resto de la sección no depende de él.
-                        -->
-                        <p class="timeline__clients" data-i18n="exp.job1.clients"></p>
 
                         <div class="chip-row">
                             <span class="chip chip--accent">Java</span>
@@ -470,7 +449,6 @@
 
                 <div class="projects__grid">
 
-                    <!-- Proyecto 1: SpaceX -->
                     <article class="project reveal">
                         <div class="project__media">
                             <img src="Storage/img/JavaScript/JavaScript1.png" alt="SpaceX — vista de cohetes" loading="lazy">
@@ -503,7 +481,6 @@
                         </div>
                     </article>
 
-                    <!-- Proyecto 2: Kario Media -->
                     <article class="project reveal">
                         <div class="project__media">
                             <img src="Storage/img/HTML/html1.png" alt="Kario Media — pantalla de inicio de sesión" loading="lazy">
@@ -524,16 +501,10 @@
                                 <span class="chip">CSS</span>
                                 <span class="chip">Diseño responsivo</span>
                             </div>
-                            <!--
-                              Sin enlace a repositorio: el código es de un cliente real
-                              y no es público. Un botón que no lleva a ninguna parte resta
-                              más de lo que suma.
-                            -->
                             <p class="project__note" data-i18n="proj.kario.private"></p>
                         </div>
                     </article>
 
-                    <!-- Proyecto 3: Base de datos -->
                     <article class="project reveal">
                         <div class="project__media">
                             <img src="Storage/img/imagenes/park.jpg" alt="Parque natural — proyecto de base de datos" loading="lazy">
@@ -619,11 +590,6 @@
                 <p class="section__lead" data-i18n="contact.lead">¿Tienes una vacante o un proyecto en mente?</p>
 
                 <div class="contact__grid">
-                    <!--
-                      IMPORTANTE: cambia FORM_ENDPOINT en js/script.js por tu endpoint de
-                      Formspree (https://formspree.io — gratis). Mientras esté vacío, el
-                      formulario abre tu cliente de correo como alternativa.
-                    -->
                     <form class="form reveal" id="contact-form" novalidate>
                         <div class="field">
                             <label for="name" data-i18n="contact.name">Nombre</label>
@@ -646,7 +612,6 @@
                             <p class="field__error" data-error-for="message"></p>
                         </div>
 
-                        <!-- Trampa anti-spam: invisible para humanos, los bots la rellenan -->
                         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"
                                style="position:absolute;left:-9999px" aria-hidden="true">
 
@@ -704,7 +669,6 @@
         </div>
     </footer>
 
-    <!-- Visor de imágenes ampliadas -->
     <div class="lightbox" id="lightbox" data-open="false" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
         <button class="lightbox__close" id="lightbox-close" aria-label="Cerrar">&times;</button>
         <img class="lightbox__img" id="lightbox-img" src="" alt="">

@@ -107,7 +107,6 @@ const TRANSLATIONS = {
         "exp.job1.w3": "Construí el reporte <strong>SISMED/SISDIS</strong> para cumplir la Circular 021 de 2026.",
         "exp.job1.w4": "Añadí controles de negocio en remisiones: validación de venta bajo costo, bloqueo por cupo y mora con flujo de aprobación de solicitudes, y bonificados.",
         "exp.job1.w5": "Migré los formatos de impresión desde versiones antiguas del producto a <strong>GX6</strong>.",
-        "exp.job1.clients": "Clientes atendidos: ***REMOVED***, ***REMOVED***, ***REMOVED*** y ***REMOVED***.",
 
         "exp.job2.period": "Formación",
         "exp.job2.role": "Técnico en Programación de Software",
@@ -281,7 +280,6 @@ const TRANSLATIONS = {
         "exp.job1.w3": "Built the <strong>SISMED/SISDIS</strong> report to comply with Circular 021 of 2026.",
         "exp.job1.w4": "Added business controls to delivery notes: below-cost sale validation, credit-limit and overdue-payment blocking with an approval workflow, and bonus items.",
         "exp.job1.w5": "Migrated print layouts from legacy versions of the product to <strong>GX6</strong>.",
-        "exp.job1.clients": "Clients supported: ***REMOVED***, ***REMOVED***, ***REMOVED*** and ***REMOVED***.",
 
         "exp.job2.period": "Education",
         "exp.job2.role": "Software Programming Technician",
