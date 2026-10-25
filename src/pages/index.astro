@@ -1,0 +1,27 @@
+---
+/**
+ * Raíz del sitio: redirige a /es/ (idioma por defecto).
+ * Es una redirección estática (GitHub Pages no permite 301): meta refresh + canonical.
+ */
+import { defaultLang, site } from '../data';
+import { absolute, asset, pagePath } from '../lib/url';
+
+const target = pagePath(defaultLang);
+const canonical = absolute(target, Astro.site);
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{site.name}</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href={asset('favicon.svg')} type="image/svg+xml" />
+  </head>
+  <body>
+    <p><a href={target}>{site.name}</a></p>
+  </body>
+</html>

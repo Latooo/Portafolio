@@ -1,0 +1,22 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Experience from '../../components/Experience.astro';
+import Footer from '../../components/Footer.astro';
+import { languages, type Lang } from '../../data';
+
+export const getStaticPaths = (() => languages.map((lang) => ({ params: { lang } }))) satisfies GetStaticPaths;
+
+const lang = Astro.params.lang as Lang;
+---
+
+<Base lang={lang}>
+  <Hero lang={lang} />
+  <main id="main">
+    <About lang={lang} />
+    <Experience lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Base>

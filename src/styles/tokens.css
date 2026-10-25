@@ -1,0 +1,57 @@
+/*
+ * Tokens de diseño. Dirección B (El monumento): campos de color plano.
+ * Pares de texto verificados con contraste AA (ver README, "Contraste").
+ *   ink sobre paper 17.9 | muted-paper sobre paper 7.1
+ *   paper sobre ink 17.9 | muted-ink sobre ink 9.5
+ *   on-cobalt sobre cobalt 7.3 | muted-cobalt sobre cobalt 5.9 | cobalt sobre paper 6.7
+ * El cobalto NO se usa como texto sobre ink (2.7:1).
+ */
+:root {
+  --paper: #f3f5f8;
+  --ink: #0a0c12;
+  --cobalt: #2536f2;
+  --on-cobalt: #ffffff;
+  --muted-paper: #4b5361;
+  --muted-ink: #aeb5c4;
+  --muted-cobalt: #e3e6ff;
+
+  /* Campo principal (hero, sobre mí) y campo invertido (experiencia) */
+  --bg: var(--paper);
+  --fg: var(--ink);
+  --mu: var(--muted-paper);
+  --inv-bg: var(--ink);
+  --inv-fg: var(--paper);
+  --inv-mu: var(--muted-ink);
+
+  --font-display: 'Bricolage Grotesque', 'Arial Narrow', system-ui, sans-serif;
+  --font-body: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --pad: clamp(20px, 4vw, 56px);
+  --measure: 62ch;
+
+  color-scheme: light;
+}
+
+/* Tema oscuro explícito */
+:root[data-theme='dark'] {
+  --bg: var(--ink);
+  --fg: var(--paper);
+  --mu: var(--muted-ink);
+  --inv-bg: var(--paper);
+  --inv-fg: var(--ink);
+  --inv-mu: var(--muted-paper);
+  color-scheme: dark;
+}
+
+/* Sin JavaScript (o antes de que corra), se respeta el tema del sistema */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg: var(--ink);
+    --fg: var(--paper);
+    --mu: var(--muted-ink);
+    --inv-bg: var(--paper);
+    --inv-fg: var(--ink);
+    --inv-mu: var(--muted-paper);
+    color-scheme: dark;
+  }
+}
