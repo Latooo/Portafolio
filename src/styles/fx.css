@@ -82,14 +82,16 @@ main > .marquee {
 
 :root:not([data-theme='dark']) .fx-spot {
   mix-blend-mode: normal;
-  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgba(37, 54, 242, 0.08), transparent 70%);
+  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgba(61, 90, 254, 0.08), transparent 70%);
 }
 
 /* ---------- Hero: siempre oscuro, con la malla de puntos ---------- */
-.hero {
+header.hero {
   position: relative;
   isolation: isolate;
-  padding-bottom: clamp(56px, 8vw, 110px);
+  /* Más que el solape redondeado de la sección siguiente: el nombre nunca queda tapado.
+     (header.hero gana a la regla .hero de global.css, que se carga después.) */
+  padding-bottom: calc(var(--radius-sheet) + clamp(28px, 4vw, 56px));
   --bg: #070914;
   --fg: var(--paper);
   --mu: var(--muted-ink);
@@ -132,7 +134,7 @@ main > .marquee {
   opacity: 0.7;
 }
 
-.fx-hero .b1 { width: 62vw; height: 62vw; left: -12vw; top: -20vw; background: #2536f2; animation: fx-drift1 18s ease-in-out infinite alternate; }
+.fx-hero .b1 { width: 62vw; height: 62vw; left: -12vw; top: -20vw; background: #3d5afe; animation: fx-drift1 18s ease-in-out infinite alternate; }
 .fx-hero .b2 { width: 48vw; height: 48vw; right: -10vw; top: 10vh; background: #0a9cff; opacity: 0.5; animation: fx-drift2 23s ease-in-out infinite alternate; }
 .fx-hero .b3 { width: 40vw; height: 40vw; left: 30vw; bottom: -22vw; background: #7a3cff; opacity: 0.55; animation: fx-drift3 27s ease-in-out infinite alternate; }
 
@@ -159,8 +161,13 @@ html[data-scene='webgl'] .fx-hero .blob {
   color: var(--paper);
 }
 
-.hero .nav {
+/* Por encima de la credencial: la cinta sale por detrás de la barra, no de un enlace. */
+.hero > .nav:not(.fx-hero):not(.welcome) {
   z-index: 4;
+  margin: 0 calc(var(--pad) * -1);
+  padding-inline: var(--pad);
+  border-bottom: 1px solid rgba(243, 245, 248, 0.08);
+  background: rgba(7, 9, 20, 0.92);
 }
 
 /* Durante la bienvenida el hero (y su capa fija) va por encima de las secciones solapadas. */
@@ -174,7 +181,7 @@ html.intro-on .hero {
 }
 
 .hero .btn {
-  box-shadow: 0 8px 30px -8px rgba(37, 54, 242, 0.8);
+  box-shadow: 0 8px 30px -8px rgba(61, 90, 254, 0.8);
 }
 
 .hero .btn:hover {
@@ -215,10 +222,10 @@ html.intro-on .hero {
 .lanyard {
   position: absolute !important;
   z-index: 3 !important;
-  top: 84px;
+  top: 0;
   right: clamp(24px, 6vw, 120px);
   width: min(34vw, 380px);
-  height: calc(82% - 84px);
+  height: 82%;
   pointer-events: none;
   perspective: 1000px;
 }
@@ -254,7 +261,7 @@ html.intro-on .hero {
   left: 50%;
   top: 0;
   width: 16px;
-  height: 42%;
+  height: 48%;
   margin-left: -8px;
   border-radius: 0 0 8px 8px;
   background: var(--cobalt);
@@ -283,7 +290,7 @@ html.intro-on .hero {
 
 .lanyard:not(.is-live) .ly-card {
   left: 50%;
-  top: 42%;
+  top: 48%;
   translate: -50% 0;
   cursor: default;
 }
@@ -426,7 +433,7 @@ html.first .lanyard.is-live .ly-card {
 
 /* Cobalto: un degradado de fondo más profundo, para que no se vea plano */
 .field--cobalt {
-  background: linear-gradient(170deg, #2b3cf6 0%, #2536f2 45%, #1a27c9 100%);
+  background: linear-gradient(170deg, #3d5afe 0%, #3653f5 50%, #2e46e0 100%);
 }
 
 /* ---------- Interacciones ---------- */
@@ -480,7 +487,7 @@ html.motion .feature .btn--light::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, transparent 35%, rgba(37, 54, 242, 0.22) 50%, transparent 65%);
+  background: linear-gradient(105deg, transparent 35%, rgba(61, 90, 254, 0.22) 50%, transparent 65%);
   transform: translateX(-120%);
   animation: fx-shine 3.6s ease-in-out 1.5s infinite;
 }
@@ -514,7 +521,7 @@ html.motion .feature .btn--light::after {
   z-index: -1;
   border-radius: 12px;
   background:
-    radial-gradient(60% 80% at 20% 0%, rgba(37, 54, 242, 0.55), transparent 70%),
+    radial-gradient(60% 80% at 20% 0%, rgba(61, 90, 254, 0.55), transparent 70%),
     radial-gradient(50% 70% at 100% 100%, rgba(122, 60, 255, 0.4), transparent 70%),
     radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1.4px) 0 0 / 18px 18px,
     #0b0e1c;
@@ -609,7 +616,7 @@ html.motion .feature .btn--light::after {
 
 /* ---------- Pie: continúa el fondo de Contacto ---------- */
 body > .footer {
-  background: #1a27c9;
+  background: #2e46e0;
   color: var(--on-cobalt);
 }
 

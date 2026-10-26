@@ -293,14 +293,13 @@ a {
 }
 
 /*
- * "Daniel Latorre", con cada letra en su propia caja (sin kerning), mide ≈5.27 em de ancho
- * en Bricolage Grotesque 800 / ancho 75%. 18.7cqi lo hace ocupar el 98.5 % del ancho útil del
- * contenedor, sin depender del viewport. Si cambia la fuente o el nombre, volver a medir.
+ * "Daniel Latorre" a 12.5cqi ocupa unos dos tercios del ancho útil y queda entero:
+ * el hero deja debajo más espacio que el solape redondeado de la sección siguiente.
  */
 .name h1 {
-  margin: 0 0 -0.07em;
-  font-size: 18.7cqi;
-  line-height: 0.8;
+  margin: 0;
+  font-size: 12.5cqi;
+  line-height: 0.95;
   white-space: nowrap;
 }
 

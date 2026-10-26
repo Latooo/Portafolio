@@ -42,8 +42,9 @@ export const es: Content = {
     title: 'Sobre mí',
     avatarAlt: 'Avatar ilustrado de Daniel Latorre con gorra, frente a su puesto de trabajo',
     paragraphs: [
-      'Soy desarrollador backend en <strong>SOMIC Soluciones</strong>. Trabajo sobre <strong>Mantis</strong>, un ERP multiempresa en producción: facturación, inventario, contratos y reportes regulatorios, con <strong>Java</strong> y <strong>SQL Server</strong>.',
-      'Mi fuerte es el <strong>diagnóstico</strong>: seguir un error desde el log hasta la consulta o la regla de negocio que lo causa, y resolverlo sin romper lo que ya funciona. Así bajé 3 minutos la carga del listado de facturas. Ahora avanzo hacia <strong>Spring Boot</strong> y <strong>React</strong>, y construyo sitios web para clientes.',
+      'Soy desarrollador backend en <strong>SOMIC Soluciones</strong>, donde trabajo sobre <strong>Mantis</strong>, un ERP multiempresa en producción. Cubro la cadena comercial completa (cotización, remisión, factura y notas), además de inventario, contratos, listas de precios, comisiones y reportes regulatorios. Mi base técnica es <strong>Java</strong> y <strong>SQL Server</strong>, sobre <strong>Apache Tomcat</strong>.',
+      'Buena parte de mi trabajo es <strong>diagnóstico</strong>: seguir una excepción desde el log del servidor hasta la consulta o la regla de negocio que la origina, y resolverla sin romper lo que ya funciona. En un ERP el error no es cosmético: es una factura mal emitida o un inventario descuadrado. También he trabajado <strong>rendimiento</strong> (bajé 3 minutos la carga del listado de facturas eliminando consultas N+1 y ajustando índices), <strong>concurrencia</strong> y <strong>seguridad</strong>.',
+      'Entender el negocio (normativa tributaria, reportes del sector salud, cartera y contabilidad) es lo que me permite decidir si un dato raro es un bug o una regla legítima. Me adapto rápido a la herramienta de turno; ahora avanzo hacia <strong>Spring Boot</strong> y <strong>React</strong>, y fuera del ERP construyo sitios web para clientes.',
     ],
     facts: [
       { label: 'Ubicación', value: 'Colombia, remoto o híbrido' },

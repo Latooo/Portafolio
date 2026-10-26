@@ -42,8 +42,9 @@ export const en: Content = {
     title: 'About',
     avatarAlt: 'Illustrated avatar of Daniel Latorre wearing a cap at his workstation',
     paragraphs: [
-      'I am a backend developer at <strong>SOMIC Soluciones</strong>. I work on <strong>Mantis</strong>, a multi-company ERP in production: invoicing, inventory, contracts and regulatory reporting, with <strong>Java</strong> and <strong>SQL Server</strong>.',
-      'My strength is <strong>diagnosis</strong>: following a bug from the log to the query or business rule behind it, and fixing it without breaking what already works. That is how I cut 3 minutes off the invoice list load. I am now moving towards <strong>Spring Boot</strong> and <strong>React</strong>, and I build websites for clients.',
+      'I am a backend developer at <strong>SOMIC Soluciones</strong>, working on <strong>Mantis</strong>, a multi-company ERP in production. I cover the full commercial chain (quotations, delivery notes, invoices and credit/debit notes), plus inventory, contracts, price lists, commissions and regulatory reporting. My technical base is <strong>Java</strong> and <strong>SQL Server</strong>, on <strong>Apache Tomcat</strong>.',
+      'A large part of my job is <strong>diagnosis</strong>: following an exception from the server log to the query or business rule behind it, and fixing it without breaking what already works. In an ERP a bug is never cosmetic: it is an invoice issued wrong or stock that no longer reconciles. I have also worked on <strong>performance</strong> (cut 3 minutes off the invoice list load by removing N+1 queries and tuning indexes), <strong>concurrency</strong> and <strong>security</strong>.',
+      'Understanding the business (tax rules, healthcare reporting, receivables and accounting) is what lets me tell whether an odd value is a bug or a legitimate rule. I pick up new tools quickly; I am now moving towards <strong>Spring Boot</strong> and <strong>React</strong>, and outside the ERP I build websites for clients.',
     ],
     facts: [
       { label: 'Location', value: 'Colombia, remote or hybrid' },

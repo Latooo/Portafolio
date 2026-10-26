@@ -54,7 +54,7 @@ const dots = (l: Element, depth: number, cls = '') => {
 let l = layerFor('#about');
 if (l) {
   beam(l, 72, 180, '70,100,255', 0.45);
-  blob(l, '#2536f2', 34, -8, 55, 'fx-sway-a', 22, 0.22);
+  blob(l, '#3d5afe', 34, -8, 55, 'fx-sway-a', 22, 0.22);
   dots(l, 0.08, 'fx-dots--soft');
 }
 l = layerFor('#projects');
@@ -66,11 +66,11 @@ if (l) {
 l = layerFor('#experience');
 if (l) {
   dots(l, 0.1);
-  blob(l, '#2536f2', 40, 62, -18, 'fx-sway-b', 24, 0.14);
+  blob(l, '#3d5afe', 40, 62, -18, 'fx-sway-b', 24, 0.14);
 }
 l = layerFor('#education');
 if (l) {
-  blob(l, '#2536f2', 48, -10, -20, 'fx-sway-a', 20, 0.55);
+  blob(l, '#3d5afe', 48, -10, -20, 'fx-sway-a', 20, 0.55);
   blob(l, '#0a9cff', 36, 60, 30, 'fx-sway-b', 26, 0.38);
   blob(l, '#7a3cff', 32, 30, 70, 'fx-sway-c', 30, 0.34);
 }
@@ -216,7 +216,7 @@ if (lanyard && !reduced) {
   const path = lanyard.querySelector<SVGPathElement>('#ly-path')!;
   lanyard.classList.add('is-live');
   let W = 0, H = 0, L = 0;
-  const A = { x: 0, y: -6 };
+  const A = { x: 0, y: -10 };
   const P = { x: 0, y: 0 };
   const V = { x: 0, y: 0 };
   let dragging = false;
@@ -230,7 +230,7 @@ if (lanyard && !reduced) {
     W = b.width;
     H = b.height;
     A.x = W / 2;
-    L = Math.max(110, H * 0.34);
+    L = Math.max(170, H * 0.46);
   };
   measure();
   // Entra desde arriba con un poco de desvío para que se balancee.
