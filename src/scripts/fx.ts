@@ -216,7 +216,7 @@ if (lanyard && !reduced) {
   const path = lanyard.querySelector<SVGPathElement>('#ly-path')!;
   lanyard.classList.add('is-live');
   let W = 0, H = 0, L = 0;
-  const A = { x: 0, y: -30 };
+  const A = { x: 0, y: -6 };
   const P = { x: 0, y: 0 };
   const V = { x: 0, y: 0 };
   let dragging = false;
@@ -230,7 +230,7 @@ if (lanyard && !reduced) {
     W = b.width;
     H = b.height;
     A.x = W / 2;
-    L = Math.max(120, H * 0.42);
+    L = Math.max(110, H * 0.34);
   };
   measure();
   // Entra desde arriba con un poco de desvío para que se balancee.

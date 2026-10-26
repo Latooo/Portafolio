@@ -154,9 +154,18 @@ html[data-scene='webgl'] .fx-hero .blob {
     linear-gradient(0deg, rgba(7, 9, 20, 0.55), rgba(7, 9, 20, 0) 35%);
 }
 
-.hero .nav a,
+.hero .nav a:not(.ctl),
 .hero .nav .brand {
   color: var(--paper);
+}
+
+.hero .nav {
+  z-index: 4;
+}
+
+/* Durante la bienvenida el hero (y su capa fija) va por encima de las secciones solapadas. */
+html.intro-on .hero {
+  z-index: 100;
 }
 
 .hero .ctl {
@@ -206,10 +215,10 @@ html[data-scene='webgl'] .fx-hero .blob {
 .lanyard {
   position: absolute !important;
   z-index: 3 !important;
-  top: 0;
+  top: 84px;
   right: clamp(24px, 6vw, 120px);
   width: min(34vw, 380px);
-  height: 82%;
+  height: calc(82% - 84px);
   pointer-events: none;
   perspective: 1000px;
 }
@@ -223,13 +232,13 @@ html[data-scene='webgl'] .fx-hero .blob {
 /* Sin JS (o reduced-motion): cuerda recta y tarjeta quieta, colgando del centro. */
 .ly-band {
   fill: none;
-  stroke: #0d1020;
+  stroke: var(--cobalt);
   stroke-width: 16;
   stroke-linecap: round;
 }
 
 .ly-txt {
-  fill: #c7cdde;
+  fill: #ffffff;
   font: 700 8px/1 var(--font-body);
   letter-spacing: 0.22em;
   dominant-baseline: middle;
@@ -248,7 +257,7 @@ html[data-scene='webgl'] .fx-hero .blob {
   height: 42%;
   margin-left: -8px;
   border-radius: 0 0 8px 8px;
-  background: #0d1020;
+  background: var(--cobalt);
 }
 
 .ly-card {
@@ -599,12 +608,12 @@ html.motion .feature .btn--light::after {
 }
 
 /* ---------- Pie: continúa el fondo de Contacto ---------- */
-.footer {
+body > .footer {
   background: #1a27c9;
   color: var(--on-cobalt);
 }
 
-.footer a {
+body > .footer a {
   color: var(--on-cobalt);
 }
 
