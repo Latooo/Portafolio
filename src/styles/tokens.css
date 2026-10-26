@@ -3,17 +3,17 @@
  * Pares de texto verificados con contraste AA (ver README, "Contraste").
  *   ink sobre paper 17.9 | muted-paper sobre paper 7.1
  *   paper sobre ink 17.9 | muted-ink sobre ink 9.5
- *   on-cobalt sobre cobalt 7.3 | muted-cobalt sobre cobalt 5.9 | cobalt sobre paper 6.7
+ *   on-cobalt sobre cobalt 5.1 | muted-cobalt sobre cobalt 4.7 | cobalt sobre paper 4.7
  * El cobalto NO se usa como texto sobre ink (2.7:1).
  */
 :root {
   --paper: #f3f5f8;
   --ink: #0a0c12;
-  --cobalt: #2536f2;
+  --cobalt: #3d5afe;
   --on-cobalt: #ffffff;
   --muted-paper: #4b5361;
   --muted-ink: #aeb5c4;
-  --muted-cobalt: #e3e6ff;
+  --muted-cobalt: #f2f4ff;
 
   /* Campo principal (hero, sobre mí) y campo invertido (experiencia) */
   --bg: var(--paper);

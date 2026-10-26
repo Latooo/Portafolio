@@ -1,0 +1,54 @@
+---
+/**
+ * Formación destacada: el título técnico con su imagen ampliable.
+ * La imagen trae la cédula tapada y sin metadatos (ver README, "Privacidad").
+ * Se abre en el mismo <dialog> de Certificados (data-lightbox); sin JS abre la imagen.
+ */
+import { Picture, getImage } from 'astro:assets';
+import titulo from '../assets/certs/campuslands-titulo.webp';
+import SectionTitle from './SectionTitle.astro';
+import { getContent, type Lang } from '../data';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang).education;
+const full = await getImage({ src: titulo, width: 1800, format: 'webp' });
+---
+
+<section class="field edu" id="education" aria-labelledby="education-title">
+  <SectionTitle id="education-title" text={t.title} />
+  <div class="edu-grid">
+    <div class="edu-text" data-rv>
+      <p class="edu-degree display">{t.degree}</p>
+      <p class="edu-inst" translate="no">{t.institution}</p>
+      <p class="edu-date">{t.date}</p>
+      <h3 class="edu-sub">{t.learnedTitle}</h3>
+      <ul class="duties">
+        {t.learned.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+    <a
+      class="edu-doc cert"
+      href={full.src}
+      data-lightbox
+      data-alt={t.imageAlt}
+      data-caption={`${t.degree}, ${t.institution}`}
+      aria-haspopup="dialog"
+    >
+      <Picture
+        src={titulo}
+        alt=""
+        widths={[560, 900, 1200]}
+        sizes="(max-width: 820px) 100vw, 44vw"
+        formats={['avif', 'webp']}
+        width={titulo.width}
+        height={titulo.height}
+        loading="lazy"
+      />
+      <span class="sr-only">{t.open}: {t.degree}</span>
+    </a>
+  </div>
+</section>

@@ -16,6 +16,7 @@ export const en: Content = {
     navAbout: 'About',
     navProjects: 'Projects',
     navExperience: 'Experience',
+    navEducation: 'Education',
     navCerts: 'Certificates',
     navContact: 'Contact',
     langCode: 'ES',
@@ -31,14 +32,19 @@ export const en: Content = {
       'I develop a multi-company ERP in production with Java and SQL Server: invoicing, inventory and the full commercial chain. I also build websites for clients. I am looking for a remote team.',
     ctaProjects: 'See Projects',
     ctaCv: 'Download CV',
+    available: 'Available for work',
+  },
+  welcome: {
+    line1: 'Welcome to my',
+    line2: 'portfolio',
   },
   about: {
     title: 'About',
     avatarAlt: 'Illustrated avatar of Daniel Latorre wearing a cap at his workstation',
     paragraphs: [
-      'I am a developer at <strong>SOMIC Soluciones</strong>, working on <strong>Mantis</strong>, a multi-company ERP running in production. I cover the full commercial chain (quotations, delivery notes, invoices, credit and debit notes), plus inventory, contracts, price lists, commissions, accounting entries and regulatory reporting. My technical base is <strong>Java</strong> and <strong>SQL Server</strong>, on <strong>Apache Tomcat</strong>.',
-      'A large part of my job is <strong>diagnosis</strong>: tracing an exception from the server log back to the query or business rule that caused it, and fixing it without breaking what already works. In an ERP that weighs more than anywhere else, because the bug is not cosmetic: it is an invoice issued wrong or stock that no longer reconciles. I have also worked on <strong>performance</strong> (cut 3 minutes off the invoice list load by removing N+1 queries and tuning indexes), <strong>concurrency</strong> and <strong>security</strong>.',
-      'Something I did not expect to learn here is the <strong>functional domain</strong>: Colombian tax regulation, healthcare regulatory reporting, receivables and accounting entries. Understanding the business is what lets you decide whether an odd value is a bug or a legitimate rule. That is why I care more about how the data flows, and knowing where to look, than about the tool of the moment: I adapt quickly and I am now moving towards <strong>Spring Boot</strong> and <strong>React</strong>. Outside the ERP I also build websites for clients.',
+      'I am a backend developer at <strong>SOMIC Soluciones</strong>, working on <strong>Mantis</strong>, a multi-company ERP in production. I cover the full commercial chain (quotations, delivery notes, invoices and credit/debit notes), plus inventory, contracts, price lists, commissions and regulatory reporting. My technical base is <strong>Java</strong> and <strong>SQL Server</strong>, on <strong>Apache Tomcat</strong>.',
+      'A large part of my job is <strong>diagnosis</strong>: following an exception from the server log to the query or business rule behind it, and fixing it without breaking what already works. In an ERP a bug is never cosmetic: it is an invoice issued wrong or stock that no longer reconciles. I have also worked on <strong>performance</strong> (cut 3 minutes off the invoice list load by removing N+1 queries and tuning indexes), <strong>concurrency</strong> and <strong>security</strong>.',
+      'Understanding the business (tax rules, healthcare reporting, receivables and accounting) is what lets me tell whether an odd value is a bug or a legitimate rule. I pick up new tools quickly; I am now moving towards <strong>Spring Boot</strong> and <strong>React</strong>, and outside the ERP I build websites for clients.',
     ],
     facts: [
       { label: 'Location', value: 'Colombia, remote or hybrid' },
@@ -108,17 +114,21 @@ export const en: Content = {
           },
         ],
       },
-      {
-        period: 'Education',
-        role: 'Software Programming Technician',
-        company: 'Campuslands, Bucaramanga, Colombia',
-        duties: [
-          'Programming fundamentals, data structures and object-oriented programming with Java and Python.',
-          'Relational database design and normalisation, with a documented final project for the Ministry of the Environment.',
-          'Web development with HTML, CSS and JavaScript, including REST API consumption.',
-        ],
-      },
     ],
+  },
+  education: {
+    title: 'Education',
+    degree: 'Software Programming Technician',
+    institution: 'Campuslands, Bucaramanga',
+    date: 'November 2024',
+    learnedTitle: 'What I learned',
+    learned: [
+      'Programming fundamentals, data structures and object-oriented programming with Java and Python.',
+      'Relational database design and normalization, with a documented final project for the Ministry of Environment.',
+      'Web development with HTML, CSS and JavaScript, including REST API consumption.',
+    ],
+    imageAlt: 'Software Programming Technician certificate awarded by Campuslands in November 2024',
+    open: 'Enlarge the certificate',
   },
   certs: {
     title: 'Certificates',

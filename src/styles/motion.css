@@ -3,38 +3,108 @@
  *
  * Regla de oro: ningún estado oculto existe sin una clase que ponga JavaScript.
  *   html.motion   JS activo y sin prefers-reduced-motion (script de <head>)
- *   html.intro-on    primera visita de la sesión: cortina cobalto
+ *   html.intro-on    primera visita de la sesión: pantalla de bienvenida
  *   html.first    igual que intro-on, pero no se quita (mantiene los retardos del hero)
  *   html.rv-ready motion.ts ya decidió qué se ve; recién entonces puede haber elementos ocultos
  * Sin JS o con reduced-motion no hay nada de esto y todo el contenido se ve de una.
  */
 
-/* ---------- Intro: cortina ---------- */
-.curtain {
+/* ---------- Intro: pantalla de bienvenida (primera visita de la sesión) ----------
+   0.1 s iconos · 0.55 s letras con desenfoque · 1.7 s dirección · 2.45 s se disuelve.
+   Se retira sola por CSS a los ~3 s: aunque el JS fallara, nunca queda tapando la página.
+   No bloquea el scroll y se salta con clic o tecla (motion.ts). */
+.welcome {
   display: none;
 }
 
-html.intro-on .curtain {
+html.intro-on .welcome {
   position: fixed;
   inset: 0;
-  z-index: 50;
-  display: block;
-  background: var(--cobalt);
+  z-index: 80;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: clamp(18px, 3vw, 28px);
+  padding: var(--pad);
+  background: radial-gradient(120% 90% at 50% 40%, #0b0f24 0%, #05060d 60%);
+  color: #f3f5f8;
+  text-align: center;
   pointer-events: none;
-  /* Se retira sola por CSS: aunque el JS fallara, nunca queda tapando la página. */
-  animation: curtain-out 450ms cubic-bezier(0.76, 0, 0.24, 1) 500ms forwards;
+  animation: wl-out 550ms cubic-bezier(0.76, 0, 0.24, 1) 2450ms forwards;
 }
 
-@keyframes curtain-out {
+@keyframes wl-out {
   to {
-    transform: translateY(-100%);
+    opacity: 0;
+    transform: scale(1.08);
+    visibility: hidden;
   }
 }
 
-/* El nombre es el mismo nodo del hero: durante la intro se eleva por encima de la cortina. */
-html.intro-on .name {
-  position: relative;
-  z-index: 60;
+.wl-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.wl-ic {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(243, 245, 248, 0.16);
+  border-radius: 50%;
+  background: rgba(243, 245, 248, 0.05);
+  animation: wl-pop 480ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: calc(100ms + var(--k) * 110ms);
+}
+
+@keyframes wl-pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.6);
+  }
+}
+
+.wl-text {
+  font-size: clamp(2.1rem, 7vw, 5.2rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+.wl-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.wl-line--2 {
+  color: #7f8bff;
+}
+
+.wl-ch {
+  display: inline-block;
+  white-space: pre;
+  animation: wl-blur 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(550ms + var(--i) * 34ms);
+}
+
+@keyframes wl-blur {
+  from {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translateY(0.35em);
+  }
+}
+
+.wl-url {
+  padding: 8px 16px;
+  border: 1px solid rgba(243, 245, 248, 0.16);
+  border-radius: 999px;
+  background: rgba(243, 245, 248, 0.05);
+  color: #c7cdde;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  animation: fade-up 500ms cubic-bezier(0.22, 1, 0.36, 1) 1700ms both;
 }
 
 /* ---------- Entrada del hero ---------- */
@@ -44,7 +114,7 @@ html.motion .ch {
 }
 
 html.first .ch {
-  animation-delay: calc(40ms + var(--i) * 22ms);
+  animation-delay: calc(2550ms + var(--i) * 22ms);
 }
 
 @keyframes letter-rise {
@@ -64,7 +134,7 @@ html.motion .tagline.hx {
 }
 
 html.first .hx {
-  animation-delay: calc(620ms + var(--h) * 80ms);
+  animation-delay: calc(2700ms + var(--h) * 80ms);
 }
 
 @keyframes fade-up {
@@ -190,7 +260,7 @@ html.motion .marquee.is-paused .marquee-track {
 
 /* ---------- Cinturón de seguridad ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .curtain {
+  .welcome {
     display: none !important;
   }
 
@@ -212,7 +282,7 @@ html.motion .marquee.is-paused .marquee-track {
 
 /* Al imprimir (o guardar como PDF) siempre sale todo el contenido. */
 @media print {
-  .curtain {
+  .welcome {
     display: none !important;
   }
 
