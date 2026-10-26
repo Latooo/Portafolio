@@ -11,10 +11,13 @@ if (root.classList.contains('motion')) {
   /* ---------- Intro: termina sola o al saltarla. No bloquea el scroll. ---------- */
   if (root.classList.contains('intro-on')) {
     const end = () => root.classList.remove('intro-on');
-    const timer = window.setTimeout(end, 1200);
+    const timer = window.setTimeout(end, 3100);
+    // Saltar: se quita la bienvenida y también los retardos largos del hero (html.first).
     const skip = () => {
       window.clearTimeout(timer);
       end();
+      root.classList.remove('first');
+      window.dispatchEvent(new Event('intro:skip'));
     };
     window.addEventListener('pointerdown', skip, { once: true, passive: true });
     window.addEventListener('keydown', skip, { once: true, passive: true });

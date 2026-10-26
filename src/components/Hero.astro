@@ -1,4 +1,6 @@
 ---
+import { Picture } from 'astro:assets';
+import avatar from '../assets/avatar.jpg';
 import Nav from './Nav.astro';
 import { getContent, site, type Lang } from '../data';
 import { asset } from '../lib/url';
@@ -15,12 +17,37 @@ const t = getContent(lang);
 const words = site.name.split(' ');
 let n = 0;
 const lettered = words.map((word) => [...word].map((ch) => ({ ch, i: n++ })));
+
+/* Bienvenida (primera visita): letras decorativas, todo aria-hidden. */
+const split = (s: string, offset = 0) => [...s].map((ch, i) => ({ ch, i: i + offset }));
+const w1 = split(t.welcome.line1);
+const w2 = split(t.welcome.line2, w1.length);
+const host = new URL(Astro.site ?? 'https://latooo.github.io').host + import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <header class="hero">
-  <div class="curtain" aria-hidden="true"></div>
+  <div class="welcome" aria-hidden="true">
+    <div class="wl-icons">
+      <span class="wl-ic" style="--k: 0">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"></path></svg>
+      </span>
+      <span class="wl-ic" style="--k: 1">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg>
+      </span>
+      <span class="wl-ic" style="--k: 2">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg>
+      </span>
+    </div>
+    <p class="wl-text display">
+      <span class="wl-line">{w1.map(({ ch, i }) => <span class="wl-ch" style={`--i: ${i}`}>{ch === ' ' ? ' ' : ch}</span>)}</span>
+      <span class="wl-line wl-line--2">{w2.map(({ ch, i }) => <span class="wl-ch" style={`--i: ${i}`}>{ch}</span>)}</span>
+    </p>
+    <p class="wl-url" translate="no">{host}</p>
+  </div>
+
   <Nav lang={lang} />
   <div class="intro">
+    <p class="avail hx" style="--h: 0"><span class="avail-dot" aria-hidden="true"></span>{t.hero.available}</p>
     <p class="role display hx" style="--h: 0">{t.hero.role}</p>
     <p class="tagline hx" style="--h: 1">{t.hero.tagline}</p>
     <div class="actions hx" style="--h: 2">
@@ -34,6 +61,27 @@ const lettered = words.map((word) => [...word].map((ch) => ({ ch, i: n++ })));
       }
     </div>
   </div>
+
+  <!-- Credencial colgante: decorativa (el avatar real está en "Sobre mí"). Física en scripts/fx.ts. -->
+  <div class="lanyard" aria-hidden="true">
+    <svg class="ly-strap" width="100%" height="100%">
+      <defs>
+        <path id="ly-path" d="M0 0"></path>
+      </defs>
+      <use href="#ly-path" class="ly-band"></use>
+      <text class="ly-txt"><textPath href="#ly-path" startOffset="6%">LATOOO · DEV · LATOOO · DEV · LATOOO · DEV · LATOOO · DEV · LATOOO · DEV</textPath></text>
+    </svg>
+    <div class="ly-card">
+      <span class="ly-clip"></span>
+      <span class="ly-photo">
+        <Picture src={avatar} alt="" widths={[220, 440]} sizes="220px" formats={['avif', 'webp']} width={440} height={440} loading="eager" />
+      </span>
+      <span class="ly-name" translate="no">{site.name}</span>
+      <span class="ly-role">{t.hero.role}</span>
+      <span class="ly-foot" translate="no">{host}</span>
+    </div>
+  </div>
+
   <div class="name">
     <h1 class="name-h display" translate="no">
       <span class="sr-only">{site.name}</span>

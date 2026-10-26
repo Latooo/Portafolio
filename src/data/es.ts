@@ -16,6 +16,7 @@ export const es: Content = {
     navAbout: 'Sobre mí',
     navProjects: 'Proyectos',
     navExperience: 'Experiencia',
+    navEducation: 'Formación',
     navCerts: 'Certificados',
     navContact: 'Contacto',
     langCode: 'EN',
@@ -31,14 +32,18 @@ export const es: Content = {
       'Desarrollo un ERP multiempresa en producción con Java y SQL Server: facturación, inventario y cadena comercial. También construyo sitios web para clientes. Busco un equipo remoto.',
     ctaProjects: 'Ver proyectos',
     ctaCv: 'Descargar CV',
+    available: 'Disponible para trabajar',
+  },
+  welcome: {
+    line1: 'Bienvenido a mi',
+    line2: 'portafolio',
   },
   about: {
     title: 'Sobre mí',
     avatarAlt: 'Avatar ilustrado de Daniel Latorre con gorra, frente a su puesto de trabajo',
     paragraphs: [
-      'Soy desarrollador en <strong>SOMIC Soluciones</strong>, donde trabajo sobre <strong>Mantis</strong>, un ERP multiempresa en producción. Cubro la cadena comercial completa (cotización, remisión, factura, notas crédito y débito), además de inventario, contratos, listas de precios, comisiones, contabilización y reportes regulatorios. Mi base técnica es <strong>Java</strong> y <strong>SQL Server</strong>, sobre <strong>Apache Tomcat</strong>.',
-      'Buena parte de mi trabajo es <strong>diagnóstico</strong>: rastrear una excepción desde el log del servidor hasta la consulta o la regla de negocio que la origina, y dejarla resuelta sin romper lo que ya funciona. En un ERP eso pesa más que en cualquier otro sitio, porque el error no es cosmético: es una factura mal emitida o un inventario descuadrado. También he atacado <strong>rendimiento</strong> (bajé 3 minutos la carga del listado de facturas eliminando consultas N+1 y ajustando índices), <strong>concurrencia</strong> y <strong>seguridad</strong>.',
-      'Algo que no esperaba aprender en este trabajo es el <strong>dominio funcional</strong>: normativa tributaria colombiana, reportes regulatorios del sector salud, cartera y contabilización. Entender el negocio es lo que permite decidir si un dato raro es un bug o una regla legítima. Por eso me importa más entender el flujo de los datos y saber dónde mirar que la herramienta de turno: me adapto rápido y ahora avanzo hacia <strong>Spring Boot</strong> y <strong>React</strong>. Fuera del ERP también construyo sitios web para clientes.',
+      'Soy desarrollador backend en <strong>SOMIC Soluciones</strong>. Trabajo sobre <strong>Mantis</strong>, un ERP multiempresa en producción: facturación, inventario, contratos y reportes regulatorios, con <strong>Java</strong> y <strong>SQL Server</strong>.',
+      'Mi fuerte es el <strong>diagnóstico</strong>: seguir un error desde el log hasta la consulta o la regla de negocio que lo causa, y resolverlo sin romper lo que ya funciona. Así bajé 3 minutos la carga del listado de facturas. Ahora avanzo hacia <strong>Spring Boot</strong> y <strong>React</strong>, y construyo sitios web para clientes.',
     ],
     facts: [
       { label: 'Ubicación', value: 'Colombia, remoto o híbrido' },
@@ -108,17 +113,21 @@ export const es: Content = {
           },
         ],
       },
-      {
-        period: 'Formación',
-        role: 'Técnico en Programación de Software',
-        company: 'Campuslands, Bucaramanga, Colombia',
-        duties: [
-          'Fundamentos de programación, estructuras de datos y programación orientada a objetos con Java y Python.',
-          'Diseño y normalización de bases de datos relacionales, con proyecto final documentado para el Ministerio del Medio Ambiente.',
-          'Desarrollo web con HTML, CSS y JavaScript, incluyendo consumo de APIs REST.',
-        ],
-      },
     ],
+  },
+  education: {
+    title: 'Formación',
+    degree: 'Técnico laboral en Programación de Software',
+    institution: 'Campuslands, Bucaramanga',
+    date: 'Noviembre de 2024',
+    learnedTitle: 'Qué aprendí',
+    learned: [
+      'Fundamentos de programación, estructuras de datos y programación orientada a objetos con Java y Python.',
+      'Diseño y normalización de bases de datos relacionales, con proyecto final documentado para el Ministerio del Medio Ambiente.',
+      'Desarrollo web con HTML, CSS y JavaScript, incluyendo consumo de APIs REST.',
+    ],
+    imageAlt: 'Certificado de Técnico laboral en Programación de Software otorgado por Campuslands en noviembre de 2024',
+    open: 'Ampliar el título',
   },
   certs: {
     title: 'Certificados',

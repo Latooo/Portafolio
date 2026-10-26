@@ -49,6 +49,7 @@ export interface Content {
     navAbout: string;
     navProjects: string;
     navExperience: string;
+    navEducation: string;
     navCerts: string;
     navContact: string;
     /** Código visible del otro idioma ("EN") y su nombre, solo para lectores de pantalla. */
@@ -58,12 +59,6 @@ export interface Content {
     themeToLight: string;
     footerRights: string;
     footerTop: string;
-  };
-  hero: {
-    role: string;
-    tagline: string;
-    ctaProjects: string;
-    ctaCv: string;
   };
   about: {
     title: string;
@@ -97,6 +92,28 @@ export interface Content {
     totalLabel: string;
     totalValue: string;
     jobs: Job[];
+  };
+  welcome: {
+    /** Texto de la pantalla de bienvenida (decorativa, solo primera visita). */
+    line1: string;
+    line2: string;
+  };
+  hero: {
+    role: string;
+    tagline: string;
+    ctaProjects: string;
+    ctaCv: string;
+    available: string;
+  };
+  education: {
+    title: string;
+    degree: string;
+    institution: string;
+    date: string;
+    learnedTitle: string;
+    learned: string[];
+    imageAlt: string;
+    open: string;
   };
   certs: {
     title: string;

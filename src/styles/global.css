@@ -2,6 +2,7 @@
 @import './tokens.css';
 @import './sections.css';
 @import './motion.css';
+@import './fx.css';
 
 /* ---------- Base ---------- */
 *,
