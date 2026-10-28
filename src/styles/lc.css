@@ -670,8 +670,9 @@ html.lc-live .lc-pill.is-on span {
   padding-block: 40px;
 }
 
+/* Atenuado, pero legible: con 0.65 el azul cielo sigue sobre 4.5:1 (con 0.35 fallaba el contraste). */
 html.lc-live .lc-copy {
-  opacity: 0.35;
+  opacity: 0.65;
   transition: opacity 0.5s;
 }
 
