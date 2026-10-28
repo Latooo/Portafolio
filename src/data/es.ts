@@ -27,7 +27,6 @@ export const es: Content = {
     themeToLight: 'Claro',
     footerRights: 'Todos los derechos reservados.',
     footerTop: 'Volver arriba',
-    footerCredit: "Grabado: máquina diferencial de Babbage, Harper's New Monthly Magazine (1864), dominio público, vía Wikimedia Commons.",
   },
   hero: {
     title1: 'Daniel Latorre',
@@ -39,6 +38,15 @@ export const es: Content = {
     ctaContact: 'Escríbeme',
     ctaCv: 'Descargar CV',
     available: 'Disponible para trabajar',
+  },
+  diagram: {
+    browser: 'navegador',
+    rules: 'reglas de negocio',
+    tx: 'transacción',
+    resp: 'respuesta',
+    core: 'erp-core',
+    logs: 'logs · tomcat',
+    alt: 'Diagrama animado: una petición sale del navegador, pasa por la API REST en Java, las reglas de negocio y la transacción, se guarda en SQL Server y vuelve como respuesta; los errores quedan en los logs de Tomcat.',
   },
   welcome: {
     line1: 'Bienvenido a mi',

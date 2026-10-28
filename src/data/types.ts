@@ -71,7 +71,6 @@ export interface Content {
     themeToLight: string;
     footerRights: string;
     footerTop: string;
-    footerCredit: string;
   };
   about: {
     title: string;
@@ -105,6 +104,15 @@ export interface Content {
     totalLabel: string;
     totalValue: string;
     jobs: Job[];
+  };
+  diagram: {
+    browser: string;
+    rules: string;
+    tx: string;
+    resp: string;
+    core: string;
+    logs: string;
+    alt: string;
   };
   welcome: {
     /** Texto de la pantalla de bienvenida (decorativa, solo primera visita). */

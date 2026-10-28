@@ -166,7 +166,7 @@ html.first .lanyard.is-live .ly-card {
 }
 
 /* Se monta sobre el titular centrado en pantallas medianas: solo en escritorio ancho. */
-@media (max-width: 1179px) {
+@media (max-width: 1279px) {
   .lanyard {
     display: none;
   }

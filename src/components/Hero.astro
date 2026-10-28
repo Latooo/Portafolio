@@ -1,8 +1,8 @@
 ---
 import { Picture } from 'astro:assets';
 import avatar from '../assets/avatar.jpg';
-import engraving from '../assets/hero/babbage-lines.png';
 import Nav from './Nav.astro';
+import HeroDiagram from './HeroDiagram.astro';
 import { getContent, site, type Lang } from '../data';
 import { asset } from '../lib/url';
 
@@ -42,13 +42,6 @@ const host = new URL(Astro.site ?? 'https://latooo.github.io').host + import.met
 
   <Nav lang={lang} />
 
-  <!-- Grabado: máquina diferencial de Babbage (Harper's, 1864, dominio público). Decorativo. -->
-  <div class="hero-art" aria-hidden="true">
-    <div class="hero-art-in" data-depth="-0.12">
-      <Picture src={engraving} alt="" widths={[480, 866]} sizes="(max-width: 900px) 70vw, 34vw" formats={['avif', 'webp']} width={866} height={1281} loading="eager" fetchpriority="low" />
-    </div>
-  </div>
-
   <div class="hero-main">
     <h1 class="hero-title">
       <span class="ht-1 hx" style="--h: 0" translate="no">{t.hero.title1}</span>
@@ -67,6 +60,10 @@ const host = new URL(Astro.site ?? 'https://latooo.github.io').host + import.met
       }
     </div>
     <p class="avail hx" style="--h: 4"><span class="avail-dot" aria-hidden="true"></span>{t.hero.available}</p>
+  </div>
+
+  <div class="hero-diagram hx" style="--h: 5">
+    <HeroDiagram lang={lang} />
   </div>
 
   <!-- Credencial colgante: decorativa (el avatar real está en "Sobre mí"). Física en scripts/fx.ts. -->

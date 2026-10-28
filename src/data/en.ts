@@ -27,7 +27,6 @@ export const en: Content = {
     themeToLight: 'Light',
     footerRights: 'All rights reserved.',
     footerTop: 'Back to Top',
-    footerCredit: "Engraving: Babbage's Difference Engine, Harper's New Monthly Magazine (1864), public domain, via Wikimedia Commons.",
   },
   hero: {
     title1: 'Daniel Latorre',
@@ -39,6 +38,15 @@ export const en: Content = {
     ctaContact: 'Get in Touch',
     ctaCv: 'Download CV',
     available: 'Available for work',
+  },
+  diagram: {
+    browser: 'browser',
+    rules: 'business rules',
+    tx: 'transaction',
+    resp: 'response',
+    core: 'erp-core',
+    logs: 'logs · tomcat',
+    alt: 'Animated diagram: a request leaves the browser, goes through the Java REST API, the business rules and the transaction, is stored in SQL Server and returns as a response; errors land in the Tomcat logs.',
   },
   welcome: {
     line1: 'Welcome to my',
