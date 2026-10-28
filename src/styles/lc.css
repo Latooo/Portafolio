@@ -1693,3 +1693,12 @@ html.has-cursor textarea {
 section[id] {
   scroll-margin-top: 88px;
 }
+
+/*
+ * La barra fija vive dentro del hero, que crea su propio contexto de apilamiento:
+ * con z-index 1, igual que <main>, todo lo que venía después la tapaba al hacer scroll.
+ * El hero va por encima de <main> (no se solapan, así que solo afecta a la barra y la credencial).
+ */
+body > header.hero {
+  z-index: 5;
+}
