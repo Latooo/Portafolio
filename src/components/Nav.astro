@@ -13,7 +13,7 @@ const other = languages.find((l) => l !== lang)!;
 
 <nav class="nav" aria-label={t.ui.navLabel}>
   <a class="brand" href="#top" translate="no">{site.name}</a>
-  <span class="links">
+  <span class="links" id="nav-links">
     <a href="#about">{t.ui.navAbout}</a>
     <a href="#process">{t.ui.navProcess}</a>
     <a href="#projects">{t.ui.navProjects}</a>
@@ -25,12 +25,52 @@ const other = languages.find((l) => l !== lang)!;
       >{t.ui.langCode}<span class="sr-only"> ({t.ui.langName})</span></a
     >
     <a class="ctl ctl--fill" href="#contact">{t.ui.navCta}</a>
+    <button
+      class="ctl nav-toggle js-only"
+      type="button"
+      aria-expanded="false"
+      aria-controls="nav-links"
+      aria-label={t.ui.menuOpen}
+      data-open-label={t.ui.menuOpen}
+      data-close-label={t.ui.menuClose}
+    >
+      <span class="nt-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
   </span>
 </nav>
 
 
 <script is:inline>
   (function () {
+    /* Menú desplegable en móvil: el botón abre y cierra la lista de enlaces.
+       Se cierra al elegir un enlace, con Escape o al tocar fuera. Sin JS los enlaces se ven siempre. */
+    var nav = document.querySelector('.nav');
+    var btn = nav && nav.querySelector('.nav-toggle');
+    if (nav && btn) {
+      var set = function (open) {
+        nav.classList.toggle('is-open', open);
+        btn.setAttribute('aria-expanded', String(open));
+        btn.setAttribute('aria-label', open ? btn.dataset.closeLabel : btn.dataset.openLabel);
+      };
+      btn.addEventListener('click', function () {
+        set(!nav.classList.contains('is-open'));
+      });
+      nav.querySelectorAll('.links a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          set(false);
+        });
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+          set(false);
+          btn.focus();
+        }
+      });
+      document.addEventListener('click', function (e) {
+        if (nav.classList.contains('is-open') && !nav.contains(e.target)) set(false);
+      });
+    }
+
     /* El cambio de idioma conserva la sección en la que estás. */
     var l = document.querySelector('[data-lang-switch]');
     if (l) {

@@ -17,6 +17,8 @@ export const es: Content = {
     navProjects: 'Proyectos',
     navProcess: 'Cómo trabajo',
     navCta: 'Contactar',
+    menuOpen: 'Abrir menú',
+    menuClose: 'Cerrar menú',
     navExperience: 'Experiencia',
     navEducation: 'Formación',
     navCerts: 'Certificados',

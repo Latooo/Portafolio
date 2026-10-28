@@ -61,6 +61,9 @@ export interface Content {
     navExperience: string;
     navProcess: string;
     navCta: string;
+    /** Botón del menú en móvil (nombre accesible). */
+    menuOpen: string;
+    menuClose: string;
     navEducation: string;
     navCerts: string;
     navContact: string;
