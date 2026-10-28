@@ -12,14 +12,14 @@ const linkedinPath = new URL(site.linkedin).pathname.replace(/\/$/, '');
 const githubUser = new URL(site.github).pathname.replace(/^\//, '');
 ---
 
-<section class="field field--cobalt contact" id="contact" aria-labelledby="contact-title">
+<section class="field field--light contact" id="contact" aria-labelledby="contact-title">
   <SectionTitle id="contact-title" text={t.title} />
   <p class="lead">{t.lead}</p>
 
   <div class="contact-main">
     <a class="mail display" href={`mailto:${site.email}`} id="contact-email" translate="no">{site.email}</a>
     <button
-      class="btn btn--light js-only"
+      class="btn btn--dark js-only"
       type="button"
       data-copy={site.email}
       data-copied={t.copied}

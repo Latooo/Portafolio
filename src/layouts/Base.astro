@@ -1,7 +1,10 @@
 ---
 import '../styles/global.css';
-import heroFont from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wdth-normal.woff2?url';
-import bodyFont from '@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url';
+/* La capa de estilo va aparte: con @import quedaría antes de las reglas de global.css y perdería. */
+import '../styles/lc.css';
+import heroFont from '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-300-normal.woff2?url';
+import bodyFont from '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2?url';
+import monoFont from '@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url';
 import { getContent, languages, defaultLang, site, type Lang } from '../data';
 import { absolute, asset, pagePath } from '../lib/url';
 
@@ -60,9 +63,8 @@ const jsonLd = {
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={t.meta.ogAlt} />
 
-    <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#f3f5f8" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0a0c12" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#05080f" />
 
     <link rel="icon" href={asset('favicon.svg')} type="image/svg+xml" />
     <link rel="icon" href={asset('favicon-32.png')} sizes="32x32" type="image/png" />
@@ -70,21 +72,11 @@ const jsonLd = {
 
     <link rel="preload" href={heroFont} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={monoFont} as="font" type="font/woff2" crossorigin />
 
     <script is:inline>
-      /* Tema antes del primer pintado: evita el destello. También fija theme-color. */
-      (function () {
-        var d = document.documentElement, t = null;
-        try { t = localStorage.getItem('theme'); } catch (e) {}
-        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        d.dataset.theme = t;
-        d.classList.add('js'); /* los controles .js-only solo existen con JavaScript */
-        var metas = document.querySelectorAll('meta[name="theme-color"]');
-        for (var i = 0; i < metas.length; i++) {
-          metas[i].removeAttribute('media');
-          metas[i].setAttribute('content', t === 'dark' ? '#0a0c12' : '#f3f5f8');
-        }
-      })();
+      /* El sitio es solo oscuro. La clase `js` habilita los controles que solo funcionan con JavaScript. */
+      document.documentElement.classList.add('js');
     </script>
     <script is:inline>
       /* Movimiento: solo con JS y sin prefers-reduced-motion. La intro, solo en la primera

@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import About from '../../components/About.astro';
 import Marquee from '../../components/Marquee.astro';
+import Lifecycle from '../../components/Lifecycle.astro';
 import Projects from '../../components/Projects.astro';
 import Experience from '../../components/Experience.astro';
 import Education from '../../components/Education.astro';
@@ -20,8 +21,9 @@ const lang = Astro.params.lang as Lang;
 <Base lang={lang}>
   <Hero lang={lang} />
   <main id="main">
-    <About lang={lang} />
     <Marquee lang={lang} />
+    <About lang={lang} />
+    <Lifecycle lang={lang} />
     <Projects lang={lang} />
     <Experience lang={lang} />
     <Education lang={lang} />
