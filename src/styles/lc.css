@@ -175,7 +175,8 @@ body {
   padding: 8px 10px 8px 18px;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: rgba(5, 8, 15, 0.9);
+  background: rgba(5, 8, 15, 0.97);
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.8);
   translate: -50% 0;
   font-family: var(--font-mono);
   font-size: 0.85rem;
