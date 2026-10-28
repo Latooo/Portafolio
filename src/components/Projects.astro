@@ -16,7 +16,7 @@ const featured = projects.find((p): p is LiveProject => p.status === 'live' && B
 const others = projects.filter((p) => p !== featured);
 ---
 
-<section class="field field--cobalt" id="projects" aria-labelledby="projects-title">
+<section class="field" id="projects" aria-labelledby="projects-title">
   <SectionTitle id="projects-title" text={t.title} />
   <p class="lead">{t.lead}</p>
 
@@ -39,7 +39,7 @@ const others = projects.filter((p) => p !== featured);
             </div>
           </dl>
           <div class="links">
-            <a class="btn btn--light" href={featured.url}>
+            <a class="btn" href={featured.url}>
               {t.visitSite}
             </a>
             {featured.repo && (

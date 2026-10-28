@@ -1,57 +1,47 @@
 /*
- * Tokens de diseño. Dirección B (El monumento): campos de color plano.
- * Pares de texto verificados con contraste AA (ver README, "Contraste").
- *   ink sobre paper 17.9 | muted-paper sobre paper 7.1
- *   paper sobre ink 17.9 | muted-ink sobre ink 9.5
- *   on-cobalt sobre cobalt 5.1 | muted-cobalt sobre cobalt 4.7 | cobalt sobre paper 4.7
- * El cobalto NO se usa como texto sobre ink (2.7:1).
+ * Tokens. Dirección "LangChain": azul noche casi negro, acento azul cielo, sans fina + mono.
+ * Pares de texto con contraste AA verificado (ver README, "Contraste"):
+ *   ink sobre bg 17.2 | mu sobre bg 9.2 | sky sobre bg 11.0 | sky-ink sobre sky-fill 15.4
+ *   paper-ink sobre paper 17.1 | paper-mu sobre paper 7.2
  */
 :root {
-  --paper: #f3f5f8;
-  --ink: #0a0c12;
+  /* Campo oscuro (todo el sitio) */
+  --bg: #05080f;
+  --bg-2: #080d18;
+  --panel: #0b1322;
+  --line: rgba(150, 196, 250, 0.16);
+  --line-strong: rgba(150, 196, 250, 0.32);
+  --fg: #e7eef8;
+  --mu: #a3b1c6;
+  --sky: #8ec5ff;
+  --sky-soft: rgba(142, 197, 255, 0.12);
+  --sky-fill: #d5e9ff;
+  --sky-ink: #06101f;
+
+  /* Banda clara (contacto) */
+  --paper: #eef5fd;
+  --paper-ink: #0a1220;
+  --paper-mu: #44526a;
+
+  /* Compatibilidad con estilos previos */
+  --ink: var(--bg);
   --cobalt: #3d5afe;
   --on-cobalt: #ffffff;
-  --muted-paper: #4b5361;
-  --muted-ink: #aeb5c4;
-  --muted-cobalt: #f2f4ff;
+  --muted-ink: var(--mu);
+  --muted-paper: var(--paper-mu);
+  --muted-cobalt: var(--mu);
+  --inv-bg: var(--bg);
+  --inv-fg: var(--fg);
+  --inv-mu: var(--mu);
 
-  /* Campo principal (hero, sobre mí) y campo invertido (experiencia) */
-  --bg: var(--paper);
-  --fg: var(--ink);
-  --mu: var(--muted-paper);
-  --inv-bg: var(--ink);
-  --inv-fg: var(--paper);
-  --inv-mu: var(--muted-ink);
-
-  --font-display: 'Bricolage Grotesque', 'Arial Narrow', system-ui, sans-serif;
-  --font-body: 'Instrument Sans', 'Instrument Sans Fallback', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'IBM Plex Sans', 'Plex Fallback', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', 'Plex Fallback', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
 
   --pad: clamp(20px, 4vw, 56px);
+  --max: 1240px;
   --measure: 62ch;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
-  color-scheme: light;
-}
-
-/* Tema oscuro explícito */
-:root[data-theme='dark'] {
-  --bg: var(--ink);
-  --fg: var(--paper);
-  --mu: var(--muted-ink);
-  --inv-bg: var(--paper);
-  --inv-fg: var(--ink);
-  --inv-mu: var(--muted-paper);
   color-scheme: dark;
-}
-
-/* Sin JavaScript (o antes de que corra), se respeta el tema del sistema */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --bg: var(--ink);
-    --fg: var(--paper);
-    --mu: var(--muted-ink);
-    --inv-bg: var(--paper);
-    --inv-fg: var(--ink);
-    --inv-mu: var(--muted-paper);
-    color-scheme: dark;
-  }
 }

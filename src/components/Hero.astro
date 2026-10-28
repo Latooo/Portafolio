@@ -1,6 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import avatar from '../assets/avatar.jpg';
+import engraving from '../assets/hero/babbage-lines.png';
 import Nav from './Nav.astro';
 import { getContent, site, type Lang } from '../data';
 import { asset } from '../lib/url';
@@ -11,12 +12,6 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = getContent(lang);
-
-/* El nombre se parte en letras solo para animarlo. Se expone UNA vez (texto sr-only)
-   y las letras decorativas van con aria-hidden. */
-const words = site.name.split(' ');
-let n = 0;
-const lettered = words.map((word) => [...word].map((ch) => ({ ch, i: n++ })));
 
 /* Bienvenida (primera visita): letras decorativas, todo aria-hidden. */
 const split = (s: string, offset = 0) => [...s].map((ch, i) => ({ ch, i: i + offset }));
@@ -46,12 +41,23 @@ const host = new URL(Astro.site ?? 'https://latooo.github.io').host + import.met
   </div>
 
   <Nav lang={lang} />
-  <div class="intro">
-    <p class="avail hx" style="--h: 0"><span class="avail-dot" aria-hidden="true"></span>{t.hero.available}</p>
-    <p class="role display hx" style="--h: 0">{t.hero.role}</p>
-    <p class="tagline hx" style="--h: 1">{t.hero.tagline}</p>
-    <div class="actions hx" style="--h: 2">
+
+  <!-- Grabado: máquina diferencial de Babbage (Harper's, 1864, dominio público). Decorativo. -->
+  <div class="hero-art" aria-hidden="true">
+    <div class="hero-art-in" data-depth="-0.12">
+      <Picture src={engraving} alt="" widths={[480, 866]} sizes="(max-width: 900px) 70vw, 34vw" formats={['avif', 'webp']} width={866} height={1281} loading="eager" fetchpriority="low" />
+    </div>
+  </div>
+
+  <div class="hero-main">
+    <h1 class="hero-title">
+      <span class="ht-1 hx" style="--h: 0" translate="no">{t.hero.title1}</span>
+      <span class="ht-2 hx" style="--h: 1">{t.hero.title2}</span>
+    </h1>
+    <p class="tagline hx" style="--h: 2">{t.hero.tagline}</p>
+    <div class="actions hx" style="--h: 3">
       <a class="btn" href="#projects">{t.hero.ctaProjects}</a>
+      <a class="btn btn--ghost" href="#contact">{t.hero.ctaContact}</a>
       {
         site.cv.enabled && (
           <a class="textlink" href={asset(site.cv.file)} download>
@@ -60,6 +66,7 @@ const host = new URL(Astro.site ?? 'https://latooo.github.io').host + import.met
         )
       }
     </div>
+    <p class="avail hx" style="--h: 4"><span class="avail-dot" aria-hidden="true"></span>{t.hero.available}</p>
   </div>
 
   <!-- Credencial colgante: decorativa (el avatar real está en "Sobre mí"). Física en scripts/fx.ts. -->
@@ -82,25 +89,4 @@ const host = new URL(Astro.site ?? 'https://latooo.github.io').host + import.met
     </div>
   </div>
 
-  <div class="name">
-    <h1 class="name-h display" translate="no">
-      <span class="sr-only">{site.name}</span>
-      <span class="letters" aria-hidden="true">
-        {
-          lettered.map((word, wi) => (
-            <Fragment>
-              {wi > 0 && <span class="sp" />}
-              <span class="w">
-                {word.map(({ ch, i }) => (
-                  <span class="ch" style={`--i: ${i}`}>
-                    {ch}
-                  </span>
-                ))}
-              </span>
-            </Fragment>
-          ))
-        }
-      </span>
-    </h1>
-  </div>
 </header>

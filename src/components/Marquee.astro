@@ -15,7 +15,7 @@ const { lang } = Astro.props;
 const t = getContent(lang).stack;
 ---
 
-<section class="marquee field--inverse" aria-label={t.title} data-marquee>
+<section class="marquee" aria-label={t.title} data-marquee>
   <ul class="stack-list">
     {stack.map((item) => <li translate="no">{item}</li>)}
   </ul>

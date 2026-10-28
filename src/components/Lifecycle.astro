@@ -1,0 +1,205 @@
+---
+/**
+ * "Cómo trabajo": ciclo Diagnosticar → Construir → Optimizar → Entregar.
+ * Inspirado en el ciclo de vida de langchain.com: un anillo fijo a la izquierda que gira
+ * hasta la etapa activa mientras el texto y un fragmento de interfaz cambian a la derecha.
+ *
+ * Sin JS (o con reduced-motion) las cuatro etapas se leen en orden, con su panel, y el
+ * anillo queda quieto. Los paneles son ilustraciones (role="img" con descripción).
+ */
+import SectionTitle from './SectionTitle.astro';
+import { getContent, type Lang } from '../data';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang).lifecycle;
+const p = t.panel;
+const angles = [0, 90, 180, 270];
+
+/* Fragmentos de código como HTML (en un <pre> la sangría de la plantilla se conservaría). */
+const kw = (w: string) => `<span class="l-kw">${w}</span>`;
+const codeLog = [
+  '<span class="l-mu">21:04:17.382</span> <span class="l-err">ERROR</span> [http-nio-8080-exec-7]',
+  '<span class="l-hi">java.sql.SQLException</span>: Violation of PRIMARY KEY',
+  '  at erp.factura.GuardarFactura.run(GuardarFactura.java:214)',
+  '  at erp.remision.Despachar.run(Despachar.java:88)',
+  '  at erp.core.Transaccion.commit(Transaccion.java:41)',
+].join('\n');
+const codeBefore = [`${kw('for')} f ${kw('in')} facturas:`, `  ${kw('SELECT')} * ${kw('FROM')} detalle`, `  ${kw('WHERE')} factura_id = ?`].join('\n');
+const codeAfter = [`${kw('SELECT')} f.*, d.*`, `${kw('FROM')} factura f`, `${kw('JOIN')} detalle d ${kw('ON')} …`].join('\n');
+---
+
+<section class="field lc" id="process" aria-labelledby="process-title">
+  <h2 class="lc-title" id="process-title">
+    <span class="rv" data-rv><span class="rv-in">{t.title1}</span></span>
+    <span class="rv lc-title-2" data-rv><span class="rv-in">{t.title2}</span></span>
+  </h2>
+  <p class="lc-lead">{t.lead}</p>
+
+  <div class="lc-grid">
+    <div class="lc-orbit" aria-hidden="true">
+      <div class="lc-orbit-in">
+        <svg class="lc-ring" viewBox="0 0 400 400">
+          <circle cx="200" cy="200" r="196" />
+          <circle cx="200" cy="200" r="150" />
+        </svg>
+        <div class="lc-wheel" data-lc-wheel>
+          {
+            t.stages.map((s, i) => (
+              <span class="lc-pill" data-stage={i} style={`--a: ${angles[i]}deg`}>
+                <span>{s.name}</span>
+              </span>
+            ))
+          }
+        </div>
+        <span class="lc-node">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"></path></svg>
+        </span>
+        <span class="lc-beam"></span>
+      </div>
+    </div>
+
+    <ol class="lc-stages">
+      {
+        t.stages.map((s, i) => (
+          <li class="lc-stage" data-lc-stage={i}>
+            <div class="lc-copy">
+              <h3 class="lc-name">{s.name}</h3>
+              <p class="lc-stage-lead">{s.lead}</p>
+              <ul class="lc-points">
+                {s.points.map((pt) => (
+                  <li>
+                    <strong>{pt.b}</strong> {pt.t}
+                  </li>
+                ))}
+              </ul>
+              <ul class="lc-tags" aria-label="Stack">
+                {s.tags.map((tag) => (
+                  <li translate="no">{tag}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="lc-panel" data-ui role="img" aria-label={s.panelAlt}>
+              {s.id === 'diagnose' && (
+                <div class="pn pn-log">
+                  <p class="pn-bar"><span class="pn-dots" />catalina.out</p>
+                  <pre class="pn-code" set:html={codeLog} />
+                  <div class="pn-row">
+                    <span class="pn-chip">{p.cause}</span>
+                    <span>{p.causeText}</span>
+                  </div>
+                  <div class="pn-row pn-ok">
+                    <span class="pn-led" />
+                    <span>{p.fixed}</span>
+                  </div>
+                </div>
+              )}
+              {s.id === 'build' && (
+                <div class="pn pn-flow">
+                  <p class="pn-bar"><span class="pn-dots" />erp / {p.invoice.toLowerCase()}</p>
+                  <div class="pn-chain">
+                    <span class="pn-box">{p.quote}</span>
+                    <span class="pn-arrow" />
+                    <span class="pn-box">{p.remission}</span>
+                    <span class="pn-arrow" />
+                    <span class="pn-box pn-box--hi">{p.invoice}</span>
+                    <span class="pn-arrow" />
+                    <span class="pn-box">{p.accounting}</span>
+                  </div>
+                  <div class="pn-rules">
+                    <p class="pn-label">{p.rules}</p>
+                    <ul>
+                      <li>{p.r1}</li>
+                      <li>{p.r2}</li>
+                      <li>{p.r3}</li>
+                    </ul>
+                  </div>
+                </div>
+              )}
+              {s.id === 'optimize' && (
+                <div class="pn pn-query">
+                  <p class="pn-bar"><span class="pn-dots" />query-plan.sql</p>
+                  <div class="pn-cols">
+                    <div>
+                      <p class="pn-label">{p.before}</p>
+                      <pre class="pn-code" set:html={codeBefore} />
+                      <p class="pn-count">{p.queries1}</p>
+                      <span class="pn-bar-graph pn-bar-graph--long" />
+                    </div>
+                    <div>
+                      <p class="pn-label">{p.after}</p>
+                      <pre class="pn-code" set:html={codeAfter} />
+                      <p class="pn-count">{p.queries2}</p>
+                      <span class="pn-bar-graph" />
+                    </div>
+                  </div>
+                  <p class="pn-metric">
+                    <span class="pn-big">−3 min</span>
+                    <span>{p.loadTime}</span>
+                  </p>
+                </div>
+              )}
+              {s.id === 'ship' && (
+                <div class="pn pn-deploy">
+                  <p class="pn-bar"><span class="pn-dots" />{p.deploy}</p>
+                  <dl class="pn-form">
+                    <div>
+                      <dt>{p.project}</dt>
+                      <dd translate="no">Flick</dd>
+                    </div>
+                    <div>
+                      <dt>{p.target}</dt>
+                      <dd translate="no">flickcol.netlify.app</dd>
+                    </div>
+                    <div>
+                      <dt>{p.branch}</dt>
+                      <dd translate="no">main</dd>
+                    </div>
+                    <div>
+                      <dt>{p.status}</dt>
+                      <dd class="pn-ok"><span class="pn-led" />{p.live}</dd>
+                    </div>
+                  </dl>
+                  <ul class="pn-checks">
+                    <li>{p.c1}</li>
+                    <li>{p.c2}</li>
+                    <li>{p.c3}</li>
+                  </ul>
+                </div>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<script>
+  /* Etapa activa: la que cruza el centro de la pantalla. Gira el anillo hasta ella. */
+  const root = document.documentElement;
+  const wheel = document.querySelector<HTMLElement>('[data-lc-wheel]');
+  const stages = Array.from(document.querySelectorAll<HTMLElement>('[data-lc-stage]'));
+  const pills = Array.from(document.querySelectorAll<HTMLElement>('.lc-pill'));
+
+  if (wheel && stages.length && root.classList.contains('motion')) {
+    root.classList.add('lc-live');
+    const set = (i: number) => {
+      wheel.style.setProperty('--turn', `${-i * 90}deg`);
+      pills.forEach((p, k) => p.classList.toggle('is-on', k === i));
+      stages.forEach((s, k) => s.classList.toggle('is-on', k === i));
+    };
+    set(0);
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) if (e.isIntersecting) set(Number((e.target as HTMLElement).dataset.lcStage));
+      },
+      { rootMargin: '-45% 0px -45% 0px' },
+    );
+    stages.forEach((s) => io.observe(s));
+  }
+</script>

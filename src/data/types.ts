@@ -25,6 +25,16 @@ export interface Achievement {
   count?: CountUp;
 }
 
+export interface Stage {
+  id: 'diagnose' | 'build' | 'optimize' | 'ship';
+  name: string;
+  lead: string;
+  points: { b: string; t: string }[];
+  tags: string[];
+  /** Descripción del panel de ejemplo para lectores de pantalla. */
+  panelAlt: string;
+}
+
 export interface Job {
   period: string;
   role: string;
@@ -49,6 +59,8 @@ export interface Content {
     navAbout: string;
     navProjects: string;
     navExperience: string;
+    navProcess: string;
+    navCta: string;
     navEducation: string;
     navCerts: string;
     navContact: string;
@@ -59,6 +71,7 @@ export interface Content {
     themeToLight: string;
     footerRights: string;
     footerTop: string;
+    footerCredit: string;
   };
   about: {
     title: string;
@@ -100,10 +113,22 @@ export interface Content {
   };
   hero: {
     role: string;
+    /** Titular en dos líneas (h1): nombre y línea en azul cielo. */
+    title1: string;
+    title2: string;
     tagline: string;
     ctaProjects: string;
+    ctaContact: string;
     ctaCv: string;
     available: string;
+  };
+  lifecycle: {
+    title1: string;
+    title2: string;
+    lead: string;
+    stages: Stage[];
+    /** Textos cortos de los paneles de ejemplo. */
+    panel: Record<string, string>;
   };
   education: {
     title: string;

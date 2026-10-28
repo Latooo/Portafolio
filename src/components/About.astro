@@ -12,7 +12,7 @@ const { lang } = Astro.props;
 const t = getContent(lang).about;
 ---
 
-<section class="field field--main" id="about" aria-labelledby="about-title">
+<section class="field" id="about" aria-labelledby="about-title">
   <SectionTitle id="about-title" text={t.title} />
   <div class="about-grid">
     <div>

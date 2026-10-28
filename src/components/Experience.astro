@@ -10,7 +10,7 @@ const { lang } = Astro.props;
 const t = getContent(lang).experience;
 ---
 
-<section class="field field--inverse exp" id="experience" aria-labelledby="experience-title">
+<section class="field exp" id="experience" aria-labelledby="experience-title">
   <SectionTitle id="experience-title" text={t.title} />
   <p class="lead">{t.lead}</p>
 
