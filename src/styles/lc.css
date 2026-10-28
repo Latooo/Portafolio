@@ -835,10 +835,21 @@ html.lc-live .lc-stage.is-on .lc-copy {
   color: #c8d6ea;
 }
 
+.pn-checks li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Visto dibujado con bordes (sin emoji) */
 .pn-checks li::before {
-  content: '✓';
-  margin-right: 10px;
-  color: #7ee2b8;
+  content: '';
+  width: 5px;
+  height: 9px;
+  margin: 0 3px 3px;
+  border: solid #7ee2b8;
+  border-width: 0 2px 2px 0;
+  rotate: 45deg;
 }
 
 @media (max-width: 900px) {

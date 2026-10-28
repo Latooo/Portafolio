@@ -25,8 +25,8 @@
 
   /* Compatibilidad con estilos previos */
   --ink: var(--bg);
-  --cobalt: #3d5afe;
-  --on-cobalt: #ffffff;
+  --cobalt: #142038;
+  --on-cobalt: #e7eef8;
   --muted-ink: var(--mu);
   --muted-paper: var(--paper-mu);
   --muted-cobalt: var(--mu);
