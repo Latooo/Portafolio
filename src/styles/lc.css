@@ -1419,3 +1419,276 @@ body > .footer a {
     animation: none;
   }
 }
+
+/* =====================================================================
+ * Ajustes de la revisión: barra centrada, tarjeta de código, fondo vivo y cursor
+ * ===================================================================== */
+
+/* ---------- Barra: marca | enlaces centrados | controles ---------- */
+@media (min-width: 721px) {
+  .nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .nav .brand {
+    justify-self: start;
+    margin: 0;
+  }
+
+  .nav .links {
+    align-items: center;
+    justify-content: center;
+    gap: 4px 26px;
+  }
+
+  .nav .ctls {
+    justify-self: end;
+    align-items: center;
+  }
+}
+
+.nav .links a,
+.nav .brand,
+.nav .ctl {
+  line-height: 1;
+}
+
+/* .links también es la clase de los enlaces de proyecto (margin-top: 28px): aquí no aplica. */
+.nav .links {
+  margin: 0;
+}
+
+/* ---------- Tarjeta de código a la izquierda (equilibra la credencial) ---------- */
+.hero-code {
+  position: absolute;
+  z-index: 1;
+  top: 30%;
+  left: clamp(16px, 4vw, 72px);
+  pointer-events: none;
+}
+
+.hc-card {
+  width: 300px;
+  padding: 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(12, 21, 39, 0.92), rgba(8, 14, 26, 0.92));
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.8), 0 0 40px -12px rgba(142, 197, 255, 0.25);
+  font-family: var(--font-mono);
+  rotate: -4deg;
+}
+
+html.motion .hc-card {
+  animation: hc-float 7s ease-in-out infinite alternate;
+}
+
+@keyframes hc-float {
+  to {
+    transform: translateY(-14px) rotate(1.5deg);
+  }
+}
+
+.hc-card .pn-code {
+  margin-top: 12px;
+  font-size: 0.72rem;
+}
+
+.hc-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  color: #7ee2b8;
+  font-size: 0.72rem;
+}
+
+@media (max-width: 1279px) {
+  .hero-code {
+    display: none;
+  }
+}
+
+/* ---------- Fondo vivo: luces que se mueven y cambian de tono con el scroll ---------- */
+@property --c1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #2b5bd8;
+}
+
+@property --c2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #0ea5b7;
+}
+
+@property --c3 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #1d4ed8;
+}
+
+.bg-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition: --c1 1.4s ease, --c2 1.4s ease, --c3 1.4s ease;
+}
+
+.bg-glow {
+  position: absolute;
+  width: 70vmax;
+  height: 70vmax;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.bg-g1 {
+  top: -30vmax;
+  left: -25vmax;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--c1) 22%, transparent), transparent);
+  transform: translate(calc(var(--sp, 0) * 55vw), calc(var(--sp, 0) * 30vh));
+}
+
+.bg-g2 {
+  right: -30vmax;
+  top: 10vh;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--c2) 16%, transparent), transparent);
+  transform: translate(calc(var(--sp, 0) * -45vw), calc(var(--sp, 0) * 20vh));
+}
+
+.bg-g3 {
+  bottom: -40vmax;
+  left: 20vw;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--c3) 18%, transparent), transparent);
+  transform: translate(calc(var(--sp, 0) * -20vw), calc(var(--sp, 0) * -35vh));
+}
+
+/* Cuadrícula de puntos casi invisible, con un leve desplazamiento */
+.bg-grid {
+  position: absolute;
+  inset: -10% 0;
+  background-image: radial-gradient(rgba(142, 197, 255, 0.11) 1px, transparent 1.4px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 20%, transparent 80%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 20%, transparent 80%);
+  transform: translateY(calc(var(--sp, 0) * -8%));
+}
+
+/* Tono por sección (lo pone fx.ts en <html data-mood>) */
+html[data-mood='about'] .bg-scene { --c1: #2563eb; --c2: #0891b2; --c3: #1e40af; }
+html[data-mood='process'] .bg-scene { --c1: #0e7490; --c2: #3b82f6; --c3: #0f766e; }
+html[data-mood='projects'] .bg-scene { --c1: #4f46e5; --c2: #0ea5e9; --c3: #2563eb; }
+html[data-mood='experience'] .bg-scene { --c1: #1d4ed8; --c2: #14b8a6; --c3: #0369a1; }
+html[data-mood='education'] .bg-scene,
+html[data-mood='certs'] .bg-scene { --c1: #0d9488; --c2: #6366f1; --c3: #0284c7; }
+
+/* El contenido va por encima del fondo; el hero ya trae su propio fondo. */
+header.hero {
+  background: radial-gradient(55% 45% at 50% 42%, rgba(70, 120, 210, 0.16), transparent 72%), transparent;
+}
+
+body > header,
+body > main,
+body > footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Las secciones con fondo propio (la banda clara) no dejan ver la escena. */
+.field--light {
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-glow,
+  .bg-grid {
+    transform: none;
+  }
+
+  html.motion .hc-card {
+    animation: none;
+  }
+}
+
+/* ---------- Cursor: punto + anillo que sigue con inercia (solo con mouse) ---------- */
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+html.has-cursor input,
+html.has-cursor textarea {
+  cursor: text !important;
+}
+
+.cur-dot,
+.cur-ring {
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.cur-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--sky-fill);
+  box-shadow: 0 0 0 1.5px rgba(5, 8, 15, 0.6);
+}
+
+.cur-ring {
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1.5px solid rgba(142, 197, 255, 0.6);
+  transition: width 0.25s var(--ease), height 0.25s var(--ease), margin 0.25s var(--ease), background-color 0.25s, border-color 0.25s, opacity 0.3s;
+}
+
+.cur-ring.is-link {
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+  border-color: var(--sky);
+  background: rgba(142, 197, 255, 0.1);
+}
+
+.cur-ring.is-down {
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+}
+
+.cur-ring.is-light {
+  border-color: rgba(10, 18, 32, 0.55);
+}
+
+.cur-ring.is-light.is-link {
+  border-color: var(--paper-ink);
+  background: rgba(10, 18, 32, 0.08);
+}
+
+.cur-dot.is-light {
+  background: var(--paper-ink);
+  box-shadow: none;
+}
+
+.cur-dot.is-hidden,
+.cur-ring.is-hidden {
+  opacity: 0;
+}
+
+/* La barra es fija: al saltar a una sección, el título queda visible debajo de ella. */
+section[id] {
+  scroll-margin-top: 88px;
+}

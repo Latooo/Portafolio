@@ -17,6 +17,17 @@ const t = getContent(lang);
 const split = (s: string, offset = 0) => [...s].map((ch, i) => ({ ch, i: i + offset }));
 const w1 = split(t.welcome.line1);
 const w2 = split(t.welcome.line2, w1.length);
+/* Tarjeta de código que equilibra la credencial del lado derecho (decorativa). */
+const k = (w: string) => `<span class="l-kw">${w}</span>`;
+const code = [
+  `<span class="l-mu">@Transactional</span>`,
+  `${k('public')} Factura emitir(Remision r) {`,
+  `  validarCupoYMora(r.cliente());`,
+  `  validarCosto(r.items());`,
+  `  Factura f = Factura.desde(r);`,
+  `  ${k('return')} facturas.save(f);`,
+  `}`,
+].join('\n');
 const host = new URL(Astro.site ?? 'https://latooo.github.io').host + import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
@@ -41,6 +52,14 @@ const host = new URL(Astro.site ?? 'https://latooo.github.io').host + import.met
   </div>
 
   <Nav lang={lang} />
+
+  <div class="hero-code" aria-hidden="true">
+    <div class="hc-card" data-depth="0.06">
+      <p class="pn-bar"><span class="pn-dots"></span>FacturaService.java</p>
+      <pre class="pn-code" set:html={code}></pre>
+      <p class="hc-foot"><span class="pn-led"></span>build · ok</p>
+    </div>
+  </div>
 
   <div class="hero-main">
     <h1 class="hero-title">

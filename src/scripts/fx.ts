@@ -235,3 +235,89 @@ if (!reduced) {
   );
   par();
 }
+
+/* ---------- Fondo vivo: luces que se mueven con el scroll y cambian de tono por sección ---------- */
+{
+  const scene = mk('bg-scene', '', document.body);
+  ['bg-glow bg-g1', 'bg-glow bg-g2', 'bg-glow bg-g3', 'bg-grid'].forEach((c) => mk(c, '', scene));
+  document.body.prepend(scene);
+
+  if (!reduced) {
+    let queued = false;
+    const progress = () => {
+      queued = false;
+      const max = document.documentElement.scrollHeight - innerHeight;
+      html.style.setProperty('--sp', (max > 0 ? Math.min(1, scrollY / max) : 0).toFixed(4));
+    };
+    addEventListener(
+      'scroll',
+      () => {
+        if (!queued) {
+          queued = true;
+          requestAnimationFrame(progress);
+        }
+      },
+      { passive: true },
+    );
+    progress();
+  }
+
+  // Tono: la sección que cruza el centro de la pantalla.
+  const moods = ['about', 'process', 'projects', 'experience', 'education', 'certs'];
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) if (e.isIntersecting) html.dataset.mood = (e.target as HTMLElement).id;
+    },
+    { rootMargin: '-50% 0px -50% 0px' },
+  );
+  moods.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) io.observe(el);
+  });
+  const top = document.querySelector('header.hero');
+  if (top) new IntersectionObserver((es) => es[0].isIntersecting && delete html.dataset.mood, { rootMargin: '-50% 0px -50% 0px' }).observe(top);
+}
+
+/* ---------- Cursor: punto + anillo con inercia. Solo con mouse y sin reduced-motion. ---------- */
+if (fine && !reduced) {
+  const dot = mk('cur-dot is-hidden', '', document.body);
+  const ring = mk('cur-ring is-hidden', '', document.body);
+  html.classList.add('has-cursor');
+  let x = -100, y = -100, rx = -100, ry = -100, running = false;
+  const loop = () => {
+    rx += (x - rx) * 0.2;
+    ry += (y - ry) * 0.2;
+    ring.style.transform = `translate(${rx.toFixed(1)}px, ${ry.toFixed(1)}px)`;
+    if (Math.abs(x - rx) + Math.abs(y - ry) > 0.3) requestAnimationFrame(loop);
+    else running = false;
+  };
+  const interactive = 'a, button, [role="button"], label, summary, .ly-card';
+  addEventListener(
+    'pointermove',
+    (e) => {
+      if (e.pointerType !== 'mouse') return;
+      x = e.clientX;
+      y = e.clientY;
+      dot.style.transform = `translate(${x}px, ${y}px)`;
+      dot.classList.remove('is-hidden');
+      ring.classList.remove('is-hidden');
+      const t = e.target as Element;
+      const link = !!t.closest?.(interactive);
+      const light = !!t.closest?.('.field--light');
+      ring.classList.toggle('is-link', link);
+      ring.classList.toggle('is-light', light);
+      dot.classList.toggle('is-light', light);
+      if (!running) {
+        running = true;
+        requestAnimationFrame(loop);
+      }
+    },
+    { passive: true },
+  );
+  addEventListener('pointerdown', () => ring.classList.add('is-down'));
+  addEventListener('pointerup', () => ring.classList.remove('is-down'));
+  document.addEventListener('pointerleave', () => {
+    dot.classList.add('is-hidden');
+    ring.classList.add('is-hidden');
+  });
+}
